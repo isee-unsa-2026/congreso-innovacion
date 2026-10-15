@@ -1,25 +1,45 @@
 ---
-// Botón flotante (todas las páginas) hacia el grupo oficial de WhatsApp. Enlace en site.json ("whatsapp").
+// Botones flotantes (todas las páginas): grupo oficial de WhatsApp (principal) e Instagram (secundario, más pequeño, encima).
+// Enlaces en site.json ("whatsapp", "instagram").
 import site from '../data/site.json';
 import WhatsAppIcono from './WhatsAppIcono.astro';
+import InstagramIcono from './InstagramIcono.astro';
 ---
-<a class="wa-flotante" href={site.whatsapp} target="_blank" rel="noopener" aria-label="Únete al grupo de WhatsApp del congreso">
-  <WhatsAppIcono size={26} />
-</a>
+<div class="flotantes">
+  {site.instagram && (
+    <a class="ig-flotante" href={site.instagram} target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
+      <InstagramIcono size={20} />
+    </a>
+  )}
+  <a class="wa-flotante" href={site.whatsapp} target="_blank" rel="noopener" aria-label="Únete al grupo de WhatsApp del congreso">
+    <WhatsAppIcono size={26} />
+  </a>
+</div>
 <style>
-  .wa-flotante {
+  .flotantes {
     position: fixed; z-index: 40;
     right: max(1rem, env(safe-area-inset-right));
     bottom: max(1rem, env(safe-area-inset-bottom));
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    pointer-events: none;
+  }
+  .flotantes a { pointer-events: auto; -webkit-tap-highlight-color: transparent; touch-action: manipulation; text-decoration: none; color: #fff; }
+  .wa-flotante {
     display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
-    background: #25d366; color: #fff; text-decoration: none;
+    background: #25d366;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .18), 0 6px 18px rgba(0, 0, 0, .14), inset 0 0 0 1px rgba(0, 0, 0, .08);
-    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
     transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-ui) var(--ease), background-color var(--dur-ui) var(--ease);
   }
   .wa-flotante:hover { background: #1ebe5b; color: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .2), 0 10px 24px rgba(0, 0, 0, .16); }
-  .wa-flotante:active { transform: scale(.94); }
+  .ig-flotante {
+    display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .16), 0 4px 12px rgba(0, 0, 0, .12), inset 0 0 0 1px rgba(0, 0, 0, .08);
+    transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-ui) var(--ease), filter var(--dur-ui) var(--ease);
+  }
+  .ig-flotante:hover { color: #fff; filter: brightness(1.06); box-shadow: 0 3px 7px rgba(0, 0, 0, .2), 0 8px 18px rgba(0, 0, 0, .14); }
+  .wa-flotante:active, .ig-flotante:active { transform: scale(.94); }
   /* Doble anillo (blanco + oscuro): visible sobre fondos claros y oscuros */
-  .wa-flotante:focus-visible { outline: 2px solid var(--texto); outline-offset: 3px; box-shadow: 0 0 0 3px #fff, 0 6px 18px rgba(0, 0, 0, .14); }
-  @media print { .wa-flotante { display: none; } }
+  .flotantes a:focus-visible { outline: 2px solid var(--texto); outline-offset: 3px; box-shadow: 0 0 0 3px #fff, 0 6px 18px rgba(0, 0, 0, .14); }
+  @media print { .flotantes { display: none; } }
 </style>

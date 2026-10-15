@@ -39,7 +39,8 @@ const secciones = [
         </ol>
         <p class="lectura-p">{reto.importancia}</p>
         <p class="proximo"><strong>Bases</strong><span>Las bases y los desafíos se publicarán próximamente.</span></p>
-        <div class="acciones"><a class="btn" href="/inscripciones/#reto">Postula tu equipo</a></div>
+        <div class="acciones"><a class="btn btn--wa" href={site.whatsapp} target="_blank" rel="noopener">Únete al grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a></div>
+        <p class="nota">Postulación: próximamente, con la publicación de las bases. Te avisaremos en el grupo.</p>
       </div>
       <figure class="dos__img" data-reveal data-reveal-delay="100">
         <img src={img.src} width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" />
@@ -100,9 +101,7 @@ const secciones = [
       </div>
       <div data-reveal>
         <Acordeon items={etapas} numerado />
-        <div class="acciones">
-          <a class="btn" href="/inscripciones/#reto">Postula tu equipo</a>
-        </div>
+        <p class="nota">Postulación: próximamente, con la publicación de las bases.</p>
       </div>
     </div>
   </section>

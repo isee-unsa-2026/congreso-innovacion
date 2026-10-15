@@ -48,7 +48,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 1rem; scroll-padding-bottom: 5rem; /* el botón flotante de WhatsApp no tapa el foco */-webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-color: #9a9fa5 var(--fondo); }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; scroll-padding-bottom: 8rem; /* los botones flotantes (WhatsApp + Instagram) no tapan el foco */-webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-color: #9a9fa5 var(--fondo); }
 main:focus { outline: none; }
 body {
   margin: 0; background: var(--blanco); color: var(--texto);
@@ -196,6 +196,8 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 .form[aria-busy="true"] button[aria-disabled="true"] { cursor: progress; }
 .estado .btn { margin-top: .75rem; }
 .estado .estado__wa { margin-top: .5rem; }
+.estado .estado__ig { margin: .5rem 0 0; font-size: var(--t-xs); }
+.estado__ig a { display: inline-flex; align-items: center; min-height: 32px; color: var(--texto-2); text-underline-offset: .2em; }
 
 .check, .campo--check { display: flex; align-items: flex-start; gap: .75rem; min-height: 44px; padding: .4rem 0; font-weight: 400; cursor: pointer; }
 .campo label.check { font-weight: 400; font-size: var(--t-base); margin-bottom: 0; }

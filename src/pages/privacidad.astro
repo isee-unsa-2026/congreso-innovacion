@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
 ---
-<Base title="Aviso de privacidad" description={`Aviso de privacidad (borrador) sobre el tratamiento de datos personales en las inscripciones del ${site.name} y del concurso ${site.retoName}.`}>
+<Base title="Aviso de privacidad" description={`Aviso de privacidad (borrador) sobre el tratamiento de datos personales en el registro de asistencia del ${site.name}.`}>
   <Banner etiqueta="Datos personales" titulo="Aviso de" acento="privacidad" />
 
   <section class="seccion" aria-label="Contenido del aviso">
@@ -35,15 +35,14 @@ import site from '../data/site.json';
         <p>Tus datos se usan únicamente para:</p>
         <ul>
           <li>gestionar tu inscripción al {site.name} ({site.kicker});</li>
-          <li>enviarte comunicaciones del congreso;</li>
-          <li>en el concurso {site.retoName}: evaluar la postulación y contactar a los equipos.</li>
+          <li>enviarte comunicaciones del congreso.</li>
         </ul>
 
         <h2 id="t-datos">Datos que recogemos</h2>
         <ul>
           <li>Registro de asistencia: nombre completo, correo, número de celular, tipo de asistente, carrera, institución y, si eres estudiante, año o semestre.</li>
-          <li>Postulación a {site.retoName}: nombre del equipo; de cada integrante, nombre, correo, carrera, condición y código de estudiante o año de egreso; vínculo con la UNSA, docente tutor (opcional), desafío de interés y enlace a documentos (opcional).</li>
         </ul>
+        <p>Cuando se abra la postulación de equipos a {site.retoName}, con la publicación de las bases, este aviso se actualizará con los datos y la finalidad correspondientes.</p>
 
         <h2 id="t-alm">Almacenamiento y transferencia</h2>
         <p>

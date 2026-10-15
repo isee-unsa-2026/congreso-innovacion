@@ -10,14 +10,21 @@ import WhatsAppIcono from './WhatsAppIcono.astro';
     <p>Avisos, novedades y las bases del concurso, directo en el grupo oficial del congreso.</p>
   </div>
   <a class="btn btn--wa" href={site.whatsapp} target="_blank" rel="noopener">Unirme al grupo<span class="sr"> de WhatsApp (se abre en una pestaña nueva)</span></a>
+  {site.instagram && (
+    <p class="wa-bloque__ig"><a href={site.instagram} target="_blank" rel="noopener">Síguenos también en Instagram ({site.instagramUser})<span class="sr"> (se abre en una pestaña nueva)</span></a></p>
+  )}
 </aside>
 <style>
   .wa-bloque { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem 1.25rem; margin-top: 1.5rem; padding: 1.1rem 1.25rem; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--blanco); }
   .wa-bloque__ico { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #25d366; color: #fff; }
   .wa-bloque__t { margin: 0 0 .2rem; font-size: 1.125rem; font-weight: 700; }
   .wa-bloque p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .wa-bloque .wa-bloque__ig { grid-column: 1 / -1; justify-self: end; margin: -.5rem 0 0; font-size: var(--t-xs); }
+  .wa-bloque__ig a { display: inline-flex; align-items: center; min-height: 32px; color: var(--texto-2); text-underline-offset: .2em; }
+  .wa-bloque__ig a:hover { color: var(--acento); }
   @media (max-width: 40rem) {
     .wa-bloque { grid-template-columns: auto minmax(0, 1fr); }
     .wa-bloque .btn { grid-column: 1 / -1; width: 100%; }
+    .wa-bloque .wa-bloque__ig { justify-self: center; }
   }
 </style>
