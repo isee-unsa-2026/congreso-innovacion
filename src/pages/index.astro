@@ -14,7 +14,7 @@ const faq = [
   { titulo: '¿Cómo me inscribo?', html: `Desde la <a href="/inscripciones/">página de inscripciones</a>: hay un registro de asistencia, abierto a todo público, y una postulación de equipos para ${site.retoName}.` },
 ];
 ---
-<Base title={`${site.name} · ${site.kicker}`} description={`${site.name} (${site.kicker}): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
+<Base title={`${site.name} · ISEE UNSA 2026`} description={`${site.name}: gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
   <section class="hero" aria-labelledby="titulo-portada">
     <img class="hero__foto" src={hero.src} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
     <div class="hero__velo" aria-hidden="true"></div>
@@ -25,7 +25,7 @@ const faq = [
         <span class="hero__barra" aria-hidden="true">|</span><span class="sr">. </span>
         <span>{site.city}</span>
       </p>
-      <h1 id="titulo-portada" class="anim" style="--d:160ms">{site.name}</h1>
+      <h1 id="titulo-portada" class="anim" style="--d:160ms"><span class="hero__num">I</span> {site.name.replace(/^I /, '')}</h1>
       <p class="hero__org anim" style="--d:240ms">Organiza <strong>{site.organizer}</strong><span aria-hidden="true"> · </span><span class="sr">. Sede: </span>{site.host}</p>
       <p class="hero__lema anim" style="--d:300ms">“{site.tagline}”</p>
       <div class="acciones acciones--centro anim" style="--d:360ms">
@@ -108,6 +108,7 @@ const faq = [
   .hero__in { display: grid; justify-items: center; }
   .hero__kicker { display: inline-flex; align-items: center; gap: .85rem; margin: 0 0 .9rem; font: 500 var(--t-sm)/1.2 var(--f-texto); letter-spacing: .22em; text-transform: uppercase; color: var(--cobre-2); max-width: none; }
   .hero__kicker::before, .hero__kicker::after { content: ""; width: 2.25rem; height: 1px; background: var(--cobre); }
+  .hero__num { color: var(--cobre); }
   .hero__marco { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .25rem .75rem; margin: 0 0 1.25rem; padding: .45rem 1rem; border: 1px solid rgba(255, 255, 255, .55); border-radius: var(--radio); font: 500 .9375rem/1.3 var(--f-texto); letter-spacing: .02em; max-width: none; }
   .hero__barra { color: var(--cobre); }
   .hero h1 { margin: 0; max-width: 22ch; color: #fff; font: 700 clamp(2.1rem, 1.3rem + 2.8vw, 3.6rem)/1.1 var(--f-display); text-shadow: 0 2px 24px rgba(0, 0, 0, .45); }

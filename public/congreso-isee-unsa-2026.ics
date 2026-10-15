@@ -4,14 +4,14 @@ PRODID:-//ISEE UNSA//Congreso de Innovacion en Mineria 2026//ES
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:blasting-days-2026@iseeunsa2026.pe
+UID:congreso-innovacion-mineria-2026@isee-unsa
 DTSTAMP:20261014T000000Z
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261120
-SUMMARY:Congreso de Innovación en Minería (BLASTING DAYS 2026)
+SUMMARY:I Congreso de Innovación en Minería
 LOCATION:Universidad Nacional de San Agustín de Arequipa\, Arequipa\, Per
  ú
-DESCRIPTION:BLASTING DAYS 2026. Organiza ISEE UNSA. Ingreso gratuito. Inclu
+DESCRIPTION:Primera edición. Organiza ISEE UNSA. Ingreso gratuito. Inclu
  ye el concurso INNOMINING. Horarios próximamente.
 END:VEVENT
 END:VCALENDAR

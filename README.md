@@ -1,6 +1,6 @@
-# Congreso de Innovación en Minería · BLASTING DAYS 2026
+# I Congreso de Innovación en Minería · ISEE UNSA 2026
 
-Organiza ISEE UNSA (Student Chapter); sede anfitriona: Universidad Nacional de San Agustín de Arequipa. 18 y 19 de noviembre de 2026, Arequipa, ingreso gratuito. "BLASTING DAYS 2026" es la marca pequeña (kicker) que acompaña al nombre del evento.
+Organiza ISEE UNSA (Student Chapter); sede anfitriona: Universidad Nacional de San Agustín de Arequipa. 18 y 19 de noviembre de 2026, Arequipa, ingreso gratuito. "Primera edición · 2026" es la línea pequeña (kicker) sobre el título.
 
 Sitio estático hecho con [Astro](https://astro.build). Incluye el congreso, ponentes (anuncio próximamente) y el concurso **INNOMINING** (Concurso de Investigación y Soluciones en Voladura, ruta `/reto/`), con dos registros: asistencia (todo público) y postulación de equipos (estudiantes y egresados UNSA).
 
