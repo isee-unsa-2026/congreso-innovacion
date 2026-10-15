@@ -1,10 +1,12 @@
 ﻿import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Publicado en GitHub Pages: https://blastingdays2026.github.io/
-// Si se usa un dominio propio, cambiar `site` aqui y en public/robots.txt.
+// Publicado en GitHub Pages: https://isee-unsa-2026.github.io/congreso-innovacion/
+// `base` + scripts/base-fix.mjs ajustan las rutas. Con dominio propio: cambiar `site`, quitar `base`,
+// quitar base-fix del script "build" y actualizar public/robots.txt.
 export default defineConfig({
-  site: 'https://blastingdays2026.github.io',
+  site: 'https://isee-unsa-2026.github.io',
+  base: '/congreso-innovacion',
   trailingSlash: 'always',
   build: { format: 'directory' },
   // La CSP exige script-src 'self': nunca inyectar scripts en linea.
