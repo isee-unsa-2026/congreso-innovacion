@@ -1,0 +1,64 @@
+---
+// Bloque INNOMINING de la portada (estilo SME): texto a la izquierda y tarjeta oscura con foto y botones apilados.
+import site from '../data/site.json';
+import reto from '../data/reto.json';
+import imagenes from '../data/imagenes.json';
+const foto = imagenes['card-perforadora'];
+---
+<section class="inno" aria-labelledby="t-inno">
+  <div class="wrap inno__in">
+    <div class="inno__texto" data-reveal>
+      <p class="etiqueta etiqueta--clara">Concurso del congreso</p>
+      <h2 id="t-inno" class="inno__marca wordmark"><span class="wordmark__inno">INNO</span>MINING</h2>
+      <p class="inno__sub">{site.retoFullName}</p>
+      <p class="inno__p inno__p--fuerte">{reto.resumen}</p>
+      <h3 class="inno__h">Qué harán los equipos</h3>
+      <ol class="inno__pasos" role="list">
+        {reto.pasos.map((p) => <li>{p.titulo}</li>)}
+      </ol>
+      <p class="inno__p">{reto.importancia}</p>
+      <p class="inno__carreras"><strong>Carreras recomendadas:</strong> {reto.carreras.join(', ')}.</p>
+    </div>
+    <aside class="inno__tarjeta" aria-label={`Participa en ${site.retoName}`} data-reveal data-reveal-delay="100">
+      <img src={foto.src} width={foto.width} height={foto.height} alt="" loading="lazy" decoding="async" />
+      <div class="inno__tarjeta-in">
+        <p class="inno__rec"><span>Reconocimiento</span>{reto.reconocimiento}</p>
+        <p class="inno__bases"><span>Bases</span>Próximamente</p>
+        <p class="inno__req">Equipos de 4 · Estudiantes y egresados UNSA · Tutor docente recomendado</p>
+        <a class="btn btn--cobre" href="/reto/">Conoce {site.retoName}</a>
+        <a class="btn btn--vidrio" href="/inscripciones/#reto">Postula tu equipo</a>
+      </div>
+    </aside>
+  </div>
+</section>
+<style>
+  .inno { color: #fff; padding-block: clamp(2.5rem, 4.5vw, 3.5rem); background: linear-gradient(160deg, var(--acento) 0%, var(--acento-oscuro) 100%); }
+  .inno__in { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-items: stretch; }
+  .inno__marca { margin: 0; color: #fff; font-size: clamp(2.25rem, 1.6rem + 2vw, 2.875rem); line-height: 1.05; }
+  .inno__sub { margin: .3rem 0 0; font: 500 1.0625rem/1.35 var(--f-texto); color: rgba(255, 255, 255, .95); max-width: none; }
+  .inno__p { margin: .8rem 0 0; color: rgba(255, 255, 255, .86); max-width: 64ch; }
+  .inno__p--fuerte { color: #fff; font-size: 1.0625rem; }
+  .inno__h { margin: 1.1rem 0 .4rem; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--cobre-2); }
+  .inno__pasos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .22); counter-reset: paso; }
+  .inno__pasos li { display: flex; align-items: baseline; gap: .6rem; padding: .4rem 0; border-bottom: 1px solid rgba(255, 255, 255, .16); font-size: .9375rem; counter-increment: paso; }
+  .inno__pasos li::before { content: counter(paso); flex: none; min-width: 1ch; font-weight: 700; color: var(--cobre); }
+  .inno__carreras { margin: .9rem 0 0; font-size: var(--t-sm); color: rgba(255, 255, 255, .84); max-width: none; }
+  .inno__carreras strong { color: #fff; font-weight: 500; }
+  .inno__tarjeta { position: relative; isolation: isolate; display: flex; align-items: flex-end; min-height: 18rem; border-radius: var(--radio-lg); overflow: hidden; background: var(--tinta); }
+  .inno__tarjeta img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+  .inno__tarjeta::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(14, 15, 16, .45) 0%, rgba(14, 15, 16, .9) 40%, rgba(14, 15, 16, .96) 100%); }
+  .inno__tarjeta-in { display: grid; gap: .6rem; width: 100%; padding: 1.25rem; }
+  .inno__rec { display: grid; gap: .25rem; margin: 0 0 .35rem; padding-bottom: .75rem; border-bottom: 1px solid rgba(255, 255, 255, .18); font-size: var(--t-sm); line-height: 1.5; color: rgba(255, 255, 255, .9); }
+  .inno__bases { display: grid; gap: .15rem; margin: 0; font: 700 1.375rem/1.15 var(--f-display); color: #fff; }
+  .inno__rec span, .inno__bases span { font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--cobre-2); }
+  .inno__req { margin: 0 0 .35rem; font-size: var(--t-sm); color: rgba(255, 255, 255, .85); }
+  .inno__tarjeta .btn { width: 100%; }
+  .inno :focus-visible { outline-color: #fff; }
+  @media (max-width: 56rem) {
+    .inno__in { grid-template-columns: 1fr; }
+    .inno__tarjeta { min-height: 15rem; }
+  }
+  @media (max-width: 30rem) {
+    .inno__pasos { grid-template-columns: 1fr; }
+  }
+</style>

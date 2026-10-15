@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import Banner from '../components/Banner.astro';
+import site from '../data/site.json';
+---
+<Base title="Aviso de privacidad" description={`Aviso de privacidad (borrador) sobre el tratamiento de datos personales en las inscripciones del ${site.name} y del concurso ${site.retoName}.`}>
+  <Banner etiqueta="Datos personales" titulo="Aviso de" acento="privacidad" />
+
+  <section class="seccion" aria-label="Contenido del aviso">
+    <div class="wrap lectura">
+      <p class="estado aviso" role="note">
+        <strong>Borrador pendiente de revisión legal.</strong> Este texto aún no es definitivo y puede cambiar antes de la apertura de inscripciones.
+      </p>
+
+      <nav class="indice" aria-labelledby="t-indice">
+        <h2 id="t-indice" class="indice__t">En este aviso</h2>
+        <ol>
+          <li><a href="#t-resp">Responsable</a></li>
+          <li><a href="#t-fin">Finalidad</a></li>
+          <li><a href="#t-datos">Datos que recogemos</a></li>
+          <li><a href="#t-alm">Almacenamiento</a></li>
+          <li><a href="#t-plazo">Conservación</a></li>
+          <li><a href="#t-arco">Derechos ARCO</a></li>
+        </ol>
+      </nav>
+
+      <article class="texto">
+        <h2 id="t-resp">Responsable del tratamiento</h2>
+        <p>
+          El responsable del tratamiento de los datos personales es {site.organizerFull}. El tratamiento se rige por la
+          Ley N.° 29733, Ley de Protección de Datos Personales, y su reglamento.
+        </p>
+
+        <h2 id="t-fin">Finalidad</h2>
+        <p>Tus datos se usan únicamente para:</p>
+        <ul>
+          <li>gestionar tu inscripción al {site.name} ({site.kicker});</li>
+          <li>enviarte comunicaciones del congreso;</li>
+          <li>en el concurso {site.retoName}: evaluar la postulación y contactar a los equipos.</li>
+        </ul>
+
+        <h2 id="t-datos">Datos que recogemos</h2>
+        <ul>
+          <li>Registro de asistencia: nombre completo, correo, número de celular, tipo de asistente, carrera, institución y, si eres estudiante, año o semestre.</li>
+          <li>Postulación a {site.retoName}: nombre del equipo; de cada integrante, nombre, correo, carrera, condición y código de estudiante o año de egreso; vínculo con la UNSA, docente tutor (opcional), desafío de interés y enlace a documentos (opcional).</li>
+        </ul>
+
+        <h2 id="t-alm">Almacenamiento y transferencia</h2>
+        <p>
+          Los datos se guardan en una hoja de Google Sheets, servicio de Google LLC, cuyos servidores pueden estar
+          fuera del Perú. No cedemos tus datos a terceros con fines propios de estos.
+        </p>
+
+        <h2 id="t-plazo">Plazo de conservación</h2>
+        <p><span class="pendiente">por confirmar</span></p>
+
+        <h2 id="t-arco">Derechos ARCO</h2>
+        <p>
+          Puedes ejercer tus derechos de acceso, rectificación, cancelación y oposición escribiendo al correo
+          <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+        </p>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .aviso { max-width: none; margin: 0 0 2rem; background: var(--fondo); }
+  .indice { margin-bottom: 2.5rem; padding: 1rem 0; border-block: 1px solid var(--linea); }
+  .indice__t { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .1em; text-transform: uppercase; color: var(--texto-2); margin: 0 0 .25rem; }
+  .indice ol { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
+  .indice a { display: flex; align-items: center; min-height: 44px; }
+  .texto h2 { font-size: var(--t-h3); margin: 2.25rem 0 .5rem; scroll-margin-top: 1rem; }
+  .texto h2:first-child { margin-top: 0; }
+  .texto ul { margin: 0 0 1em; padding-left: 1.25rem; }
+  .texto li { margin-bottom: .4rem; max-width: 66ch; }
+</style>

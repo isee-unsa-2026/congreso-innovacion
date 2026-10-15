@@ -1,0 +1,23 @@
+---
+// Bloque destacado "Únete al grupo de WhatsApp" (página de inscripciones). Enlace en site.json ("whatsapp").
+import site from '../data/site.json';
+import WhatsAppIcono from './WhatsAppIcono.astro';
+---
+<aside class="wa-bloque" aria-labelledby="t-wa">
+  <span class="wa-bloque__ico" aria-hidden="true"><WhatsAppIcono size={26} /></span>
+  <div class="wa-bloque__texto">
+    <h2 id="t-wa" class="wa-bloque__t">Únete al grupo de WhatsApp</h2>
+    <p>Avisos, novedades y las bases del concurso, directo en el grupo oficial del congreso.</p>
+  </div>
+  <a class="btn btn--wa" href={site.whatsapp} target="_blank" rel="noopener">Unirme al grupo<span class="sr"> de WhatsApp (se abre en una pestaña nueva)</span></a>
+</aside>
+<style>
+  .wa-bloque { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem 1.25rem; margin-top: 1.5rem; padding: 1.1rem 1.25rem; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--blanco); }
+  .wa-bloque__ico { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #25d366; color: #fff; }
+  .wa-bloque__t { margin: 0 0 .2rem; font-size: 1.125rem; font-weight: 700; }
+  .wa-bloque p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
+  @media (max-width: 40rem) {
+    .wa-bloque { grid-template-columns: auto minmax(0, 1fr); }
+    .wa-bloque .btn { grid-column: 1 / -1; width: 100%; }
+  }
+</style>

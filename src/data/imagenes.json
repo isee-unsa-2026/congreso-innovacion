@@ -1,0 +1,62 @@
+{
+  "hero": {
+    "src": "/img/fotos/hero.jpg",
+    "alt": "Ilustración generada con IA de una mina a tajo abierto en los Andes al atardecer, con una voladura que levanta una columna de polvo y camiones de acarreo",
+    "width": 2040,
+    "height": 771
+  },
+  "congreso": {
+    "src": "/img/fotos/congreso.jpg",
+    "alt": "Ilustración generada con IA de una perforadora en una mina a cielo abierto al amanecer, con montañas nevadas al fondo",
+    "width": 1200,
+    "height": 900
+  },
+  "reto": {
+    "src": "/img/fotos/reto.jpg",
+    "alt": "Ilustración generada con IA de un equipo de cuatro estudiantes trabajando con planos de mina, muestras de roca y una laptop en un laboratorio",
+    "width": 1200,
+    "height": 900
+  },
+  "card-camiones": {
+    "src": "/img/fotos/card-camiones.jpg",
+    "alt": "Camiones de acarreo y una pala cargadora en una mina bajo un cielo con grandes nubes",
+    "width": 800,
+    "height": 600
+  },
+  "card-perforadora": {
+    "src": "/img/fotos/card-perforadora.jpg",
+    "alt": "Torre de una perforadora recortada contra un cielo nublado al atardecer",
+    "width": 800,
+    "height": 600
+  },
+  "card-tajo": {
+    "src": "/img/fotos/card-tajo.jpg",
+    "alt": "Vista aérea de los bancos de un tajo abierto con un camión recorriendo la rampa",
+    "width": 800,
+    "height": 600
+  },
+  "card-congreso": {
+    "src": "/img/fotos/card-congreso.jpg",
+    "alt": "Nave minera con camiones de acarreo y trabajadores con casco reunidos",
+    "width": 800,
+    "height": 600
+  },
+  "card-reto": {
+    "src": "/img/fotos/card-reto.jpg",
+    "alt": "Equipo de trabajadores con casco formando un círculo",
+    "width": 800,
+    "height": 600
+  },
+  "card-ponentes": {
+    "src": "/img/fotos/card-ponentes.jpg",
+    "alt": "Persona con casco y chaleco reflectante de espaldas, frente a un grupo reunido",
+    "width": 800,
+    "height": 600
+  },
+  "banner": {
+    "src": "/img/fotos/banner.jpg",
+    "alt": "",
+    "width": 1920,
+    "height": 420
+  }
+}

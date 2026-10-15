@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+capturas/
+assets-originales/
+scripts-tmp.mjs
+*.bat
+.env
+.env.*

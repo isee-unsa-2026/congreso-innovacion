@@ -1,0 +1,21 @@
+{
+  "name": "congreso-isee-unsa-2026",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/alegreya": "^5.3.0",
+    "@fontsource/roboto": "^5.3.0",
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
+}

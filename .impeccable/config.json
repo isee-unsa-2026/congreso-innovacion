@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "src/pages/ponentes.astro"
+        ],
+        "createdAt": "2026-10-14T02:08:07.698Z",
+        "reason": "assistant: false positive; .foto/.marcador use a 1px neutral var(--linea) border, the 3px copper accent is a border-top on .ficha which has no radius"
+      }
+    ]
+  }
+}

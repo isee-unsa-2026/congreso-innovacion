@@ -1,0 +1,48 @@
+---
+// Acordeon accesible con details/summary. Cada item: { titulo, texto?, html?, pendiente? }.
+interface Item { titulo: string; texto?: string; html?: string; pendiente?: boolean; }
+interface Props { items: Item[]; numerado?: boolean; }
+const { items, numerado = false } = Astro.props;
+---
+<div class="acordeon">
+  {items.map((it, i) => (
+    <details>
+      <summary>
+        {numerado && <span class="acordeon__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>}
+        <span class="acordeon__t">{it.titulo}</span>
+        {it.pendiente && <span class="pendiente">por confirmar</span>}
+      </summary>
+      <div class="acordeon__cuerpo">
+        {it.html ? <p set:html={it.html} /> : <p>{it.texto}</p>}
+      </div>
+    </details>
+  ))}
+</div>
+<style>
+  .acordeon { border-top: 2px solid var(--texto); }
+  details { border-bottom: 1px solid var(--linea); }
+  summary {
+    display: flex; align-items: center; gap: .85rem; min-height: 48px; padding: .55rem .25rem;
+    cursor: pointer; list-style: none; font: 500 1rem/1.4 var(--f-texto); color: var(--texto);
+    transition: color var(--dur-ui) var(--ease);
+    -webkit-tap-highlight-color: transparent;
+  }
+  summary:focus-visible { outline-offset: 0; }
+  summary::-webkit-details-marker { display: none; }
+  summary::marker { content: ""; }
+  summary:hover, details[open] > summary { color: var(--acento); }
+  summary::after {
+    content: ""; flex: none; margin-left: auto; width: .5rem; height: .5rem; margin-right: .35rem;
+    border-right: 2px solid var(--acento); border-bottom: 2px solid var(--acento);
+    transform: translateY(-.15rem) rotate(45deg); transition: transform var(--dur-ui) var(--ease-in-out);
+  }
+  details[open] > summary::after { transform: translateY(.1rem) rotate(-135deg); }
+  .acordeon__n { flex: none; min-width: 1.75rem; font: 700 1.0625rem/1 var(--f-display); color: var(--acento); font-variant-numeric: tabular-nums; }
+  summary { flex-wrap: wrap; row-gap: .3rem; }
+  .acordeon__t { flex: 1 1 9rem; min-width: 0; text-wrap: pretty; }
+  summary :global(.pendiente) { flex: none; }
+  .acordeon__cuerpo { padding: 0 .25rem .9rem; animation: abre var(--dur-ui) var(--ease-out); }
+  .acordeon__cuerpo p { margin: 0; color: var(--texto-2); }
+  .acordeon :global(.acordeon__cuerpo a) { color: var(--acento); }
+  @keyframes abre { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+</style>

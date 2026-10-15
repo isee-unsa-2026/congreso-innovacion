@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" style="color:#5E151D" fill="none">
+<title>Patrón de malla de barrenos</title>
+<desc>Mosaico repetible de barrenos al tresbolillo con retícula fina, muy sutil, pensado como fondo. Usa currentColor.</desc>
+<g stroke="currentColor" stroke-width="1" opacity=".22">
+<path d="M0 30H120M0 90H120M30 0V120M90 0V120" stroke-dasharray="2 5"/>
+<g stroke-width="1.2"><circle cx="30" cy="30" r="5.500"/><circle cx="30" cy="30" r="1.400" fill="currentColor" stroke="none"/><path d="M21 30h2.500M36.5 30h2.500M30 21v2.500M30 36.5v2.500"/><circle cx="90" cy="30" r="5.500"/><circle cx="90" cy="30" r="1.400" fill="currentColor" stroke="none"/><path d="M81 30h2.500M96.5 30h2.500M90 21v2.500M90 36.5v2.500"/><circle cx="0" cy="90" r="5.500"/><circle cx="0" cy="90" r="1.400" fill="currentColor" stroke="none"/><path d="M-9 90h2.500M6.5 90h2.500M0 81v2.500M0 96.5v2.500"/><circle cx="60" cy="90" r="5.500"/><circle cx="60" cy="90" r="1.400" fill="currentColor" stroke="none"/><path d="M51 90h2.500M66.5 90h2.500M60 81v2.500M60 96.5v2.500"/><circle cx="120" cy="90" r="5.500"/><circle cx="120" cy="90" r="1.400" fill="currentColor" stroke="none"/><path d="M111 90h2.500M126.5 90h2.500M120 81v2.500M120 96.5v2.500"/></g>
+</g>
+</svg>

@@ -1,0 +1,25 @@
+---
+// Botón flotante (todas las páginas) hacia el grupo oficial de WhatsApp. Enlace en site.json ("whatsapp").
+import site from '../data/site.json';
+import WhatsAppIcono from './WhatsAppIcono.astro';
+---
+<a class="wa-flotante" href={site.whatsapp} target="_blank" rel="noopener" aria-label="Únete al grupo de WhatsApp del congreso">
+  <WhatsAppIcono size={26} />
+</a>
+<style>
+  .wa-flotante {
+    position: fixed; z-index: 40;
+    right: max(1rem, env(safe-area-inset-right));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%;
+    background: #25d366; color: #fff; text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .18), 0 6px 18px rgba(0, 0, 0, .14), inset 0 0 0 1px rgba(0, 0, 0, .08);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+    transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-ui) var(--ease), background-color var(--dur-ui) var(--ease);
+  }
+  .wa-flotante:hover { background: #1ebe5b; color: #fff; box-shadow: 0 3px 8px rgba(0, 0, 0, .2), 0 10px 24px rgba(0, 0, 0, .16); }
+  .wa-flotante:active { transform: scale(.94); }
+  /* Doble anillo (blanco + oscuro): visible sobre fondos claros y oscuros */
+  .wa-flotante:focus-visible { outline: 2px solid var(--texto); outline-offset: 3px; box-shadow: 0 0 0 3px #fff, 0 6px 18px rgba(0, 0, 0, .14); }
+  @media print { .wa-flotante { display: none; } }
+</style>

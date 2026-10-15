@@ -1,0 +1,23 @@
+{
+  "nota": "Los ponentes se publicarán cuando se confirmen.",
+  "ponentes": [
+    {
+      "nombre": "Ponente por confirmar",
+      "institucion": "Institución por confirmar",
+      "tema": "Innovación en perforación y voladura",
+      "foto": ""
+    },
+    {
+      "nombre": "Ponente por confirmar",
+      "institucion": "Institución por confirmar",
+      "tema": "Seguridad y gestión de riesgos",
+      "foto": ""
+    },
+    {
+      "nombre": "Ponente por confirmar",
+      "institucion": "Institución por confirmar",
+      "tema": "Datos y automatización",
+      "foto": ""
+    }
+  ]
+}

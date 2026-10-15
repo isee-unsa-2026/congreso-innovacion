@@ -1,0 +1,89 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import site from '../data/site.json';
+const actual = Astro.url.pathname;
+// El logo de la UNSA (institucion anfitriona) solo se muestra si el archivo existe en public/brand/.
+const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
+---
+<header class="cab" data-cab>
+  <div class="wrap cab__in">
+    <div class="cab__marcas">
+      <a class="cab__marca" href="/" aria-label={`${site.organizerFull}, organizador del ${site.name}. Ir al inicio`}>
+        <img src="/brand/isee-unsa-logo-512.png" width="72" height="72" alt="" />
+      </a>
+      {hayUnsa && (
+        <>
+          <span class="cab__sep" aria-hidden="true"></span>
+          <img class="cab__unsa" src="/brand/unsa-logo.png" width="206" height="256" alt={site.host} />
+        </>
+      )}
+    </div>
+    <button class="cab__btn" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú" data-menu-btn>
+      <span class="cab__burger" aria-hidden="true"></span>
+    </button>
+    <nav class="cab__nav" id="menu-principal" aria-label="Principal" data-menu>
+      <ul>
+        {site.nav.map((n) => (
+          <li>
+            <a class:list={[{ 'cab__cta': n.cta }]} href={n.href} aria-current={actual === n.href ? 'page' : undefined}>{n.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+<style>
+  .cab { background: var(--blanco); position: relative; z-index: 50; border-bottom: 1px solid var(--linea); }
+  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 76px; }
+  .cab__marcas { display: flex; align-items: center; gap: 1rem; }
+  .cab__marca { display: block; line-height: 0; }
+  .cab__marca img { width: 58px; height: 58px; object-fit: contain; }
+  .cab__sep { width: 1px; height: 44px; background: #c9c9c4; }
+  .cab__unsa { width: auto; height: 54px; object-fit: contain; }
+  .cab__nav ul { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+  .cab__nav a {
+    position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .8rem;
+    color: var(--texto); text-decoration: none; font: 500 .8125rem/1 var(--f-texto); letter-spacing: .1em; text-transform: uppercase;
+    transition: color var(--dur-ui) var(--ease), background-color var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), transform var(--dur-press) var(--ease-out);
+  }
+  .cab__nav a::after { content: ""; position: absolute; left: .8rem; right: .8rem; bottom: .35rem; height: 2px; background: var(--acento); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-ui) var(--ease-out); }
+  .cab__nav a:hover { color: var(--acento); }
+  .cab__nav a[aria-current="page"]::after { transform: scaleX(1); }
+  @media (hover: hover) and (pointer: fine) {
+    .cab__nav a:hover::after { transform: scaleX(1); }
+  }
+  .cab__nav a.cab__cta:active { transform: scale(.97); }
+  .cab__nav a[aria-current="page"] { color: var(--acento); }
+  .cab__nav a.cab__cta { margin-left: .75rem; padding-inline: 1.25rem; border-radius: var(--radio); background: var(--acento); border: 1px solid var(--acento); color: var(--blanco); }
+  .cab__nav a.cab__cta::after { content: none; }
+  .cab__nav a.cab__cta:hover, .cab__nav a.cab__cta[aria-current="page"] { background: var(--acento-2); border-color: var(--acento-2); color: var(--blanco); }
+  .cab__btn { display: none; width: 48px; height: 48px; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--blanco); cursor: pointer; place-items: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: border-color var(--dur-ui) var(--ease), transform var(--dur-press) var(--ease-out); }
+  .cab__btn:hover, .cab__btn[aria-expanded="true"] { border-color: var(--texto-2); }
+  .cab__btn:active { transform: scale(.95); }
+  .cab__burger, .cab__burger::before, .cab__burger::after { display: block; width: 22px; height: 2px; background: var(--texto); transition: transform var(--dur-ui) var(--ease-out), background-color var(--dur-press) var(--ease); }
+  .cab__burger { position: relative; }
+  .cab__burger::before, .cab__burger::after { content: ""; position: absolute; left: 0; }
+  .cab__burger::before { top: -7px; }
+  .cab__burger::after { top: 7px; }
+  :global(.cab--abierto) .cab__burger { background: transparent; }
+  :global(.cab--abierto) .cab__burger::before { transform: translateY(7px) rotate(45deg); }
+  :global(.cab--abierto) .cab__burger::after { transform: translateY(-7px) rotate(-45deg); }
+  @media (max-width: 60rem) {
+    :global(.js) .cab__btn { display: grid; }
+    .cab__in { flex-wrap: wrap; min-height: 68px; }
+    .cab__marca img { width: 50px; height: 50px; }
+    .cab__unsa { height: 46px; }
+    .cab__sep { height: 44px; }
+    .cab__marcas { gap: .85rem; }
+    .cab__nav { width: 100%; order: 3; padding-bottom: 1rem; }
+    :global(.js) .cab__nav { display: none; }
+    :global(.js) .cab--abierto .cab__nav { display: block; animation: menu-abre var(--dur-ui) var(--ease-out); }
+    .cab__nav ul { flex-direction: column; align-items: stretch; gap: 0; }
+    .cab__nav li { border-top: 1px solid var(--linea); }
+    .cab__nav a { width: 100%; min-height: 52px; padding-inline: 0; }
+    .cab__nav a::after { left: 0; right: auto; width: 2rem; }
+    .cab__nav a.cab__cta { margin: .75rem 0 0; justify-content: center; }
+  }
+  @keyframes menu-abre { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+</style>

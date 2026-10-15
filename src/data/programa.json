@@ -1,0 +1,71 @@
+{
+  "nota": "Programa preliminar. Los horarios, actividades y espacios se confirmarán.",
+  "dias": [
+    {
+      "fecha": "Miércoles 18 de noviembre",
+      "titulo": "Día 1 · Fundamentos e innovación",
+      "actividades": [
+        {
+          "hora": "",
+          "actividad": "Acreditación y bienvenida",
+          "espacio": "",
+          "ponente": ""
+        },
+        {
+          "hora": "",
+          "actividad": "Inauguración del congreso",
+          "espacio": "",
+          "ponente": "ISEE UNSA"
+        },
+        {
+          "hora": "",
+          "actividad": "Ponencia magistral: innovación en perforación y voladura",
+          "espacio": "",
+          "ponente": ""
+        },
+        {
+          "hora": "",
+          "actividad": "Panel: seguridad y gestión de riesgos",
+          "espacio": "",
+          "ponente": ""
+        },
+        {
+          "hora": "",
+          "actividad": "Presentación del concurso INNOMINING",
+          "espacio": "",
+          "ponente": ""
+        }
+      ]
+    },
+    {
+      "fecha": "Jueves 19 de noviembre",
+      "titulo": "Día 2 · Datos, eficiencia y colaboración",
+      "actividades": [
+        {
+          "hora": "",
+          "actividad": "Digitalización, datos y automatización en voladura",
+          "espacio": "",
+          "ponente": ""
+        },
+        {
+          "hora": "",
+          "actividad": "Eficiencia operacional y sostenibilidad",
+          "espacio": "",
+          "ponente": ""
+        },
+        {
+          "hora": "",
+          "actividad": "Presentación y evaluación de propuestas del reto",
+          "espacio": "",
+          "ponente": "Equipos participantes"
+        },
+        {
+          "hora": "",
+          "actividad": "Cierre y anuncio de propuestas seleccionadas",
+          "espacio": "",
+          "ponente": "ISEE UNSA"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "resumen": "INNOMINING no es un concurso de ideas libres: cada equipo elige un desafío real propuesto por empresas líderes del sector y desarrolla una solución técnica, viable y medible para resolverlo.",
+  "pasos": [
+    { "titulo": "Eligen el desafío", "texto": "Cada equipo escoge uno de los desafíos reales planteados por las empresas." },
+    { "titulo": "Diagnostican el problema", "texto": "Analizan causas, datos disponibles y restricciones de la operación." },
+    { "titulo": "Proponen la solución", "texto": "Con una metodología clara y, según el caso, software, diseño o prototipo." },
+    { "titulo": "Estiman presupuesto y plan", "texto": "Recursos necesarios, etapas, plazos y responsables." },
+    { "titulo": "La presentan en el congreso", "texto": "Exponen su propuesta ante la industria y la academia." }
+  ],
+  "importancia": "Resolver un problema real de la industria obliga a trabajar como en la operación: con datos, restricciones de costo y seguridad, y resultados que se puedan medir. Así los equipos aprenden haciendo y demuestran lo que pueden aportar al sector.",
+  "reconocimiento": "Los trabajos se publicarán en el repositorio institucional de la UNSA, y las propuestas destacadas podrán seguir desarrollándose junto con la empresa que planteó el desafío.",
+  "pasos": [
+    { "titulo": "Eligen el desafío", "texto": "Cada equipo escoge uno de los desafíos reales planteados por las empresas." },
+    { "titulo": "Diagnostican el problema", "texto": "Analizan causas, datos disponibles y restricciones de la operación." },
+    { "titulo": "Proponen la solución", "texto": "Con una metodología clara y, según el caso, software, diseño o prototipo." },
+    { "titulo": "Estiman presupuesto y plan", "texto": "Recursos necesarios, etapas, plazos y responsables." },
+    { "titulo": "La presentan en el congreso", "texto": "Exponen su propuesta ante la industria y la academia." }
+  ],
+  "importancia": "Resolver un problema real de la industria obliga a trabajar como en la operación: con datos, restricciones de costo y seguridad, y resultados que se puedan medir. Así los equipos aprenden haciendo y demuestran lo que pueden aportar al sector.",
+  "reconocimiento": "Los trabajos se publicarán en el repositorio institucional de la UNSA, y las propuestas destacadas podrán seguir desarrollándose junto con la empresa que planteó el desafío.",
+  "desafios": {
+    "texto": "Habrá uno o varios desafíos, cada uno basado en un problema real de explosivos, perforación o voladura. Cada equipo elige uno y trabaja sobre él.",
+    "aviso": "Los desafíos serán propuestos por empresas líderes del sector y se publicarán junto con las bases, próximamente."
+  },
+  "entregables": [
+    {
+      "titulo": "Desafío elegido y diagnóstico",
+      "texto": "El problema real seleccionado y su análisis."
+    },
+    {
+      "titulo": "Solución propuesta",
+      "texto": "La respuesta técnica al desafío y su fundamento."
+    },
+    {
+      "titulo": "Metodología",
+      "texto": "Cómo se desarrolla y se valida la solución."
+    },
+    {
+      "titulo": "Diseño, software o prototipo",
+      "texto": "La arquitectura de la solución o una primera versión funcional."
+    },
+    {
+      "titulo": "Presupuesto preliminar",
+      "texto": "Recursos estimados para implementarla."
+    },
+    {
+      "titulo": "Plan de trabajo",
+      "texto": "Etapas, plazos y responsables."
+    }
+  ],
+  "carreras": [
+    "Ingeniería de Minas",
+    "Geológica",
+    "Metalúrgica",
+    "Química",
+    "Mecánica",
+    "Electrónica o Mecatrónica",
+    "de Sistemas o Ciencia de la Computación",
+    "Industrial",
+    "Ambiental"
+  ],
+  "carrerasNota": "Carreras recomendadas, no obligatorias. Cada equipo debe incluir al menos un perfil de minería, perforación o voladura.",
+  "requisitos": [
+    "Equipos de cuatro integrantes.",
+    "Solo estudiantes y egresados de la UNSA.",
+    "Equipos multidisciplinarios, con al menos un perfil de minería, perforación o voladura.",
+    "Se recomienda un docente tutor, que no cuenta entre los cuatro integrantes."
+  ],
+  "etapas": [
+    {
+      "nombre": "Convocatoria, bases y desafíos",
+      "texto": "Publicación de las bases, los desafíos propuestos por empresas del sector, fechas y criterios. Próximamente."
+    },
+    {
+      "nombre": "Formación de equipos y postulación",
+      "texto": "Los equipos de cuatro se pre-inscriben desde la página de inscripciones."
+    },
+    {
+      "nombre": "Elección del desafío",
+      "texto": "Cada equipo elige uno de los desafíos publicados y prepara su diagnóstico."
+    },
+    {
+      "nombre": "Desarrollo de la propuesta",
+      "texto": "Solución, metodología, diseño o prototipo, presupuesto preliminar y plan de trabajo."
+    },
+    {
+      "nombre": "Presentación en el congreso",
+      "texto": "Revisión técnica y exposición de las propuestas durante el congreso."
+    },
+    {
+      "nombre": "Evaluación y selección",
+      "texto": "El jurado y los criterios de evaluación se publicarán con las bases.",
+      "pendiente": true
+    },
+    {
+      "nombre": "Reconocimiento",
+      "texto": "Publicación de los trabajos en el repositorio institucional de la UNSA; las propuestas destacadas podrán seguir desarrollándose con la empresa que planteó el desafío. Otros reconocimientos se anunciarán con las bases."
+    }
+  ]
+}

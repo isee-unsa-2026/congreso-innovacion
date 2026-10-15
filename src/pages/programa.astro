@@ -1,0 +1,26 @@
+---
+// El programa aun no se publica: la pagina existe (noindex) con un aviso breve.
+// El borrador de actividades sigue en src/data/programa.json para cuando se confirme.
+import Base from '../layouts/Base.astro';
+import Banner from '../components/Banner.astro';
+import site from '../data/site.json';
+---
+<Base noindex title="Programa" description={`Programa del ${site.name} (${site.kicker}): se publicará próximamente. ${site.dates}, UNSA, Arequipa.`}>
+  <Banner etiqueta={site.kicker} titulo="" acento="Programa" />
+
+  <section class="seccion" aria-labelledby="t-prog">
+    <div class="wrap prog" data-reveal>
+      <h2 id="t-prog" class="titulo-2">Se publicará <em>próximamente</em></h2>
+      <div>
+        <p class="prog__p">Dos jornadas, el {site.dates}: ponencias técnicas, conversatorios y las presentaciones del concurso {site.retoName}.</p>
+        <div class="acciones"><a class="btn" href="/inscripciones/">Inscríbete gratis</a></div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .prog { display: grid; gap: 1rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); padding-top: 2rem; border-top: 2px solid var(--texto); }
+  .prog__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 56ch; }
+  @media (max-width: 48rem) { .prog { grid-template-columns: 1fr; } }
+</style>

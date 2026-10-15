@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import Acordeon from '../components/Acordeon.astro';
+import Encontraras from '../components/Encontraras.astro';
+import RetoBloque from '../components/RetoBloque.astro';
+import site from '../data/site.json';
+import imagenes from '../data/imagenes.json';
+
+const hero = imagenes.hero;
+const faq = [
+  { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
+  { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en la ${site.venue}.` },
+  { titulo: `¿Quién puede participar en ${site.retoName}?`, texto: 'Estudiantes y egresados de la UNSA, en equipos multidisciplinarios de cuatro integrantes que desarrollan una solución a un problema real propuesto por empresas líderes del sector. El congreso está abierto a todo público.' },
+  { titulo: '¿Cómo me inscribo?', html: `Desde la <a href="/inscripciones/">página de inscripciones</a>: hay un registro de asistencia, abierto a todo público, y una postulación de equipos para ${site.retoName}.` },
+];
+---
+<Base title={`${site.name} · ${site.kicker}`} description={`${site.name} (${site.kicker}): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
+  <section class="hero" aria-labelledby="titulo-portada">
+    <img class="hero__foto" src={hero.src} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
+    <div class="hero__velo" aria-hidden="true"></div>
+    <div class="wrap hero__in">
+      <p class="hero__kicker anim" style="--d:0ms">{site.kicker}</p>
+      <p class="hero__marco anim" style="--d:80ms">
+        <span><time datetime={site.dateStart}>18</time> y <time datetime={site.dateEnd}>19 de noviembre, 2026</time></span>
+        <span class="hero__barra" aria-hidden="true">|</span><span class="sr">. </span>
+        <span>{site.city}</span>
+      </p>
+      <h1 id="titulo-portada" class="anim" style="--d:160ms">{site.name}</h1>
+      <p class="hero__org anim" style="--d:240ms">Organiza <strong>{site.organizer}</strong><span aria-hidden="true"> · </span><span class="sr">. Sede: </span>{site.host}</p>
+      <p class="hero__lema anim" style="--d:300ms">“{site.tagline}”</p>
+      <div class="acciones acciones--centro anim" style="--d:360ms">
+        <a class="btn btn--cobre" href="/inscripciones/">Inscríbete gratis</a>
+        <a class="btn btn--vidrio" href="/reto/">Conoce {site.retoName}</a>
+      </div>
+    </div>
+    <a class="hero__bajar" href="#t-congreso"><span class="sr">Ir al contenido del congreso</span><span class="hero__flecha" aria-hidden="true"></span></a>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-congreso">
+    <div class="wrap dos">
+      <div data-reveal>
+        <h2 id="t-congreso" class="titulo-2">Un congreso sobre <em>innovación</em> en minería</h2>
+        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y el concurso {site.retoName}, donde equipos de la UNSA resuelven desafíos reales del sector. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
+        <a class="enlace-flecha" href="/congreso/">Conocer el congreso</a>
+      </div>
+      <figure class="dos__img" data-reveal data-reveal-delay="100">
+        <img src={imagenes.congreso.src} width={imagenes.congreso.width} height={imagenes.congreso.height} alt={imagenes.congreso.alt} loading="lazy" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-encontraras">
+    <div class="wrap">
+      <div class="cab-sec" data-reveal>
+        <h2 id="t-encontraras" class="titulo-2">Lo que <em>encontrarás</em></h2>
+      </div>
+      <Encontraras />
+    </div>
+  </section>
+
+  <RetoBloque />
+
+  <section class="seccion" aria-labelledby="t-ponentes">
+    <div class="wrap ponentes">
+      <div data-reveal>
+        <h2 id="t-ponentes" class="titulo-2">Ponentes</h2>
+      </div>
+      <div data-reveal data-reveal-delay="80">
+        <p class="ponentes__p">Profesionales de empresas mineras líderes como Cerro Verde, Anglo American Quellaveco y Enaex, junto a la academia, compartirán su experiencia en innovación minera. Sesiones en el horario más aprovechable del día, con coffee break.</p>
+        <p class="ponentes__nota"><span class="ponentes__marca" aria-hidden="true"></span>Anuncio próximamente</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" aria-labelledby="t-faq">
+    <div class="wrap faq">
+      <div class="cab-sec" data-reveal>
+        <h2 id="t-faq" class="titulo-2">Preguntas <em>frecuentes</em></h2>
+        <a class="faq__cal" href="/congreso-isee-unsa-2026.ics" download>Agregar al calendario<span class="sr"> (archivo .ics, 18 y 19 de noviembre)</span></a>
+      </div>
+      <div data-reveal><Acordeon items={faq} /></div>
+    </div>
+  </section>
+
+  <section class="cierre" aria-labelledby="t-cierre">
+    <div class="wrap cierre__in" data-reveal>
+      <div>
+        <h2 id="t-cierre" class="cierre__t">Te esperamos en <em>Arequipa</em></h2>
+        <p>{site.dates} · {site.venue}</p>
+      </div>
+      <div class="acciones"><a class="btn btn--cobre" href="/inscripciones/">Inscríbete gratis</a></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------- Hero centrado: foto con velo oscuro; protagonista el congreso ---------- */
+  .hero { position: relative; isolation: isolate; display: grid; align-items: center; min-height: max(32rem, calc(100svh - 77px)); padding: clamp(2.5rem, 5vw, 3.5rem) 0 4.5rem; background: var(--tinta); overflow: hidden; color: #fff; text-align: center; }
+  .hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; z-index: -2; }
+  .hero__velo { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 70% 60% at 50% 48%, rgba(12, 12, 13, .3) 0%, rgba(12, 12, 13, .5) 100%), linear-gradient(180deg, rgba(12, 12, 13, .4) 0%, rgba(12, 12, 13, .12) 45%, rgba(12, 12, 13, .75) 100%); }
+  /* Entrada con acercamiento lento de la foto y flecha para bajar */
+  .hero__foto { animation: acerca 2.8s cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes acerca { from { transform: scale(1.1); } to { transform: scale(1); } }
+  .hero__bajar { position: absolute; left: 50%; bottom: 1.25rem; display: grid; place-items: center; width: 44px; height: 44px; translate: -50% 0; color: #fff; }
+  .hero__flecha { width: 12px; height: 12px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); animation: baja 1.8s ease-in-out infinite; opacity: .85; }
+  @keyframes baja { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 4px; } }
+  @media (prefers-reduced-motion: reduce) { .hero__foto, .hero__flecha { animation: none; } }
+  .hero__in { display: grid; justify-items: center; }
+  .hero__kicker { display: inline-flex; align-items: center; gap: .85rem; margin: 0 0 .9rem; font: 500 var(--t-sm)/1.2 var(--f-texto); letter-spacing: .22em; text-transform: uppercase; color: var(--cobre-2); max-width: none; }
+  .hero__kicker::before, .hero__kicker::after { content: ""; width: 2.25rem; height: 1px; background: var(--cobre); }
+  .hero__marco { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .25rem .75rem; margin: 0 0 1.25rem; padding: .45rem 1rem; border: 1px solid rgba(255, 255, 255, .55); border-radius: var(--radio); font: 500 .9375rem/1.3 var(--f-texto); letter-spacing: .02em; max-width: none; }
+  .hero__barra { color: var(--cobre); }
+  .hero h1 { margin: 0; max-width: 22ch; color: #fff; font: 700 clamp(2.1rem, 1.3rem + 2.8vw, 3.6rem)/1.1 var(--f-display); text-shadow: 0 2px 24px rgba(0, 0, 0, .45); }
+  .hero__org { margin: .9rem 0 0; color: rgba(255, 255, 255, .9); font-size: 1rem; max-width: 60ch; }
+  .hero__org strong { color: #fff; font-weight: 700; }
+  .hero__lema { margin: .35rem 0 0; color: var(--cobre-2); font: 500 italic 1.125rem/1.4 var(--f-display); }
+  .hero .acciones { margin-top: 1.5rem; }
+  .hero :focus-visible { outline-color: #fff; }
+
+  /* ---------- Ponentes, FAQ y cierre ---------- */
+  .ponentes { display: grid; gap: .75rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: end; padding-top: 1.25rem; border-top: 2px solid var(--texto); }
+  .ponentes__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: var(--texto); max-width: 56ch; }
+  .ponentes__nota { display: flex; align-items: center; gap: .6rem; margin: .6rem 0 0; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+  .ponentes__marca { width: 6px; height: 6px; background: var(--cobre); }
+  .faq { display: grid; gap: .75rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: start; }
+  .faq__cal { display: inline-flex; align-items: center; min-height: 44px; margin-top: .25rem; font-size: var(--t-sm); font-weight: 500; }
+  .cierre { background: var(--tinta); color: #fff; padding-block: clamp(2rem, 4vw, 2.75rem); }
+  .cierre__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; }
+  .cierre__t { margin: 0 0 .25rem; color: #fff; font-size: clamp(1.5rem, 1.25rem + 1vw, 1.875rem); font-weight: 700; line-height: 1.15; }
+  .cierre__t em { font-style: italic; color: var(--cobre-2); }
+  .cierre p { margin: 0; color: rgba(255, 255, 255, .82); }
+  .cierre .acciones { margin-top: 0; }
+  .cierre :focus-visible { outline-color: #fff; }
+
+  @media (max-width: 48rem) {
+    .ponentes, .faq { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 40rem) {
+    .hero { min-height: max(30rem, calc(100svh - 69px)); }
+    .hero__foto { object-position: 70% 50%; }
+    .hero__kicker { font-size: var(--t-xs); letter-spacing: .18em; }
+    .hero__kicker::before, .hero__kicker::after { width: 1.25rem; }
+    .hero__marco { font-size: .875rem; }
+    .hero .acciones .btn { flex: 1 1 100%; }
+    .cierre .acciones, .cierre .acciones .btn { width: 100%; }
+  }
+  @media (max-width: 16rem) {
+    .hero__in { min-width: 0; }
+    .hero__kicker { letter-spacing: .1em; }
+    .hero__kicker::before, .hero__kicker::after { display: none; }
+    .hero__marco { padding-inline: .6rem; }
+  }
+</style>

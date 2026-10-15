@@ -1,0 +1,223 @@
+﻿/* Congreso de Innovación en Minería (BLASTING DAYS 2026) · sistema visual
+   Formal y sobrio (referencia SME): esquinas rectas (2-4 px), reglas finas, tamanos calmados.
+   Tipografía: Archivo Variable (autoalojada) para titulares, texto y etiquetas. Acento granate + cobre.
+   Para cambiar la identidad basta con editar los tokens de :root. */
+:root {
+  --acento: #5e151d;
+  --acento-2: #7a1f2a;
+  --acento-oscuro: #3f0d13;
+  --cobre: #c5a45d;
+  --cobre-2: #d6b878;
+  --cobre-texto: #7d5f22;      /* cobre legible sobre blanco (5.6:1) */
+  --blanco: #ffffff;
+  --fondo: #f4f3f1;
+  --tinta: #121315;            /* fondos oscuros */
+  --tinta-2: #1c1d20;
+  --texto: #1a1c1f;
+  --texto-2: #545a61;
+  --linea: #dcdcd8;
+  --linea-osc: rgba(255, 255, 255, .16);
+  --pie: #0e0f10;
+  --error: #a4262c;
+  --ok: #1e6b3a;
+
+  --f-display: "Archivo Variable", "Archivo", "Segoe UI", system-ui, sans-serif;
+  --f-texto: "Archivo Variable", "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --w: 74rem;
+  --lectura: 44rem;
+  --radio: 2px;
+  --radio-lg: 4px;
+  --radio-sm: 2px;
+  /* Movimiento: curvas y duraciones unicas para todo el sitio.
+     --ease para cambios de color; --ease-out para entradas y respuestas; --ease-in-out para giros en sitio. */
+  --ease: cubic-bezier(.25, .1, .25, 1);
+  --ease-out: cubic-bezier(.23, 1, .32, 1);
+  --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+  --dur-press: 140ms;   /* respuesta al pulsar */
+  --dur-ui: 200ms;      /* hover, foco, acordeon, menu */
+  --dur-reveal: 560ms;  /* entradas al hacer scroll */
+  --dur-hero: 800ms;    /* entrada del encabezado (una vez por pagina) */
+
+  --t-xs: .75rem;
+  --t-sm: .875rem;
+  --t-base: 1rem;
+  --t-h3: 1.1875rem;
+  --t-h2: clamp(1.5rem, 1.25rem + 1vw, 1.875rem);
+  --t-h1: clamp(1.875rem, 1.4rem + 2vw, 2.5rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 1rem; scroll-padding-bottom: 5rem; /* el botón flotante de WhatsApp no tapa el foco */-webkit-text-size-adjust: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-color: #9a9fa5 var(--fondo); }
+main:focus { outline: none; }
+body {
+  margin: 0; background: var(--blanco); color: var(--texto);
+  font: 400 var(--t-base)/1.6 var(--f-texto);
+  font-kerning: normal; text-rendering: optimizeLegibility; overflow-wrap: break-word;
+}
+::selection { background: var(--acento); color: #fff; }
+img, svg { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.15; margin: 0 0 .5em; text-wrap: balance; font-variant-numeric: lining-nums; font-feature-settings: "kern", "liga"; }
+h1 { font-size: var(--t-h1); font-weight: 700; color: var(--texto); }
+h2 { font-size: var(--t-h2); font-weight: 700; color: var(--texto); }
+h3 { font-size: var(--t-h3); font-weight: 700; color: var(--texto); }
+p { margin: 0 0 1em; max-width: 66ch; text-wrap: pretty; }
+a { color: var(--acento); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; transition: color var(--dur-ui) var(--ease); }
+a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; border-radius: 0; }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--blanco); color: var(--acento); padding: .75rem 1rem; z-index: 100; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+.wrap { width: min(100% - 2rem, var(--w)); margin-inline: auto; }
+.lectura { max-width: var(--lectura); }
+.seccion { padding-block: clamp(2.5rem, 4.5vw, 3.5rem); }
+.seccion--fondo { background: var(--fondo); }
+.lead { font-size: 1.0625rem; line-height: 1.6; color: var(--texto); }
+.centro { text-align: center; }
+.centro p { margin-inline: auto; }
+
+/* ---- Etiqueta recta: marcador cuadrado + texto en mayusculas espaciado ---- */
+.etiqueta {
+  display: inline-flex; align-items: center; gap: .6rem; margin: 0 0 .6rem;
+  color: var(--acento); font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase;
+}
+.etiqueta::before { content: ""; flex: none; width: 1.25rem; height: 2px; background: var(--cobre); }
+.etiqueta--clara { color: #fff; }
+.cab-sec { margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem); max-width: 48rem; }
+.cab-sec p { color: var(--texto-2); }
+.titulo-2 { margin: 0; color: var(--texto); }
+.titulo-2 em { font-style: italic; color: var(--acento); }
+.titulo-2--claro { color: #fff; }
+.titulo-2--claro em { color: var(--cobre); }
+
+/* Wordmark del concurso: "INNO" en cobre + "MINING" en el color del texto (blanco sobre granate u oscuro) */
+.wordmark { font-family: var(--f-display); font-weight: 800; font-stretch: 92%; letter-spacing: .02em; text-transform: uppercase; }
+.wordmark__inno { color: var(--cobre); }
+
+/* Botones rectos */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+  min-height: 44px; padding: .6rem 1.25rem; border-radius: var(--radio);
+  font: 500 .875rem/1.1 var(--f-texto); letter-spacing: .08em; text-transform: uppercase; text-decoration: none; cursor: pointer;
+  border: 1px solid var(--acento); background: var(--acento); color: var(--blanco);
+  -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  transition: background-color var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), color var(--dur-ui) var(--ease), transform var(--dur-press) var(--ease-out);
+}
+.btn:hover { background: var(--acento-2); border-color: var(--acento-2); color: var(--blanco); text-decoration: none; }
+.btn:active { transform: scale(.97); }
+.btn[aria-disabled="true"]:active { transform: none; }
+.btn::after { content: ""; flex: none; width: .5rem; height: .5rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); margin-left: .1rem; transition: transform var(--dur-ui) var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::after { transform: translateX(3px) rotate(45deg); }
+}
+.btn--sin-flecha::after { content: none; }
+.btn--sec { background: transparent; color: var(--acento); }
+.btn--sec:hover { background: var(--acento); border-color: var(--acento); color: #fff; }
+.btn--cobre { background: var(--cobre); border-color: var(--cobre); color: #15130f; }
+.btn--cobre:hover { background: var(--cobre-2); border-color: var(--cobre-2); color: #15130f; }
+.btn--vidrio { background: transparent; border-color: rgba(255, 255, 255, .7); color: #fff; }
+.btn--vidrio:hover { background: #fff; border-color: #fff; color: var(--tinta); }
+/* WhatsApp: verde de marca con texto oscuro (contraste 9:1) */
+.btn--wa { background: #25d366; border-color: #25d366; color: #0b1f12; }
+.btn--wa:hover { background: #1ebe5b; border-color: #1ebe5b; color: #0b1f12; }
+.acciones { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; }
+.acciones--centro { justify-content: center; }
+
+/* Enlace con flecha: mismo chevron dibujado que los botones (no un glifo de fuente) */
+.enlace-flecha { display: inline-flex; align-items: center; gap: .55rem; min-height: 44px; font-weight: 500; text-decoration: none; letter-spacing: .02em; }
+.enlace-flecha::after { content: ""; flex: none; width: .45rem; height: .45rem; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); transition: transform var(--dur-ui) var(--ease-out); }
+.enlace-flecha:hover { text-decoration: underline; }
+@media (hover: hover) and (pointer: fine) {
+  .enlace-flecha:hover::after { transform: translateX(3px) rotate(45deg); }
+}
+
+/* Dos columnas texto + imagen */
+.dos { display: grid; gap: clamp(1.5rem, 3.5vw, 3rem); align-items: center; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); }
+.lectura-p { color: var(--texto-2); max-width: 60ch; margin: .75rem 0; }
+.dos__img { position: relative; margin: 0; border-radius: var(--radio); overflow: hidden; aspect-ratio: 16 / 10; background: var(--tinta); }
+.dos__img img { width: 100%; height: 100%; object-fit: cover; }
+.dos__img::after { content: ""; position: absolute; inset: 0; outline: 1px solid rgba(0, 0, 0, .1); outline-offset: -1px; pointer-events: none; }
+
+.caja { background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); padding: clamp(1.25rem, 3vw, 1.75rem); }
+.caja > :last-child { margin-bottom: 0; }
+
+/* Entrada en cadena del hero: lineas que aparecen en secuencia */
+@keyframes sube { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes aparece { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.anim { animation: sube var(--dur-hero) var(--ease-out) both; animation-delay: var(--d, 0ms); }
+
+/* Aviso de dato por confirmar (sobrio y recto) */
+.pendiente {
+  display: inline-block; padding: .05rem .5rem; border: 1px dashed #98a0a8; border-radius: var(--radio);
+  background: #f1f2f4; color: #474e55; font: 500 .8125rem/1.5 var(--f-texto); white-space: nowrap;
+}
+
+/* Nota "proximamente": regla fina + texto */
+.proximo { display: flex; align-items: baseline; gap: .75rem; margin: 0; padding: .9rem 0; border-block: 1px solid currentColor; font-size: var(--t-sm); }
+.proximo strong { flex: none; font: 500 var(--t-xs)/1.4 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; }
+
+/* Formularios */
+.form { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.campo label { display: block; font-weight: 500; font-size: var(--t-sm); margin-bottom: .3rem; }
+/* La ayuda va debajo del campo: asi las casillas de una misma fila quedan alineadas. */
+.campo:not(.campo--check) { display: flex; flex-direction: column; }
+.campo > input, .campo > select, .campo > textarea { order: 1; }
+.campo .ayuda { display: block; order: 2; font-size: var(--t-xs); line-height: 1.45; color: var(--texto-2); margin: .35rem 0 0; }
+.campo .error { order: 3; }
+.campo[hidden] { display: none; }
+/* Hueco que completa la fila de "Tipo de asistente" cuando "Año o semestre" esta oculto */
+.campo-salto { display: none; }
+.campo[hidden] + .campo-salto { display: block; }
+@media (max-width: 40rem) { .campo[hidden] + .campo-salto { display: none; } }
+.campo input, .campo select, .campo textarea {
+  width: 100%; min-height: 48px; padding: .6rem .8rem; font: inherit;
+  border: 1px solid #8a9199; border-radius: var(--radio); background: var(--blanco); color: var(--texto);
+  transition: border-color var(--dur-ui) var(--ease), box-shadow var(--dur-ui) var(--ease);
+  caret-color: var(--acento);
+}
+@media (hover: hover) and (pointer: fine) {
+  .campo input:hover:not(:focus), .campo select:hover:not(:focus), .campo textarea:hover:not(:focus) { border-color: var(--texto-2); }
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--acento); box-shadow: 0 0 0 2px rgba(94, 21, 29, .25); outline: none; }
+.campo textarea { min-height: 6.5rem; resize: vertical; }
+.campo [aria-invalid="true"], .campo [aria-invalid="true"]:hover { border-color: var(--error); }
+.campo [aria-invalid="true"]:focus { border-color: var(--error); box-shadow: 0 0 0 2px rgba(164, 38, 44, .25); }
+.campo .error { color: var(--error); font-weight: 500; font-size: var(--t-sm); margin: .3rem 0 0; animation: aparece var(--dur-ui) var(--ease-out); }
+.form .trampa, .campo.trampa { position: absolute; left: -9999px; }
+.estado { padding: .9rem 1.1rem; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--blanco); }
+.estado p { margin: 0; }
+.estado--ok { border-color: var(--ok); background: #f1f8f3; }
+.estado--error { border-color: var(--error); background: #fdf3f3; }
+.estado--ok, .estado--error { animation: aparece var(--dur-ui) var(--ease-out); }
+.estado:empty { display: none; }
+.form .error::before { content: "Error: "; }
+.form button[aria-disabled="true"] { opacity: .6; cursor: not-allowed; }
+.form[aria-busy="true"] button[aria-disabled="true"] { cursor: progress; }
+.estado .btn { margin-top: .75rem; }
+.estado .estado__wa { margin-top: .5rem; }
+
+.check, .campo--check { display: flex; align-items: flex-start; gap: .75rem; min-height: 44px; padding: .4rem 0; font-weight: 400; cursor: pointer; }
+.campo label.check { font-weight: 400; font-size: var(--t-base); margin-bottom: 0; }
+.check input { flex: none; width: 1.375rem; height: 1.375rem; min-height: 0; margin: .15rem 0 0; accent-color: var(--acento); }
+
+/* Zoom extremo (200 % en telefono, ~200 px utiles): los botones pueden partir su texto */
+@media (max-width: 16rem) {
+  .btn { padding-inline: .85rem; text-align: center; letter-spacing: .04em; }
+}
+
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+/* Revelado suave al hacer scroll: solo se oculta si el script esta activo (.js) */
+.js [data-reveal] { opacity: 0; transform: translateY(12px); transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out); transition-delay: calc(var(--rd, 0) * 1ms); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+/* Lo que ya estaba pintado al cargar el script queda visible, sin parpadeo */
+.js [data-reveal].is-quieto { transition: none; }
+
+/* Movimiento reducido: sin desplazamientos ni animaciones; se conservan los cambios de color y el foco */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-property: color, background-color, border-color, box-shadow, opacity !important; }
+  .js [data-reveal] { opacity: 1; transform: none; }
+  .btn:active { transform: none; }
+}

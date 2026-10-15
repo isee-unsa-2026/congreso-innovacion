@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="et-t et-d" fill="none">
+<title id="et-t">Etapas del reto de innovación</title>
+<desc id="et-d">Línea de tiempo horizontal con las ocho etapas del reto: Convocatoria, Presentación de desafíos, Propuesta inicial, Evaluación, Selección, Desarrollo, Piloto y Resultados. Las etapas 6 y 7 están por confirmar.</desc>
+<style>
+text{font-family:Poppins,system-ui,sans-serif;fill:#202124}
+text{fill:#202124}
+.h{font-size:21px;font-weight:600}
+.s{font-size:13px;opacity:.75}
+.l{font-size:14px}
+.sm{font-size:12px;opacity:.8}
+.b{font-size:15px;font-weight:600;fill:#5E151D}
+.ln{stroke:#202124;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.th{stroke:#202124;stroke-width:1.5;fill:none;stroke-opacity:.7}
+.dm{stroke:#5E151D;stroke-width:1.5;fill:none}
+.ex{stroke:#202124;stroke-width:1;stroke-dasharray:4 4;opacity:.5;fill:none}
+@keyframes dr{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes fd{from{opacity:0}to{opacity:1}}
+.draw{stroke-dasharray:1;stroke-dashoffset:0;animation:dr 1.4s ease-out both}
+.fade{animation:fd .8s ease-out both}
+.num{font-size:18px;font-weight:600;text-anchor:middle}
+.nm{font-size:15px;font-weight:600;text-anchor:middle}
+@media (prefers-reduced-motion:reduce){.draw,.fade,.pulse{animation:none!important}}
+</style>
+<defs></defs>
+<text class="h" x="40" y="44">Etapas del reto de innovación</text>
+<text class="s" x="40" y="66">Ruta del reto desde la convocatoria hasta los resultados</text>
+<rect x="751.0" y="96" width="275.4" height="190" rx="14" class="th" style="stroke-dasharray:6 6;stroke-width:1.5"/>
+<path class="ln draw" pathLength="1" style="animation-delay:0.00s" d="M126.0 170 H217.4"/>
+<path class="ln draw" pathLength="1" style="animation-delay:0.25s" d="M269.4 170 H360.8"/>
+<path class="ln draw" pathLength="1" style="animation-delay:0.50s" d="M412.8 170 H504.2"/>
+<path class="ln draw" pathLength="1" style="animation-delay:0.75s" d="M556.2 170 H647.6"/>
+<path class="th fade" style="stroke-dasharray:5 5;animation-delay:1.00s" d="M699.6 170 H791.0"/>
+<path class="th fade" style="stroke-dasharray:5 5;animation-delay:1.25s" d="M843.0 170 H934.4"/>
+<path class="th fade" style="stroke-dasharray:5 5;animation-delay:1.50s" d="M986.4 170 H1077.8"/>
+<g class="fade" style="animation-delay:0.10s">
+<text class="sm" x="100.0" y="126" text-anchor="middle">ETAPA 01</text>
+<circle cx="100.0" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="100.0" y="176" style="fill:#5E151D">1</text>
+<text class="nm" x="100.0" y="222">Convocatoria</text>
+</g>
+<g class="fade" style="animation-delay:0.35s">
+<text class="sm" x="243.4" y="126" text-anchor="middle">ETAPA 02</text>
+<circle cx="243.4" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="243.4" y="176" style="fill:#5E151D">2</text>
+<text class="nm" x="243.4" y="222">Presentación</text>
+<text class="nm" x="243.4" y="242">de desafíos</text>
+</g>
+<g class="fade" style="animation-delay:0.60s">
+<text class="sm" x="386.8" y="126" text-anchor="middle">ETAPA 03</text>
+<circle cx="386.8" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="386.8" y="176" style="fill:#5E151D">3</text>
+<text class="nm" x="386.8" y="222">Propuesta</text>
+<text class="nm" x="386.8" y="242">inicial</text>
+</g>
+<g class="fade" style="animation-delay:0.85s">
+<text class="sm" x="530.2" y="126" text-anchor="middle">ETAPA 04</text>
+<circle cx="530.2" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="530.2" y="176" style="fill:#5E151D">4</text>
+<text class="nm" x="530.2" y="222">Evaluación</text>
+</g>
+<g class="fade" style="animation-delay:1.10s">
+<text class="sm" x="673.6" y="126" text-anchor="middle">ETAPA 05</text>
+<circle cx="673.6" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="673.6" y="176" style="fill:#5E151D">5</text>
+<text class="nm" x="673.6" y="222">Selección</text>
+</g>
+<g class="fade" style="animation-delay:1.35s">
+<text class="sm" x="817.0" y="126" text-anchor="middle">ETAPA 06</text>
+<circle cx="817.0" cy="170" r="25" class="th" style="stroke-dasharray:4 4"/>
+<text class="num" x="817.0" y="176" >6</text>
+<text class="nm" x="817.0" y="222">Desarrollo</text>
+</g>
+<g class="fade" style="animation-delay:1.60s">
+<text class="sm" x="960.4" y="126" text-anchor="middle">ETAPA 07</text>
+<circle cx="960.4" cy="170" r="25" class="th" style="stroke-dasharray:4 4"/>
+<text class="num" x="960.4" y="176" >7</text>
+<text class="nm" x="960.4" y="222">Piloto</text>
+</g>
+<g class="fade" style="animation-delay:1.85s">
+<text class="sm" x="1103.8" y="126" text-anchor="middle">ETAPA 08</text>
+<circle cx="1103.8" cy="170" r="25" class="ln" style="stroke:#5E151D"/>
+<text class="num" x="1103.8" y="176" style="fill:#5E151D">8</text>
+<text class="nm" x="1103.8" y="222">Resultados</text>
+</g>
+<g class="fade" style="animation-delay:1.9s"><rect x="826.7" y="258" width="124" height="26" rx="13" class="th" style="stroke-dasharray:4 4;stroke:#5E151D;stroke-opacity:1"/>
+<text class="sm" x="888.7" y="275" text-anchor="middle" style="opacity:1;fill:#5E151D">Por confirmar</text></g>
+</svg>
