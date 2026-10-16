@@ -7,3 +7,5 @@ scripts-tmp.mjs
 *.bat
 .env
 .env.*
+.claude/
+.impeccable/hook.cache.json
