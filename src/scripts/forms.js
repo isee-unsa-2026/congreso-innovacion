@@ -114,7 +114,7 @@ function validarCampo(campo) {
   }
   const valor = campo.value.trim();
   if (campo.required && valor === '') {
-    return campo.tagName === 'SELECT' ? 'Selecciona una opción.' : 'Este campo es obligatorio.';
+    return campo.tagName === 'SELECT' ? 'Selecciona una opción.' : 'Completa este campo.';
   }
   if (valor === '') return '';
   const max = Number(campo.getAttribute('maxlength')) || MAX_POR_DEFECTO;

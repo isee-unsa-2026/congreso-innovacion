@@ -1,144 +1,23 @@
 {
-  "bases": "/docs/innomining-bases.pdf",
-  "basesPeso": "230 KB",
-  "resumen": "INNOMINING invita a equipos multidisciplinarios de la UNSA a diseñar una solución innovadora para un problema real de la minería, con especial interés en la perforación y voladura de rocas. Cada equipo identifica un problema concreto, propone una solución propia, explica cómo funcionaría y cómo se comprobaría su eficacia, y la defiende ante un jurado.",
-  "pasos": [
-    { "titulo": "Identifican un problema real", "texto": "Un problema u oportunidad de mejora concreto en la operación minera." },
-    { "titulo": "Proponen una solución original", "texto": "Un dispositivo, un sistema, un software, un modelo o un método." },
-    { "titulo": "Desarrollan un concepto o prototipo", "texto": "Durante aproximadamente el mes previo al evento." },
-    { "titulo": "Sustentan ante el jurado", "texto": "15 minutos por equipo, con la participación de todos los integrantes." }
+  "resumen": "INNOMINING es el concurso del congreso: equipos de la UNSA proponen soluciones innovadoras a problemas reales de la minería, con especial interés en la perforación y voladura.",
+  "retosEnaex": "Los retos del concurso son planteados por ENAEX, empresa patrocinadora del congreso; se darán a conocer junto con las bases.",
+  "participan": "Equipos multidisciplinarios de estudiantes y egresados de la UNSA, de distintas carreras afines a la minería.",
+  "claves": [
+    "Equipos de 4 integrantes",
+    "Propuesta en forma de concepto o prototipo",
+    "Sustentación ante un jurado durante el congreso",
+    "Los mejores equipos podrán continuar con una investigación aplicada",
+    "Certificado de participación"
   ],
-  "porQue": "Los mejores proyectos recibirán acompañamiento académico y financiamiento para convertir su propuesta en una investigación aplicada. Todos los equipos que sustenten recibirán un certificado de participación.",
-  "datosClave": [
-    { "dato": "Sustentaciones", "valor": "18 y 19 de noviembre de 2026, por la tarde (horario y sede por definir)" },
-    { "dato": "Dirigido a", "valor": "Estudiantes de la UNSA desde el 4.º semestre y egresados de la UNSA" },
-    { "dato": "Modalidad", "valor": "Equipos de 4 integrantes de al menos 3 carreras distintas" },
-    { "dato": "Preparación", "valor": "Aproximadamente un mes para desarrollar un concepto o prototipo" },
-    { "dato": "Sustentación", "valor": "15 minutos por equipo ante un jurado" },
-    { "dato": "Inscripción", "valor": "Gratuita, un registro por equipo a cargo del coordinador" },
-    { "dato": "Siguiente fase", "valor": "Los 3 equipos seleccionados continúan con una investigación aplicada, hasta aproximadamente mayo de 2027" }
+  "preguntas": [
+    "¿Cuál es el problema?",
+    "¿Por qué importa resolverlo?",
+    "¿Cuál es la solución y cómo funciona?",
+    "¿Qué tiene de nuevo?",
+    "¿Cómo se validaría?",
+    "¿Qué impacto tendría en la minería?",
+    "¿Qué aporta cada carrera del equipo?"
   ],
-  "concepto": "Un concepto es una solución explicada con detalle técnico: esquemas, cálculos, diagramas de funcionamiento y justificación del diseño.",
-  "prototipo": "Un prototipo es una versión preliminar que puede mostrarse: una maqueta, un circuito, un modelo funcional, una simulación o una aplicación de software.",
-  "conceptoNota": "Ambos son válidos; el jurado valorará la coherencia técnica, la originalidad y la posibilidad real de validar la idea.",
-  "requisitos": [
-    "Estudiantes de pregrado de la UNSA matriculados durante la convocatoria y que cursen del 4.º semestre en adelante.",
-    "Egresados de la UNSA, que acreditarán su condición con la constancia correspondiente.",
-    "No pueden participar personas ajenas a la UNSA. Cada participante puede integrar un solo equipo."
-  ],
-  "composicion": [
-    "Cada equipo tiene 4 integrantes.",
-    "Los integrantes pertenecen a al menos 3 carreras profesionales distintas; en el caso de los egresados, se considera la carrera en la que egresaron.",
-    "Debe haber al menos un estudiante de Ingeniería de Minas.",
-    "Cada equipo designa un coordinador, único enlace formal con el Comité Organizador.",
-    "Cada equipo registra un docente asesor o aval académico de la UNSA, que orienta y verifica la coherencia de la propuesta; la autoría de la solución pertenece al equipo estudiantil.",
-    "La multidisciplinariedad debe ser real: cada especialidad debe tener un aporte claro y verificable."
-  ],
-  "perfiles": [
-    { "carrera": "Ingeniería de Minas (obligatoria)", "aporte": "Conocimiento del problema operativo, de perforación y voladura, y de las condiciones reales de campo." },
-    { "carrera": "Ingeniería Electrónica", "aporte": "Sensores, instrumentación, circuitos y adquisición de datos." },
-    { "carrera": "Ingeniería Mecánica", "aporte": "Diseño y construcción del dispositivo, materiales y resistencia." },
-    { "carrera": "Sistemas o Ciencia de la Computación", "aporte": "Programación, análisis de datos, modelos predictivos y visualización." },
-    { "carrera": "Geología, Química, Ambiental u otras afines", "aporte": "Comportamiento del macizo rocoso, materiales, impactos y variables del entorno." }
-  ],
-  "lineasIntro": "Las propuestas deben tener relación directa o razonablemente sustentada con la industria minera y, preferentemente, con la perforación y voladura. Las líneas temáticas referenciales son:",
-  "lineas": [
-    "Optimización de la fragmentación y del diseño y desempeño de las voladuras",
-    "Seguridad en operaciones de perforación y voladura",
-    "Instrumentación, sensores, monitoreo y automatización",
-    "Digitalización, inteligencia artificial, análisis de datos y modelos predictivos",
-    "Control de vibraciones, ruido, polvo, gases y otros impactos ambientales",
-    "Productividad, costos y eficiencia operacional",
-    "Geología y geomecánica aplicadas al comportamiento del macizo rocoso",
-    "Relación entre la fragmentación y los procesos posteriores: carguío, acarreo, chancado y molienda",
-    "Otras líneas relacionadas con la minería, previa aceptación del Comité Organizador"
-  ],
-  "retosEmpresas": "Los retos específicos planteados por las empresas patrocinadoras, si los hubiera, se publicarán en un documento complementario a las bases.",
-  "entregas": [
-    { "titulo": "Ficha de propuesta", "texto": "Máximo 5 páginas, sin contar anexos necesarios, con los componentes de la tabla." },
-    { "titulo": "Concepto o prototipo", "texto": "Esquemas, simulación, maqueta, circuito, software u otro medio que permita explicar y demostrar la idea." },
-    { "titulo": "Presentación", "texto": "Para la sustentación de 15 minutos." }
-  ],
-  "ficha": [
-    { "titulo": "Título", "texto": "Nombre claro y representativo de la propuesta." },
-    { "titulo": "Problema u oportunidad", "texto": "Situación que se desea resolver y su contexto en la minería." },
-    { "titulo": "Solución propuesta", "texto": "Descripción concreta de la idea y de su funcionamiento." },
-    { "titulo": "Elemento innovador", "texto": "Diferencia frente a soluciones existentes y aporte propio del equipo." },
-    { "titulo": "Metodología de validación", "texto": "Cómo se probará, modelará o verificará que la solución funciona." },
-    { "titulo": "Aporte de cada carrera", "texto": "Rol real de cada especialidad dentro de la solución." },
-    { "titulo": "Viabilidad y recursos", "texto": "Materiales, datos, software, equipos o ensayos que se necesitarían." },
-    { "titulo": "Resultados esperados y referencias", "texto": "Impacto esperado y antecedentes correctamente citados." }
-  ],
-  "asesorNota": "El docente asesor orienta al equipo en la coherencia técnica y metodológica, pero no desarrolla la solución.",
-  "sustentacion": {
-    "texto": "Cada equipo dispone de 15 minutos para exponer su propuesta. Al finalizar, el jurado podrá realizar una breve ronda de preguntas y comentarios técnicos. Un moderador controla los tiempos.",
-    "preguntas": [
-      "¿Cuál es el problema?",
-      "¿Por qué es importante resolverlo?",
-      "¿Cuál es la solución propuesta y cómo funciona?",
-      "¿Qué tiene de novedoso o diferente?",
-      "¿Cómo se comprobará o validará?",
-      "¿Qué impacto potencial tendría para la minería?",
-      "¿Cómo aporta cada una de las carreras del equipo?"
-    ],
-    "reglas": [
-      "Todos los integrantes deben estar presentes y pueden ser convocados por el jurado para responder.",
-      "Se permite el uso de presentación, video, maqueta, prototipo o simulación, respetando el tiempo asignado.",
-      "Los prototipos que usen electricidad, baterías u otros elementos con riesgo deben comunicarse con anticipación a la organización.",
-      "La exposición debe ser comprensible para un jurado multidisciplinario."
-    ]
-  },
-  "jurado": "Jurado de carácter académico-industrial: podrá estar conformado por representantes técnicos de las empresas patrocinadoras, docentes especialistas de la UNSA, investigadores invitados y profesionales del sector minero. Usa una rúbrica común y evalúa únicamente los criterios de las bases; nadie con conflicto de interés directo con un equipo participa en su calificación.",
-  "criterios": [
-    { "letra": "A", "nombre": "Originalidad e innovación", "puntos": 30, "aspectos": "Novedad del enfoque, aporte propio y diferenciación frente a soluciones conocidas." },
-    { "letra": "B", "nombre": "Sustento técnico y metodológico", "puntos": 25, "aspectos": "Coherencia científica, calidad del razonamiento, método propuesto, calidad del concepto o prototipo y posibilidad de validación." },
-    { "letra": "C", "nombre": "Impacto para la industria minera", "puntos": 20, "aspectos": "Potencial de mejora en seguridad, productividad, costos, sostenibilidad o calidad." },
-    { "letra": "D", "nombre": "Integración multidisciplinaria", "puntos": 15, "aspectos": "Participación efectiva y complementaria de las distintas carreras." },
-    { "letra": "E", "nombre": "Claridad de la sustentación", "puntos": 10, "aspectos": "Síntesis, comunicación, dominio técnico y respuesta a preguntas." }
-  ],
-  "desempate": "En caso de empate se prioriza, en este orden, el mayor puntaje en originalidad e innovación, en sustento técnico y metodológico y en impacto para la industria.",
-  "etapas": [
-    { "nombre": "Inscripción", "fecha": "Por definir", "texto": "Los equipos se registran mediante el formulario oficial.", "pendiente": true },
-    { "nombre": "Desarrollo", "fecha": "Previo al evento", "texto": "Los equipos elaboran su concepto o prototipo durante aproximadamente un mes, con acompañamiento del docente asesor, y envían la ficha de propuesta antes del 18 de noviembre (fecha por definir)." },
-    { "nombre": "Sustentación", "fecha": "18 y 19 de noviembre de 2026", "texto": "Cada equipo expone 15 minutos ante el jurado y responde sus preguntas. Por la tarde; horario y sede por definir. El orden y el día de cada equipo los define la organización." },
-    { "nombre": "Selección", "fecha": "19 de noviembre de 2026", "texto": "Al cierre de las sustentaciones, el jurado elige a los 3 mejores equipos y se entregan los certificados." },
-    { "nombre": "Investigación aplicada", "fecha": "Diciembre de 2026 – aprox. mayo de 2027", "texto": "Los 3 equipos seleccionados desarrollan su proyecto con asesoría y financiamiento, con hitos definidos en el plan de cada proyecto y una presentación final de resultados hacia mayo de 2027 (fecha por confirmar)." }
-  ],
-  "cronogramaNota": "Las fechas aún no definidas serán confirmadas por la organización y comunicadas por el grupo de WhatsApp oficial. Si los equipos inscritos exceden la capacidad del evento, el Comité Organizador podrá hacer una preselección a partir de la ficha de propuesta, con criterios comunicados previamente.",
-  "reconocimientos": [
-    { "quien": "Todos los equipos que sustenten", "que": "Certificado de participación." },
-    { "quien": "Los 3 equipos seleccionados", "que": "Certificado por haber clasificado a la siguiente fase y acceso a la investigación aplicada con acompañamiento académico y financiamiento de la empresa patrocinadora ENAEX, en las condiciones que se confirmen oficialmente." }
-  ],
-  "reconocimientoCorto": "Los 3 equipos seleccionados pasan a una investigación aplicada con acompañamiento académico y financiamiento de ENAEX, en las condiciones que se confirmen oficialmente. Todos los que sustenten reciben certificado.",
-  "reconocimientoNota": "Los premios, equipos, financiamiento o beneficios adicionales se comunicarán únicamente cuando hayan sido confirmados oficialmente.",
-  "investigacion": "De diciembre de 2026 a aproximadamente mayo de 2027, cada equipo seleccionado elabora un plan de investigación definitivo y avanza por hitos de seguimiento hasta un informe técnico y una presentación final. Según la madurez alcanzada, el resultado puede ser un prototipo validado, un software, un informe técnico, un artículo científico o una solicitud de protección de propiedad intelectual.",
-  "reglas": [
-    { "titulo": "Seguridad", "texto": "Ningún equipo puede manipular, fabricar, almacenar, transportar o ensayar explosivos, accesorios de voladura u otros materiales regulados por iniciativa propia. Se autoriza la investigación conceptual, el análisis, el modelamiento y el diseño académico; toda actividad experimental con materiales regulados se hace solo en instalaciones autorizadas, con supervisión competente y permisos." },
-    { "titulo": "Originalidad", "texto": "La propuesta debe ser propia, original e inédita en el aporte del equipo. Se pueden usar literatura, normas, patentes y productos existentes como antecedentes, citándolos e identificando la contribución nueva. No se admiten copias, tesis previas presentadas como nuevas ni datos o referencias inventados." },
-    { "titulo": "Uso de inteligencia artificial", "texto": "Permitido como apoyo para búsqueda, organización, programación o revisión de redacción, siempre que no sustituya la autoría del equipo ni se use para fabricar datos o referencias. Su uso relevante debe declararse." },
-    { "titulo": "Confidencialidad y propiedad intelectual", "texto": "La información confidencial de las empresas solo se usa para el proyecto. La titularidad de los resultados se rige por la normativa de la UNSA y, cuando corresponda, por convenios con las empresas." },
-    { "titulo": "Descalificación", "texto": "Entre otras causales: información falsa, no cumplir la composición del equipo o los requisitos de participación, plagio, incumplir la confidencialidad o las normas de seguridad, o intentar influir irregularmente en el jurado." }
-  ],
-  "carreras": [
-    "Ingeniería de Minas",
-    "Ingeniería Geológica",
-    "Ingeniería Geofísica",
-    "Ingeniería Metalúrgica",
-    "Ingeniería de Materiales",
-    "Ingeniería Química",
-    "Ingeniería Mecánica",
-    "Ingeniería Eléctrica",
-    "Ingeniería Electrónica",
-    "Ingeniería de Sistemas",
-    "Ciencia de la Computación",
-    "Ingeniería Industrial",
-    "Ingeniería Ambiental",
-    "Ingeniería Civil",
-    "Ingeniería Sanitaria",
-    "Física",
-    "Química",
-    "Matemáticas",
-    "Otra"
-  ],
-  "ciclos": ["4.º semestre", "5.º semestre", "6.º semestre", "7.º semestre", "8.º semestre", "9.º semestre", "10.º semestre", "Egresado"]
+  "seguridad": "No se manipulan explosivos: el trabajo es conceptual o de diseño.",
+  "proximamente": "Pronto compartiremos más información, las bases y la fecha de inscripción por nuestros canales oficiales."
 }

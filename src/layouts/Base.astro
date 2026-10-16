@@ -18,7 +18,7 @@ const origin = new URL(withBase('/'), Astro.site).href;
 const ogImage = new URL(withBase('/og-image.png'), Astro.site).href;
 const ogAlt = `${site.kicker}: ${site.name}. ${site.dates}, ${site.city}`;
 // Las horas del programa son preliminares: se usa 00:00:00-05:00 (America/Lima) hasta confirmarlas.
-const lugar = { '@type': 'Place', name: site.venue, address: { '@type': 'PostalAddress', addressLocality: 'Arequipa', addressCountry: 'PE' } };
+const lugar = { '@type': 'Place', name: site.place, address: { '@type': 'PostalAddress', streetAddress: site.venue, addressLocality: 'Arequipa', addressCountry: 'PE' } };
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'Event',

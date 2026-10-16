@@ -10,9 +10,9 @@ import { withBase } from '../utils/paths';
 const hero = imagenes.hero;
 const faq = [
   { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
-  { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en la ${site.venue}.` },
-  { titulo: `¿Quién puede participar en ${site.retoName}?`, texto: 'Estudiantes de la UNSA desde el 4.º semestre y egresados de la UNSA, en equipos de cuatro integrantes de al menos tres carreras distintas, con al menos un estudiante de Ingeniería de Minas y un docente asesor de la UNSA. Cada equipo identifica un problema real de la minería y propone su propia solución; los 3 equipos seleccionados pasan a una investigación aplicada con financiamiento de ENAEX, en las condiciones que se confirmen oficialmente, y todos los que sustenten reciben certificado. El congreso está abierto a todo público.' },
-  { titulo: '¿Cómo me inscribo?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito. Los equipos de ${site.retoName} se inscriben por separado en la <a href="${withBase('/reto/inscripcion/')}">inscripción de equipos</a>; también puedes <a href="${withBase('/docs/innomining-bases.pdf')}" download>descargar las bases (PDF)</a>.` },
+  { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en el ${site.place}, Arequipa.` },
+  { titulo: `¿Qué es ${site.retoName}?`, html: `Es el concurso del congreso, con retos planteados por ENAEX, empresa patrocinadora. Participan equipos multidisciplinarios de estudiantes y egresados de la UNSA. Más información, bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
+  { titulo: '¿Cómo me inscribo al congreso?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito.` },
 ];
 ---
 <Base title={`${site.name} · ISEE UNSA 2026`} description={`${site.name}: gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
@@ -87,7 +87,7 @@ const faq = [
     <div class="wrap cierre__in" data-reveal>
       <div>
         <h2 id="t-cierre" class="cierre__t">Te esperamos en <em>Arequipa</em></h2>
-        <p>{site.dates} · {site.venue}</p>
+        <p>{site.dates} · {site.place}</p>
       </div>
       <div class="acciones"><a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
     </div>

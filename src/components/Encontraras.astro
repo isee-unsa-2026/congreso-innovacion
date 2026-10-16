@@ -1,17 +1,17 @@
 ---
-// "Lo que encontrarás": tres puntos del congreso en una rejilla de reglas finas, sin cajas.
+// "Lo que encontrarás": tres rasgos del congreso en una rejilla de reglas finas, sin cajas.
 // Las empresas se mencionan solo como texto (sin logos).
 import site from '../data/site.json';
 import { withBase } from '../utils/paths';
 const [a, b, c] = site.empresas;
-const puntos = [
+const rasgos = [
   {
     titulo: 'Ponencias de la industria',
     html: `Profesionales de empresas mineras líderes como <strong>${a}</strong>, <strong>${b}</strong> y <strong>${c}</strong> compartirán su experiencia en la operación y la innovación minera.`,
   },
   {
     titulo: `Concurso ${site.retoName}`,
-    html: `Equipos multidisciplinarios de la UNSA proponen soluciones innovadoras a problemas reales de la minería, con especial interés en la perforación y voladura. <a href="${withBase('/reto/')}">Conoce el concurso</a>.`,
+    html: `Equipos multidisciplinarios de la UNSA proponen soluciones a retos planteados por ENAEX, empresa patrocinadora del congreso. <a href="${withBase('/reto/')}">Conoce el concurso</a>.`,
   },
   {
     titulo: 'Networking',
@@ -19,8 +19,8 @@ const puntos = [
   },
 ];
 ---
-<ul class="puntos" role="list">
-  {puntos.map((p, i) => (
+<ul class="rasgos" role="list">
+  {rasgos.map((p, i) => (
     <li class="punto" data-reveal data-reveal-delay={i * 70}>
       <span class="punto__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <h3>{p.titulo}</h3>
@@ -29,14 +29,14 @@ const puntos = [
   ))}
 </ul>
 <style>
-  .puntos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 2px solid var(--texto); }
+  .rasgos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 2px solid var(--texto); }
   .punto { padding: 1.1rem 0; border-bottom: 1px solid var(--linea); }
   .punto__n { display: block; margin-bottom: .5rem; font: 700 1rem/1 var(--f-display); color: var(--acento); letter-spacing: .04em; }
   .punto h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.2; margin-bottom: .35rem; }
   .punto p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
   .punto :global(strong) { color: var(--texto); font-weight: 600; }
   @media (min-width: 52rem) {
-    .puntos { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--linea); }
+    .rasgos { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--linea); }
     .punto { padding: 1.25rem 1.5rem 1.35rem 0; border-bottom: 0; }
     .punto + .punto { padding-left: 1.5rem; border-left: 1px solid var(--linea); }
   }
