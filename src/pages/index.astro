@@ -8,6 +8,14 @@ import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
+// Enlace que abre Google Calendar con el evento ya cargado (dia completo, 18 y 19 de noviembre).
+const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
+  action: 'TEMPLATE',
+  text: site.name,
+  dates: `${site.dateStart.replaceAll('-', '')}/20261120`,
+  details: `Organiza ${site.organizer}. Ingreso gratuito. Incluye el concurso ${site.retoName}. Horarios próximamente.`,
+  location: `${site.place}, ${site.city}`,
+}).toString().replace('%2F', '/');
 const faq = [
   { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
   { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en el ${site.place}, Arequipa.` },
@@ -77,7 +85,7 @@ const faq = [
     <div class="wrap faq">
       <div class="cab-sec" data-reveal>
         <h2 id="t-faq" class="titulo-2">Preguntas <em>frecuentes</em></h2>
-        <a class="faq__cal" href={withBase('/congreso-isee-unsa-2026.ics')} download>Agregar al calendario<span class="sr"> (archivo .ics, 18 y 19 de noviembre)</span></a>
+        <a class="faq__cal" href={calendario} target="_blank" rel="noopener">Agregar a Google Calendar<span class="sr"> (se abre en una pestaña nueva)</span></a>
       </div>
       <div data-reveal><Acordeon items={faq} /></div>
     </div>
