@@ -5,18 +5,19 @@ import Encontraras from '../components/Encontraras.astro';
 import RetoBloque from '../components/RetoBloque.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
+import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
 const faq = [
   { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
   { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en la ${site.venue}.` },
-  { titulo: `¿Quién puede participar en ${site.retoName}?`, texto: 'Estudiantes y egresados de la UNSA, en equipos multidisciplinarios de cuatro integrantes que desarrollan una solución a un problema real propuesto por empresas líderes del sector. El congreso está abierto a todo público.' },
-  { titulo: '¿Cómo me inscribo?', html: `Desde la <a href="/inscripciones/">página de inscripciones</a>: por ahora hay un registro de asistencia, abierto a todo público y gratuito. La postulación de equipos a ${site.retoName} se abrirá con la publicación de las bases.` },
+  { titulo: `¿Quién puede participar en ${site.retoName}?`, texto: 'Estudiantes de la UNSA desde el 4.º semestre y egresados de la UNSA, en equipos de cuatro integrantes de al menos tres carreras distintas, con al menos un estudiante de Ingeniería de Minas y un docente asesor de la UNSA. Cada equipo identifica un problema real de la minería y propone su propia solución; los 3 equipos seleccionados pasan a una investigación aplicada con financiamiento de ENAEX, en las condiciones que se confirmen oficialmente, y todos los que sustenten reciben certificado. El congreso está abierto a todo público.' },
+  { titulo: '¿Cómo me inscribo?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito. Los equipos de ${site.retoName} se inscriben por separado en la <a href="${withBase('/reto/inscripcion/')}">inscripción de equipos</a>; también puedes <a href="${withBase('/docs/innomining-bases.pdf')}" download>descargar las bases (PDF)</a>.` },
 ];
 ---
 <Base title={`${site.name} · ISEE UNSA 2026`} description={`${site.name}: gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
   <section class="hero" aria-labelledby="titulo-portada">
-    <img class="hero__foto" src={hero.src} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
+    <img class="hero__foto" src={withBase(hero.src)} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
     <div class="hero__velo" aria-hidden="true"></div>
     <div class="wrap hero__in">
       <p class="hero__kicker anim" style="--d:0ms">{site.kicker}</p>
@@ -29,8 +30,8 @@ const faq = [
       <p class="hero__org anim" style="--d:240ms">Organiza <strong>{site.organizer}</strong><span aria-hidden="true"> · </span><span class="sr">. Sede: </span>{site.host}</p>
       <p class="hero__lema anim" style="--d:300ms">“{site.tagline}”</p>
       <div class="acciones acciones--centro anim" style="--d:360ms">
-        <a class="btn btn--cobre" href="/inscripciones/">Inscríbete gratis</a>
-        <a class="btn btn--vidrio" href="/reto/">Conoce {site.retoName}</a>
+        <a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
+        <a class="btn btn--vidrio" href={withBase('/reto/')}>Conoce {site.retoName}</a>
       </div>
     </div>
     <a class="hero__bajar" href="#t-congreso"><span class="sr">Ir al contenido del congreso</span><span class="hero__flecha" aria-hidden="true"></span></a>
@@ -40,11 +41,11 @@ const faq = [
     <div class="wrap dos">
       <div data-reveal>
         <h2 id="t-congreso" class="titulo-2">Un congreso sobre <em>innovación</em> en minería</h2>
-        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y el concurso {site.retoName}, donde equipos de la UNSA resuelven desafíos reales del sector. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
-        <a class="enlace-flecha" href="/congreso/">Conocer el congreso</a>
+        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y el concurso {site.retoName}, donde equipos de la UNSA proponen soluciones innovadoras a problemas reales de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
+        <a class="enlace-flecha" href={withBase('/congreso/')}>Conocer el congreso</a>
       </div>
       <figure class="dos__img" data-reveal data-reveal-delay="100">
-        <img src={imagenes.congreso.src} width={imagenes.congreso.width} height={imagenes.congreso.height} alt={imagenes.congreso.alt} loading="lazy" decoding="async" />
+        <img src={withBase(imagenes.congreso.src)} width={imagenes.congreso.width} height={imagenes.congreso.height} alt={imagenes.congreso.alt} loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>
@@ -76,7 +77,7 @@ const faq = [
     <div class="wrap faq">
       <div class="cab-sec" data-reveal>
         <h2 id="t-faq" class="titulo-2">Preguntas <em>frecuentes</em></h2>
-        <a class="faq__cal" href="/congreso-isee-unsa-2026.ics" download>Agregar al calendario<span class="sr"> (archivo .ics, 18 y 19 de noviembre)</span></a>
+        <a class="faq__cal" href={withBase('/congreso-isee-unsa-2026.ics')} download>Agregar al calendario<span class="sr"> (archivo .ics, 18 y 19 de noviembre)</span></a>
       </div>
       <div data-reveal><Acordeon items={faq} /></div>
     </div>
@@ -88,7 +89,7 @@ const faq = [
         <h2 id="t-cierre" class="cierre__t">Te esperamos en <em>Arequipa</em></h2>
         <p>{site.dates} · {site.venue}</p>
       </div>
-      <div class="acciones"><a class="btn btn--cobre" href="/inscripciones/">Inscríbete gratis</a></div>
+      <div class="acciones"><a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
     </div>
   </section>
 </Base>

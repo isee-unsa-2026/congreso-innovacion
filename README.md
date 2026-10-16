@@ -75,11 +75,11 @@ El enlace del grupo oficial está en `site.json` (`whatsapp`). Se usa en el bot�
 5. Autoriza los permisos cuando Google lo pida y copia la **URL de la aplicación web** (termina en `/exec`).
 6. Pega esa URL en `src/data/site.json`, en el campo `formsEndpoint`.
 7. Ejecuta `npm run build` y publica de nuevo.
-8. Prueba enviando un registro de cada formulario: deben aparecer las hojas "Asistencia" y "Reto" con marca de tiempo.
+8. Prueba enviando un registro de cada formulario: deben aparecer las hojas "Asistencia" e "InnoMining equipos" con marca de tiempo.
 
 ### Columnas de cada hoja
 
-La primera fila se escribe sola en el primer registro. Si una hoja ya existía con otras columnas (versión anterior del formulario), el script no mezcla datos: escribe en una hoja nueva "Asistencia v2" o "Reto v2".
+La primera fila se escribe sola en el primer registro. Si una hoja ya existía con otras columnas (versión anterior del formulario), el script no mezcla datos: escribe en una hoja nueva "Asistencia v2" o "InnoMining equipos v2".
 
 **Asistencia** (formulario de asistencia, todo público):
 
@@ -95,14 +95,35 @@ La primera fila se escribe sola en el primer registro. Si una hoja ya existía c
 | 8 | Año o semestre | solo si Tipo = Estudiante | en otro caso se guarda vacío |
 | 9 | Consentimiento | sí | `si` |
 
-**Reto** (postulación al concurso INNOMINING): Marca de tiempo, Equipo; para cada integrante 1 a 4: `In Nombre`, `In Correo`, `In Carrera`, `In Condición` (Estudiante o Egresado), `In Código/año`; luego Vínculo UNSA, Perfil minero (`si`/`no`), Docente tutor (opcional), Desafío (por ahora una sola opción: "Por definir (los desafíos se publicarán con las bases)"), Enlace documentos (opcional), Pre-inscripción sujeta a bases, Consentimiento y Autorización del equipo.
+**InnoMining equipos** (inscripción de equipos al concurso INNOMINING, página `/reto/inscripcion/`; formulario `innomining`, 36 columnas):
+
+| # | Columna | Obligatorio | Validación |
+| --- | --- | --- | --- |
+| 1 | Marca de tiempo | automática | fecha y hora del registro |
+| 2 | Equipo | sí | máx. 80 caracteres |
+| 3 | Título de la propuesta | sí | máx. 200 caracteres |
+| 4 | Línea temática | sí | una de las 9 líneas de `LINEAS` (= `lineas` en `src/data/reto.json`) |
+| 5–10 | I1 Apellidos y nombres, I1 Carrera, I1 Carrera (otra), I1 Ciclo o condición, I1 Código UNSA, I1 Correo institucional | sí (Carrera (otra) solo si Carrera = Otra) | Carrera en `CARRERAS`; Ciclo en `CICLOS` (4.º a 10.º semestre o Egresado); correo con formato válido (se recomienda @unsa.edu.pe, no se exige) |
+| 11 | Celular del coordinador (I1) | sí | igual que el celular de asistencia |
+| 12–29 | Las mismas 6 columnas para I2, I3 e I4 | sí | igual que I1 |
+| 30 | Docente asesor | sí | máx. 120 caracteres |
+| 31 | Correo del docente asesor | sí | formato de correo |
+| 32 | Problema u oportunidad | sí | máx. 200 palabras |
+| 33 | Solución propuesta | sí | máx. 250 palabras |
+| 34 | Acepta las bases | sí | `si` |
+| 35 | Declaración de originalidad (Anexo 2) | sí | `si` |
+| 36 | Consentimiento de datos | sí | `si` |
+
+Además, el servidor rechaza el equipo si no hay al menos 3 carreras distintas (cada "Otra" cuenta según el texto escrito), si ningún integrante es de Ingeniería de Minas o si dos integrantes repiten el código UNSA. Son las mismas reglas que valida `src/scripts/forms.js` en el navegador.
+
+La antigua hoja "Reto" (postulación previa, ya retirada del sitio) deja de recibir registros; se puede conservar o borrar a mano.
 
 Notas:
 
 - El script no contiene credenciales; escribe en la hoja a la que está vinculado.
-- `Code.gs` valida con listas blancas (`TIPOS_ASISTENTE`, `CONDICIONES`, `DESAFIOS`, perfil minero). Si cambias opciones en `inscripciones.astro` o `desafios` en `site.json` (por ejemplo, al publicar los desafíos con las bases), actualiza esas listas y crea una nueva versión de la implementación.
+- `Code.gs` valida con listas blancas (`TIPOS_ASISTENTE`, `LINEAS`, `CARRERAS`, `CICLOS`). Si cambias opciones en `inscripciones.astro` o `lineas`, `carreras` o `ciclos` en `src/data/reto.json`, actualiza esas listas y crea una nueva versión de la implementación.
 - Anti-abuso: honeypot `contacto_alterno`, rechazo de envíos en menos de 3 s desde la carga (`t_carga`), deduplicación por `id_envio` y por correo+formulario (6 h) y límite global por minuto, con `CacheService`.
-- Si cambias `Code.gs`, crea una nueva versión de la implementación (Gestionar implementaciones > Editar > Nueva versión); la URL se mantiene.
+- **Redespliegue obligatorio tras cambiar `Code.gs`** (por ejemplo, para activar el formulario `innomining`): pega el archivo completo en el editor de Apps Script, guarda y ve a **Implementar → Gestionar implementaciones → Editar (lápiz) → Versión: Nueva versión → Implementar**. La URL se mantiene, así que `formsEndpoint` no cambia. Mientras no se redespliegue, el servidor responde "Formulario desconocido" a las inscripciones de equipos.
 - Mientras `formsEndpoint` esté vacío, los formularios muestran un mensaje de "modo de prueba" y no envían nada.
 - Los datos personales se envían solo al endpoint; no se guardan en el navegador ni en la URL.
 - La hoja contiene datos personales: limita quién puede verla y define cuánto tiempo se conserva.
@@ -131,7 +152,7 @@ Notas:
 
 - Revisión legal del aviso de privacidad y de las casillas de consentimiento.
 - Completar plazo de conservación y correo ARCO; correo de contacto oficial en `site.json` y `organizacion.astro`.
-- Desplegar `Code.gs` con la última versión y poner `formsEndpoint`; probar ambos formularios (hojas "Asistencia" y "Reto").
+- Desplegar `Code.gs` con la última versión y poner `formsEndpoint`; probar ambos formularios (hojas "Asistencia" e "InnoMining equipos").
 - Confirmar que la hoja de Sheets tiene acceso restringido.
 - Actualizar el dominio en `robots.txt`, `astro.config.mjs` y metadatos.
 - Confirmar programa, horarios, ponentes y respaldo académico de la UNSA; retirar los avisos `.pendiente` correspondientes.

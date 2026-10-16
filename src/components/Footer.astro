@@ -2,17 +2,18 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
 ---
 <footer class="pie">
   <div class="wrap pie__top">
     <p class="pie__marca" aria-hidden="true">{site.brand} <span>{site.year}</span></p>
     <div class="pie__logos">
-      <img src="/brand/isee-unsa-logo-512.png" width="64" height="64" alt={site.organizerFull} loading="lazy" decoding="async" />
+      <img src={withBase('/brand/isee-unsa-logo-512.png')} width="64" height="64" alt={site.organizerFull} loading="lazy" decoding="async" />
       {hayUnsa && (
         <>
           <span class="pie__sep" aria-hidden="true"></span>
-          <img class="pie__unsa" src="/brand/unsa-logo.png" width="206" height="256" alt={site.host} loading="lazy" decoding="async" />
+          <img class="pie__unsa" src={withBase('/brand/unsa-logo.png')} width="206" height="256" alt={site.host} loading="lazy" decoding="async" />
         </>
       )}
     </div>
@@ -25,7 +26,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     <nav aria-label="Pie de página">
       <p class="pie__t">Navegación</p>
       <ul>
-        {site.nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        {site.nav.map((n) => <li><a href={withBase(n.href)}>{n.label}</a></li>)}
       </ul>
     </nav>
     <div>
@@ -40,7 +41,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   </div>
   <div class="wrap pie__fin">
     <span>© 2026 {site.organizerFull}. Ingreso gratuito.</span>
-    <span><a href="/privacidad/">Privacidad</a> · <a href="/organizacion/">Organización</a></span>
+    <span><a href={withBase('/privacidad/')}>Privacidad</a> · <a href={withBase('/organizacion/')}>Organización</a></span>
   </div>
 </footer>
 <style>

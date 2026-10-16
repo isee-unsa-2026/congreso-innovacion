@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 ---
 <Base title="Ponentes" description={`Ponentes del ${site.name} (${site.kicker}): profesionales de empresas mineras líderes y de la academia. Anuncio próximamente.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Ponentes" />
@@ -19,8 +20,8 @@ import site from '../data/site.json';
         </ul>
         <p class="anuncio__p anuncio__p--sec">Las sesiones se concentrarán en el horario más aprovechable del día, sin ocupar la jornada completa, e incluirán coffee break. Iremos anunciando ponentes, horarios y novedades aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp</a>.</p>
         <div class="acciones">
-          <a class="btn" href="/inscripciones/">Inscríbete gratis</a>
-          <a class="btn btn--sec" href="/congreso/">Conocer el congreso</a>
+          <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
+          <a class="btn btn--sec" href={withBase('/congreso/')}>Conocer el congreso</a>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 // "Lo que encontrarás": tres puntos del congreso en una rejilla de reglas finas, sin cajas.
 // Las empresas se mencionan solo como texto (sin logos).
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 const [a, b, c] = site.empresas;
 const puntos = [
   {
@@ -10,7 +11,7 @@ const puntos = [
   },
   {
     titulo: `Concurso ${site.retoName}`,
-    html: `Equipos de la UNSA presentan soluciones a desafíos reales propuestos por empresas del sector. <a href="/reto/">Conoce el concurso</a>.`,
+    html: `Equipos multidisciplinarios de la UNSA proponen soluciones innovadoras a problemas reales de la minería, con especial interés en la perforación y voladura. <a href="${withBase('/reto/')}">Conoce el concurso</a>.`,
   },
   {
     titulo: 'Networking',

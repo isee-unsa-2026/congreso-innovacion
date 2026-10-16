@@ -1,0 +1,212 @@
+---
+import Base from '../../layouts/Base.astro';
+import Banner from '../../components/Banner.astro';
+import site from '../../data/site.json';
+import reto from '../../data/reto.json';
+import { withBase } from '../../utils/paths';
+
+const pdf = withBase(reto.bases);
+const integrantes = [1, 2, 3, 4];
+---
+<Base title={`Inscripción de equipos · ${site.retoName}`} description={`Inscribe a tu equipo en ${site.retoName}: 4 integrantes de la UNSA de al menos 3 carreras, con al menos un estudiante de Ingeniería de Minas y un docente asesor.`}>
+  <Banner etiqueta={`${site.retoName} · Inscripción gratuita`} titulo="Inscripción de" acento="equipos" />
+
+  <section class="seccion elige" aria-label="Antes de inscribir al equipo">
+    <div class="wrap reg">
+      <p>Un solo registro por equipo, a cargo del coordinador. Antes de empezar, revisa los requisitos:</p>
+      <ul class="lista" role="list">
+        <li>4 integrantes: estudiantes de la UNSA desde el 4.º semestre o egresados de la UNSA (con constancia).</li>
+        <li>Al menos 3 carreras distintas y al menos un estudiante de Ingeniería de Minas.</li>
+        <li>Un docente asesor o aval académico de la UNSA. Cada persona puede integrar un solo equipo.</li>
+      </ul>
+      <div class="acciones">
+        <a class="pdf" href={pdf} download>Descargar bases (PDF)<span class="sr">, {reto.basesPeso}</span></a>
+        <a class="pdf pdf--sin" href={withBase('/reto/')}>Resumen del concurso</a>
+      </div>
+      <p class="nota">Los campos con asterisco (*) son obligatorios. El enlace oficial de este formulario también se difunde por el grupo de WhatsApp. Los datos se usan solo para gestionar el concurso; consulta el <a href={withBase('/privacidad/')}>aviso de privacidad</a>.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" aria-labelledby="t-form">
+    <div class="wrap reg">
+      <h2 id="t-form">Ficha de inscripción</h2>
+
+      <form class="form" id="form-innomining" data-form="innomining" data-reglas="innomining" data-endpoint={site.formsEndpoint} data-whatsapp={site.whatsapp} data-instagram={site.instagram} data-instagram-user={site.instagramUser} method="post" novalidate>
+        <fieldset class="grupo-form">
+          <legend>Equipo y propuesta</legend>
+          <div class="campo">
+            <label for="e-equipo">Nombre del equipo *</label>
+            <input id="e-equipo" name="equipo" type="text" maxlength="80" required aria-required="true" />
+            <p class="error" id="e-equipo-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="e-titulo">Título preliminar de la propuesta *</label>
+            <input id="e-titulo" name="titulo" type="text" maxlength="200" required aria-required="true" />
+            <p class="error" id="e-titulo-error" hidden></p>
+          </div>
+          <div class="campo campo--ancho">
+            <label for="e-linea">Línea temática *</label>
+            <select id="e-linea" name="linea" required aria-required="true">
+              <option value="">Selecciona una opción</option>
+              {reto.lineas.map((l) => <option>{l}</option>)}
+            </select>
+            <p class="error" id="e-linea-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <div class="integrantes">
+          <p class="integrantes__t">Integrantes</p>
+          <p class="nota">El integrante 1 es el coordinador del equipo, único enlace formal con el Comité Organizador. En el caso de los egresados, se considera la carrera en la que egresaron.</p>
+          <p class="error error--equipo" data-error-equipo hidden></p>
+        </div>
+
+        {integrantes.map((n) => (
+          <fieldset class="grupo-form integrante">
+            <legend>{n === 1 ? 'Integrante 1 (coordinador)' : `Integrante ${n}`}</legend>
+            <div class="campo campo--ancho">
+              <label for={`i${n}-nombre`}>Apellidos y nombres *</label>
+              <input id={`i${n}-nombre`} name={`i${n}_nombre`} type="text" autocomplete={n === 1 ? 'name' : 'off'} maxlength="120" required aria-required="true" />
+              <p class="error" id={`i${n}-nombre-error`} hidden></p>
+            </div>
+            <div class="campo">
+              <label for={`i${n}-carrera`}>Carrera *</label>
+              <select id={`i${n}-carrera`} name={`i${n}_carrera`} required aria-required="true">
+                <option value="">Selecciona una opción</option>
+                {reto.carreras.map((c) => <option>{c}</option>)}
+              </select>
+              <p class="error" id={`i${n}-carrera-error`} hidden></p>
+            </div>
+            <div class="campo" data-si-campo={`i${n}_carrera`} data-si-valor="Otra" hidden>
+              <label for={`i${n}-carrera-otra`}>¿Qué carrera? *</label>
+              <input id={`i${n}-carrera-otra`} name={`i${n}_carrera_otra`} type="text" maxlength="120" disabled />
+              <p class="error" id={`i${n}-carrera-otra-error`} hidden></p>
+            </div>
+            <div class="campo">
+              <label for={`i${n}-ciclo`}>Ciclo o condición *</label>
+              <select id={`i${n}-ciclo`} name={`i${n}_ciclo`} required aria-required="true" aria-describedby={`i${n}-ciclo-ayuda`}>
+                <option value="">Selecciona una opción</option>
+                {reto.ciclos.map((c) => <option>{c}</option>)}
+              </select>
+              <span class="ayuda" id={`i${n}-ciclo-ayuda`}>Desde el 4.º semestre. Los egresados acreditan su condición con constancia.</span>
+              <p class="error" id={`i${n}-ciclo-error`} hidden></p>
+            </div>
+            <div class="campo">
+              <label for={`i${n}-codigo`}>Código UNSA *</label>
+              <input id={`i${n}-codigo`} name={`i${n}_codigo`} type="text" inputmode="numeric" maxlength="20" required aria-required="true" />
+              <p class="error" id={`i${n}-codigo-error`} hidden></p>
+            </div>
+            <div class="campo">
+              <label for={`i${n}-correo`}>Correo institucional *</label>
+              <input id={`i${n}-correo`} name={`i${n}_correo`} type="email" autocomplete={n === 1 ? 'email' : 'off'} maxlength="160" required aria-required="true" data-dominio-recomendado="unsa.edu.pe" aria-describedby={`i${n}-correo-ayuda`} />
+              <span class="ayuda" id={`i${n}-correo-ayuda`}>Recomendado: @unsa.edu.pe.</span>
+              <p class="advertencia" id={`i${n}-correo-aviso`} hidden></p>
+              <p class="error" id={`i${n}-correo-error`} hidden></p>
+            </div>
+            {n === 1 && (
+              <div class="campo">
+                <label for="i1-celular">Celular del coordinador *</label>
+                <input id="i1-celular" name="coord_celular" type="tel" inputmode="tel" autocomplete="tel" maxlength="25" required aria-required="true" aria-describedby="i1-celular-ayuda" data-validar="celular" />
+                <span class="ayuda" id="i1-celular-ayuda">9 dígitos, p. ej. 987 654 321.</span>
+                <p class="error" id="i1-celular-error" hidden></p>
+              </div>
+            )}
+          </fieldset>
+        ))}
+
+        <fieldset class="grupo-form">
+          <legend>Docente asesor o aval académico (UNSA)</legend>
+          <div class="campo">
+            <label for="d-nombre">Apellidos y nombres *</label>
+            <input id="d-nombre" name="docente_nombre" type="text" maxlength="120" required aria-required="true" />
+            <p class="error" id="d-nombre-error" hidden></p>
+          </div>
+          <div class="campo">
+            <label for="d-correo">Correo *</label>
+            <input id="d-correo" name="docente_correo" type="email" maxlength="160" required aria-required="true" />
+            <p class="error" id="d-correo-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="grupo-form">
+          <legend>Resumen de la propuesta</legend>
+          <div class="campo campo--ancho">
+            <label for="r-problema">Problema u oportunidad (máx. 200 palabras) *</label>
+            <textarea id="r-problema" name="problema" rows="6" maxlength="2000" required aria-required="true" data-max-palabras="200" aria-describedby="r-problema-contador"></textarea>
+            <p class="contador" id="r-problema-contador" aria-live="polite">0 / 200 palabras</p>
+            <p class="error" id="r-problema-error" hidden></p>
+          </div>
+          <div class="campo campo--ancho">
+            <label for="r-solucion">Solución propuesta (máx. 250 palabras) *</label>
+            <textarea id="r-solucion" name="solucion" rows="7" maxlength="2400" required aria-required="true" data-max-palabras="250" aria-describedby="r-solucion-contador"></textarea>
+            <p class="contador" id="r-solucion-contador" aria-live="polite">0 / 250 palabras</p>
+            <p class="error" id="r-solucion-error" hidden></p>
+          </div>
+        </fieldset>
+
+        <div class="campo trampa" aria-hidden="true">
+          <label for="e-alterno">Dejar vacío</label>
+          <input id="e-alterno" name="contacto_alterno" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        </div>
+
+        <div class="campo campo--check consent">
+          <label class="check" for="e-bases">
+            <input id="e-bases" name="acepta_bases" type="checkbox" value="si" required aria-required="true" />
+            <span>Hemos leído y aceptamos las <a href={pdf} download>bases del concurso</a>. *</span>
+          </label>
+          <p class="error" id="e-bases-error" hidden></p>
+        </div>
+        <div class="campo campo--check consent">
+          <label class="check" for="e-original">
+            <input id="e-original" name="originalidad" type="checkbox" value="si" required aria-required="true" />
+            <span>Declaramos que la propuesta es resultado de nuestro propio trabajo, que reconocemos toda fuente o idea de terceros y que declararemos el uso sustantivo de inteligencia artificial (Anexo 2 de las bases). *</span>
+          </label>
+          <p class="error" id="e-original-error" hidden></p>
+        </div>
+        <div class="campo campo--check consent">
+          <label class="check" for="e-consent">
+            <input id="e-consent" name="consentimiento" type="checkbox" value="si" required aria-required="true" />
+            <span>He leído el <a href={withBase('/privacidad/')}>aviso de privacidad</a> y cuento con la autorización de los integrantes y del docente asesor para registrar sus datos. *</span>
+          </label>
+          <p class="error" id="e-consent-error" hidden></p>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" class="btn">Inscribir equipo</button>
+        </div>
+        <div class="estado-region" role="status" aria-live="polite" tabindex="-1" data-estado></div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Validación (incluidas las reglas de equipo), envío y mensaje de éxito: src/scripts/forms.js.
+    import '../../scripts/forms.js';
+  </script>
+</Base>
+
+<style>
+  .reg { max-width: 46rem; }
+  .elige { padding-bottom: clamp(1.5rem, 3vw, 2rem); }
+  .lista { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .35rem; }
+  .lista li { display: flex; align-items: baseline; gap: .6rem; }
+  .lista li::before { content: ""; flex: none; width: 5px; height: 5px; background: var(--acento); transform: translateY(-.15em); }
+  .nota { margin: .6rem 0 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .acciones { align-items: center; margin-top: 0; }
+  .pdf { display: inline-flex; align-items: center; gap: .45rem; min-height: 44px; font-size: var(--t-sm); font-weight: 500; color: var(--acento); text-underline-offset: .25em; }
+  .pdf::before { content: ""; flex: none; width: .7rem; height: .85rem; border: 2px solid currentColor; border-radius: 1px; clip-path: polygon(0 0, 65% 0, 100% 30%, 100% 100%, 0 100%); }
+  .pdf--sin::before { display: none; }
+
+  .form { gap: 2rem; margin-top: 1.5rem; }
+  .grupo-form { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: 1.1rem 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr)); }
+  .grupo-form legend { padding: 0; margin: 0 0 .75rem; font: 700 1.25rem/1.2 var(--f-display); color: var(--texto); }
+  .integrante { padding-top: 1.25rem; border-top: 1px solid var(--linea); }
+  .integrante legend { float: left; width: 100%; font-size: 1.0625rem; }
+  .integrante legend + * { clear: both; }
+  .integrantes { margin-bottom: -1rem; }
+  .integrantes__t { margin: 0; font: 700 1.25rem/1.2 var(--f-display); color: var(--texto); }
+  .error--equipo { margin: .6rem 0 0; padding: .6rem .8rem; border-left: 3px solid var(--error); background: #fdf3f3; color: var(--error); font-weight: 500; font-size: var(--t-sm); }
+  .campo--ancho { grid-column: 1 / -1; }
+  .consent { border-top: 1px solid var(--linea); padding-top: .5rem; }
+  .consent + .consent { border-top: 0; padding-top: 0; }
+  .form .acciones { margin-top: 0; }
+</style>

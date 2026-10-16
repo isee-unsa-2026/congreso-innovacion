@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 const actual = Astro.url.pathname;
 // El logo de la UNSA (institucion anfitriona) solo se muestra si el archivo existe en public/brand/.
 const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
@@ -9,13 +10,13 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
 <header class="cab" data-cab>
   <div class="wrap cab__in">
     <div class="cab__marcas">
-      <a class="cab__marca" href="/" aria-label={`${site.organizerFull}, organizador del ${site.name}. Ir al inicio`}>
-        <img src="/brand/isee-unsa-logo-512.png" width="72" height="72" alt="" />
+      <a class="cab__marca" href={withBase('/')} aria-label={`${site.organizerFull}, organizador del ${site.name}. Ir al inicio`}>
+        <img src={withBase('/brand/isee-unsa-logo-512.png')} width="72" height="72" alt="" />
       </a>
       {hayUnsa && (
         <>
           <span class="cab__sep" aria-hidden="true"></span>
-          <img class="cab__unsa" src="/brand/unsa-logo.png" width="206" height="256" alt={site.host} />
+          <img class="cab__unsa" src={withBase('/brand/unsa-logo.png')} width="206" height="256" alt={site.host} />
         </>
       )}
     </div>
@@ -26,7 +27,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
       <ul>
         {site.nav.map((n) => (
           <li>
-            <a class:list={[{ 'cab__cta': n.cta }]} href={n.href} aria-current={actual === n.href ? 'page' : undefined}>{n.label}</a>
+            <a class:list={[{ 'cab__cta': n.cta }]} href={withBase(n.href)} aria-current={actual === withBase(n.href) ? 'page' : undefined}>{n.label}</a>
           </li>
         ))}
       </ul>

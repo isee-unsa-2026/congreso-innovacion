@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import WhatsAppBloque from '../components/WhatsAppBloque.astro';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 
 ---
 <Base title="Inscripciones" description={`Regístrate gratis como asistente al ${site.name} (${site.kicker}): abierto a todo público, ingreso gratuito.`}>
@@ -10,8 +11,8 @@ import site from '../data/site.json';
 
   <section class="seccion elige" aria-label="Antes de registrarte">
     <div class="wrap reg">
-      <p>Regístrate como asistente: abierto a todo público e ingreso gratuito. Los campos con asterisco (*) son obligatorios. Los datos se usan solo para organizar el congreso; consulta el <a href="/privacidad/">aviso de privacidad</a>.</p>
-      <p class="nota-reto">La postulación de equipos a {site.retoName} se abrirá cuando se publiquen las bases. <a href="/reto/">Conoce {site.retoName}</a>.</p>
+      <p>Regístrate como asistente: abierto a todo público e ingreso gratuito. Los campos con asterisco (*) son obligatorios. Los datos se usan solo para organizar el congreso; consulta el <a href={withBase('/privacidad/')}>aviso de privacidad</a>.</p>
+      <p class="nota-reto">¿Participas en el concurso {site.retoName}? La inscripción de equipos va por separado: <a href={withBase('/reto/inscripcion/')}>inscribe a tu equipo</a>. El enlace oficial también se difunde por el grupo de WhatsApp.</p>
       <WhatsAppBloque />
     </div>
   </section>
@@ -83,7 +84,7 @@ import site from '../data/site.json';
         <div class="campo campo--check consent">
           <label class="check" for="a-consent">
             <input id="a-consent" name="consentimiento" type="checkbox" value="si" required aria-required="true" />
-            <span>He leído el <a href="/privacidad/">aviso de privacidad</a> y autorizo el tratamiento de mis datos. *</span>
+            <span>He leído el <a href={withBase('/privacidad/')}>aviso de privacidad</a> y autorizo el tratamiento de mis datos. *</span>
           </label>
           <p class="error" id="a-consent-error" hidden></p>
         </div>
@@ -97,32 +98,8 @@ import site from '../data/site.json';
   </section>
 
   <script>
+    // Validación, envío y mensaje de éxito (WhatsApp + Instagram): src/scripts/forms.js.
     import '../scripts/forms.js';
-
-    // Tras un registro exitoso, forms.js añade el botón de WhatsApp (.estado__wa + .btn--wa);
-    // aquí se agrega debajo un enlace secundario a Instagram (enlace en data-instagram).
-    document.querySelectorAll<HTMLFormElement>('form[data-form][data-instagram]').forEach((form) => {
-      const estado = form.querySelector('[data-estado]');
-      const ig = (form.dataset.instagram || '').trim();
-      if (!estado || !/^https:\/\/www\.instagram\.com\//.test(ig)) return;
-      new MutationObserver(() => {
-        const wa = estado.querySelector('.btn--wa');
-        if (!wa || estado.querySelector('.estado__ig')) return;
-        const p = document.createElement('p');
-        p.className = 'estado__ig';
-        const a = document.createElement('a');
-        a.href = ig;
-        a.target = '_blank';
-        a.rel = 'noopener';
-        a.textContent = `Síguenos también en Instagram (${form.dataset.instagramUser || ''})`;
-        const sr = document.createElement('span');
-        sr.className = 'sr';
-        sr.textContent = ' (se abre en una pestaña nueva)';
-        a.append(sr);
-        p.append(a);
-        wa.after(p);
-      }).observe(estado, { childList: true });
-    });
   </script>
 </Base>
 

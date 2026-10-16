@@ -2,8 +2,8 @@
 import sitemap from '@astrojs/sitemap';
 
 // Publicado en GitHub Pages: https://isee-unsa-2026.github.io/congreso-innovacion/
-// `base` + scripts/base-fix.mjs ajustan las rutas. Con dominio propio: cambiar `site`, quitar `base`,
-// quitar base-fix del script "build" y actualizar public/robots.txt.
+// `base` alimenta import.meta.env.BASE_URL, usado por las rutas internas del sitio.
+// Con dominio propio: cambiar `site`, quitar `base` y actualizar public/robots.txt.
 export default defineConfig({
   site: 'https://isee-unsa-2026.github.io',
   base: '/congreso-innovacion',

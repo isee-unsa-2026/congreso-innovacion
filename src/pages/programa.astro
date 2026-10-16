@@ -4,6 +4,7 @@
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 ---
 <Base noindex title="Programa" description={`Programa del ${site.name} (${site.kicker}): se publicará próximamente. ${site.dates}, UNSA, Arequipa.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Programa" />
@@ -13,7 +14,7 @@ import site from '../data/site.json';
       <h2 id="t-prog" class="titulo-2">Se publicará <em>próximamente</em></h2>
       <div>
         <p class="prog__p">Dos jornadas, el {site.dates}: ponencias técnicas, conversatorios y las presentaciones del concurso {site.retoName}.</p>
-        <div class="acciones"><a class="btn" href="/inscripciones/">Inscríbete gratis</a></div>
+        <div class="acciones"><a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
       </div>
     </div>
   </section>

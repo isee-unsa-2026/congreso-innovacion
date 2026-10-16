@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
 ---
-<Base title="Aviso de privacidad" description={`Aviso de privacidad (borrador) sobre el tratamiento de datos personales en el registro de asistencia del ${site.name}.`}>
+<Base title="Aviso de privacidad" description={`Aviso de privacidad (borrador) sobre el tratamiento de datos personales en el registro de asistencia y en la inscripción de equipos del ${site.name}.`}>
   <Banner etiqueta="Datos personales" titulo="Aviso de" acento="privacidad" />
 
   <section class="seccion" aria-label="Contenido del aviso">
@@ -35,6 +35,7 @@ import site from '../data/site.json';
         <p>Tus datos se usan únicamente para:</p>
         <ul>
           <li>gestionar tu inscripción al {site.name} ({site.kicker});</li>
+          <li>en la inscripción de equipos a {site.retoName}: verificar los requisitos de participación de las bases (matrícula o condición de egresado, conformación del equipo y docente asesor), comunicarnos con el coordinador y organizar las sustentaciones y la evaluación;</li>
           <li>enviarte comunicaciones del congreso.</li>
         </ul>
 
@@ -42,7 +43,10 @@ import site from '../data/site.json';
         <ul>
           <li>Registro de asistencia: nombre completo, correo, número de celular, tipo de asistente, carrera, institución y, si eres estudiante, año o semestre.</li>
         </ul>
-        <p>Cuando se abra la postulación de equipos a {site.retoName}, con la publicación de las bases, este aviso se actualizará con los datos y la finalidad correspondientes.</p>
+        <ul>
+          <li>Inscripción de equipos a {site.retoName}: nombre del equipo, título y línea temática de la propuesta; de cada uno de los 4 integrantes, apellidos y nombres, carrera, ciclo o condición de egresado, código UNSA y correo institucional; celular del coordinador; nombre y correo del docente asesor; resumen del problema y de la solución, y las declaraciones de aceptación de bases y de originalidad.</li>
+        </ul>
+        <p>Quien inscribe al equipo declara contar con la autorización de los integrantes y del docente asesor para registrar sus datos. La organización podrá solicitar documentos adicionales para verificar matrícula, identidad o la conformación del equipo, según las bases.</p>
 
         <h2 id="t-alm">Almacenamiento y transferencia</h2>
         <p>

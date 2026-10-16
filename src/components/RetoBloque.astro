@@ -3,6 +3,7 @@
 import site from '../data/site.json';
 import reto from '../data/reto.json';
 import imagenes from '../data/imagenes.json';
+import { withBase } from '../utils/paths';
 const foto = imagenes['card-perforadora'];
 ---
 <section class="inno" aria-labelledby="t-inno">
@@ -16,17 +17,18 @@ const foto = imagenes['card-perforadora'];
       <ol class="inno__pasos" role="list">
         {reto.pasos.map((p) => <li>{p.titulo}</li>)}
       </ol>
-      <p class="inno__p">{reto.importancia}</p>
-      <p class="inno__carreras"><strong>Carreras recomendadas:</strong> {reto.carreras.join(', ')}.</p>
+      <p class="inno__p">{reto.porQue}</p>
+      <p class="inno__carreras"><strong>Equipos:</strong> 4 integrantes de al menos 3 carreras distintas, con al menos un estudiante de Ingeniería de Minas y un docente asesor de la UNSA.</p>
     </div>
     <aside class="inno__tarjeta" aria-label={`Participa en ${site.retoName}`} data-reveal data-reveal-delay="100">
-      <img src={foto.src} width={foto.width} height={foto.height} alt="" loading="lazy" decoding="async" />
+      <img src={withBase(foto.src)} width={foto.width} height={foto.height} alt="" loading="lazy" decoding="async" />
       <div class="inno__tarjeta-in">
-        <p class="inno__rec"><span>Reconocimiento</span>{reto.reconocimiento}</p>
-        <p class="inno__bases"><span>Bases</span>Próximamente</p>
-        <p class="inno__req">Equipos de 4 · Estudiantes y egresados UNSA · Tutor docente recomendado</p>
-        <a class="btn btn--cobre" href="/reto/">Conoce {site.retoName}</a>
-        <p class="inno__post">Postulación: próximamente, con la publicación de las bases.</p>
+        <p class="inno__rec"><span>Reconocimiento</span>{reto.reconocimientoCorto}</p>
+        <p class="inno__bases"><span>Sustentaciones</span>18 y 19 de noviembre</p>
+        <p class="inno__req">Estudiantes UNSA desde el 4.º semestre y egresados UNSA · Equipos de 4</p>
+        <a class="btn btn--cobre" href={withBase('/reto/inscripcion/')}>Inscribe a tu equipo</a>
+        <a class="btn btn--vidrio" href={withBase('/reto/')}>Conoce {site.retoName}</a>
+        <a class="inno__pdf" href={withBase(reto.bases)} download>Descargar bases (PDF)<span class="sr">, {reto.basesPeso}</span></a>
       </div>
     </aside>
   </div>
@@ -53,7 +55,7 @@ const foto = imagenes['card-perforadora'];
   .inno__rec span, .inno__bases span { font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--cobre-2); }
   .inno__req { margin: 0 0 .35rem; font-size: var(--t-sm); color: rgba(255, 255, 255, .85); }
   .inno__tarjeta .btn { width: 100%; }
-  .inno__post { margin: 0; font-size: var(--t-xs); text-align: center; color: rgba(255, 255, 255, .78); }
+  .inno__pdf { display: flex; justify-content: center; align-items: center; min-height: 44px; font-size: var(--t-sm); font-weight: 500; color: #fff; text-underline-offset: .25em; }
   .inno :focus-visible { outline-color: #fff; }
   @media (max-width: 56rem) {
     .inno__in { grid-template-columns: 1fr; }

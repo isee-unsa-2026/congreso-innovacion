@@ -4,14 +4,16 @@
  * No contiene credenciales: escribe en la hoja a la que está vinculado.
  * Implementar como aplicación web: ejecutar como "Yo", acceso "Cualquier persona".
  *
- * Las listas de valores permitidos (TIPOS_ASISTENTE, CONDICIONES, DESAFIOS...) deben
- * coincidir con las opciones de src/pages/inscripciones.astro. DESAFIOS sale de
- * "desafios" en src/data/site.json (concurso INNOMINING).
+ * Formularios: "asistencia" (src/pages/inscripciones.astro, hoja "Asistencia") e
+ * "innomining" (src/pages/reto/inscripcion.astro, hoja "InnoMining equipos").
+ * Las listas de valores permitidos deben coincidir con las opciones de esas páginas:
+ * TIPOS_ASISTENTE con inscripciones.astro; LINEAS, CARRERAS y CICLOS con "lineas",
+ * "carreras" y "ciclos" de src/data/reto.json (bases oficiales de InnoMining).
  */
 
-var MAX_LEN = 500;
-var MAX_TOTAL = 8000;       // caracteres sumados de todos los valores
-var MAX_BODY = 20000;       // tamaño máximo del cuerpo crudo
+var MAX_LEN = 2400;       // tope por campo (los resúmenes de InnoMining son los más largos)
+var MAX_TOTAL = 12000;      // caracteres sumados de todos los valores
+var MAX_BODY = 30000;       // tamaño máximo del cuerpo crudo
 var MIN_SEGUNDOS = 3;       // un envío más rápido se considera automatizado
 var VENTANA_DEDUP_S = 6 * 60 * 60; // 6 horas (máximo de CacheService)
 var LIMITE_POR_MINUTO = 30; // envíos globales aceptados por minuto
@@ -24,22 +26,61 @@ var URL_RE = /^https?:\/\/\S+$/;
 var CEL_RE = /^(?:(?:\+?51)?9\d{8}|\+\d{8,15})$/;
 
 var TIPOS_ASISTENTE = ['Estudiante', 'Egresado', 'Docente', 'Profesional de la industria', 'Otro'];
-var CONDICIONES = ['Estudiante', 'Egresado'];
-var SI_NO = ['si', 'no'];
-var DESAFIOS = [
-  'Por definir (los desafíos se publicarán con las bases)'
+var LINEAS = [
+  'Optimización de la fragmentación y del diseño y desempeño de las voladuras',
+  'Seguridad en operaciones de perforación y voladura',
+  'Instrumentación, sensores, monitoreo y automatización',
+  'Digitalización, inteligencia artificial, análisis de datos y modelos predictivos',
+  'Control de vibraciones, ruido, polvo, gases y otros impactos ambientales',
+  'Productividad, costos y eficiencia operacional',
+  'Geología y geomecánica aplicadas al comportamiento del macizo rocoso',
+  'Relación entre la fragmentación y los procesos posteriores: carguío, acarreo, chancado y molienda',
+  'Otras líneas relacionadas con la minería, previa aceptación del Comité Organizador'
 ];
+var CARRERAS = [
+  'Ingeniería de Minas', 'Ingeniería Geológica', 'Ingeniería Geofísica', 'Ingeniería Metalúrgica',
+  'Ingeniería de Materiales', 'Ingeniería Química', 'Ingeniería Mecánica', 'Ingeniería Eléctrica',
+  'Ingeniería Electrónica', 'Ingeniería de Sistemas', 'Ciencia de la Computación', 'Ingeniería Industrial',
+  'Ingeniería Ambiental', 'Ingeniería Civil', 'Ingeniería Sanitaria', 'Física', 'Química', 'Matemáticas', 'Otra'
+];
+var CICLOS = ['4.º semestre', '5.º semestre', '6.º semestre', '7.º semestre', '8.º semestre',
+  '9.º semestre', '10.º semestre', 'Egresado'];
+var MINAS = 'Ingeniería de Minas';
 
 // Cada campo: [clave, encabezado, obligatorio, longitudMaxima, tipo, valoresPermitidos]
+// Tipos: email, tel, cel, url, si, enum, solo_si [campo, valor], palabras [máximo].
 function integrante_(n) {
   var p = 'i' + n + '_', e = 'I' + n + ' ';
   return [
-    [p + 'nombre', e + 'Nombre', true, 120],
-    [p + 'correo', e + 'Correo', true, 160, 'email'],
-    [p + 'carrera', e + 'Carrera', true, 120],
-    [p + 'condicion', e + 'Condición', true, 20, 'enum', CONDICIONES],
-    [p + 'codigo', e + 'Código/año', true, 30]
+    [p + 'nombre', e + 'Apellidos y nombres', true, 120],
+    [p + 'carrera', e + 'Carrera', true, 60, 'enum', CARRERAS],
+    [p + 'carrera_otra', e + 'Carrera (otra)', false, 120, 'solo_si', [p + 'carrera', 'Otra']],
+    [p + 'ciclo', e + 'Ciclo o condición', true, 20, 'enum', CICLOS],
+    [p + 'codigo', e + 'Código UNSA', true, 20],
+    [p + 'correo', e + 'Correo institucional', true, 160, 'email']
   ];
+}
+
+function contarPalabras_(texto) {
+  var t = String(texto || '').trim();
+  return t ? t.split(/\s+/).length : 0;
+}
+
+// Reglas de conformación (bases, sección 4.2). Igual que reglasInnomining en src/scripts/forms.js.
+function validarInnomining_(v) {
+  var carreras = {}, codigos = {}, nCarreras = 0, nCodigos = 0, hayMinas = false;
+  for (var n = 1; n <= 4; n++) {
+    var c = v['i' + n + '_carrera'];
+    var clave = c === 'Otra' ? 'Otra:' + v['i' + n + '_carrera_otra'].toLowerCase().replace(/\s+/g, ' ') : c;
+    if (!carreras[clave]) { carreras[clave] = true; nCarreras++; }
+    if (c === MINAS) hayMinas = true;
+    var cod = v['i' + n + '_codigo'].toLowerCase();
+    if (!codigos[cod]) { codigos[cod] = true; nCodigos++; }
+  }
+  if (nCarreras < 3) return 'El equipo debe tener integrantes de al menos 3 carreras distintas.';
+  if (!hayMinas) return 'Al menos un integrante debe ser de ' + MINAS + '.';
+  if (nCodigos < 4) return 'Cada integrante debe tener un código UNSA distinto.';
+  return '';
 }
 
 var ESQUEMAS = {
@@ -58,20 +99,24 @@ var ESQUEMAS = {
       ['consentimiento', 'Consentimiento', true, 2, 'si']
     ]
   },
-  Reto: {
-    formulario: 'reto',
+  'InnoMining equipos': {
+    formulario: 'innomining',
     clave_correo: 'i1_correo',
-    campos: [['equipo', 'Equipo', true, 80]]
-      .concat(integrante_(1), integrante_(2), integrante_(3), integrante_(4), [
-        ['vinculo_unsa', 'Vínculo UNSA', true, 500],
-        ['perfil_minero', 'Perfil minero', true, 2, 'enum', SI_NO],
-        ['docente_tutor', 'Docente tutor', false, 200],
-        ['desafio', 'Desafío', true, 100, 'enum', DESAFIOS],
-        ['enlace_documentos', 'Enlace documentos', false, 300, 'url'],
-        ['acepta_bases', 'Pre-inscripción sujeta a bases', true, 2, 'si'],
-        ['consentimiento', 'Consentimiento', true, 2, 'si'],
-        ['autorizacion_equipo', 'Autorización del equipo', true, 2, 'si']
-      ])
+    validar: validarInnomining_,
+    campos: [
+      ['equipo', 'Equipo', true, 80],
+      ['titulo', 'Título de la propuesta', true, 200],
+      ['linea', 'Línea temática', true, 120, 'enum', LINEAS]
+    ].concat(integrante_(1), [['coord_celular', 'Celular del coordinador (I1)', true, 25, 'cel']],
+      integrante_(2), integrante_(3), integrante_(4), [
+      ['docente_nombre', 'Docente asesor', true, 120],
+      ['docente_correo', 'Correo del docente asesor', true, 160, 'email'],
+      ['problema', 'Problema u oportunidad', true, 2000, 'palabras', 200],
+      ['solucion', 'Solución propuesta', true, 2400, 'palabras', 250],
+      ['acepta_bases', 'Acepta las bases', true, 2, 'si'],
+      ['originalidad', 'Declaración de originalidad (Anexo 2)', true, 2, 'si'],
+      ['consentimiento', 'Consentimiento de datos', true, 2, 'si']
+    ])
   }
 };
 
@@ -112,6 +157,7 @@ function doPost(e) {
     var fila = [new Date()];
     var total = 0;
     var correoClave = '';
+    var valores = {};
     for (var i = 0; i < esquema.campos.length; i++) {
       var c = esquema.campos[i];
       var bruto = datos[c[0]];
@@ -135,9 +181,16 @@ function doPost(e) {
         if (c[4] === 'url' && !URL_RE.test(v)) return salida_({ ok: false, error: 'Enlace no válido.' });
         if (c[4] === 'si' && v !== 'si') return salida_({ ok: false, error: 'Falta aceptar: ' + c[1] + '.' });
         if (c[4] === 'enum' && c[5].indexOf(v) === -1) return salida_({ ok: false, error: 'Valor no válido: ' + c[1] + '.' });
+        if (c[4] === 'palabras' && contarPalabras_(v) > c[5]) return salida_({ ok: false, error: c[1] + ': máximo ' + c[5] + ' palabras.' });
       }
+      valores[c[0]] = v;
       if (c[0] === esquema.clave_correo) correoClave = v.toLowerCase();
       fila.push(neutralizar_(v));
+    }
+
+    if (esquema.validar) {
+      var errorEquipo = esquema.validar(valores);
+      if (errorEquipo) return salida_({ ok: false, error: errorEquipo });
     }
 
     var lock = LockService.getScriptLock();

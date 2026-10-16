@@ -4,6 +4,7 @@ import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
 ---
 <Base noindex title="Organización" description={`Quién organiza el ${site.name}: ISEE UNSA Student Chapter como organizador y la UNSA como sede anfitriona.`}>
@@ -14,13 +15,13 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
       <p class="lead lectura" data-reveal>El {site.name} ({site.kicker}) es una iniciativa de {site.organizerFull}, con la {site.host} como sede anfitriona.</p>
       <div class="bloques">
         <article data-reveal data-reveal-delay="0">
-          <img src="/brand/isee-unsa-logo-512.png" width="72" height="72" alt="" loading="lazy" decoding="async" />
+          <img src={withBase('/brand/isee-unsa-logo-512.png')} width="72" height="72" alt="" loading="lazy" decoding="async" />
           <h2 class="h3">Organiza</h2>
           <p><strong>{site.organizerFull}</strong></p>
           <p>Capítulo estudiantil de la International Society of Explosives Engineers en la UNSA. Organiza el congreso y el concurso {site.retoName}.</p>
         </article>
         <article data-reveal data-reveal-delay="70">
-          {hayUnsa && <img class="unsa" src="/brand/unsa-logo.png" width="206" height="256" alt="" loading="lazy" decoding="async" />}
+          {hayUnsa && <img class="unsa" src={withBase('/brand/unsa-logo.png')} width="206" height="256" alt="" loading="lazy" decoding="async" />}
           <h2 class="h3">Sede anfitriona</h2>
           <p><strong>{site.host}</strong></p>
           <p>Sede del congreso. Sus estudiantes y egresados son el público de {site.retoName}.</p>

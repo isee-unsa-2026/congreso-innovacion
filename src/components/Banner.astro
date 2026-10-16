@@ -2,13 +2,14 @@
 // Banner de paginas internas: foto con velo oscuro, retícula sutil, etiqueta recta + titulo condensado.
 // La imagen esta sobre el pliegue: se carga sin lazy. Una sola imagen (clave "banner" en imagenes.json).
 import imagenes from '../data/imagenes.json';
+import { withBase } from '../utils/paths';
 // Si se pasa contenido (slot por defecto), reemplaza a titulo/acento dentro del h1 (p. ej. el wordmark INNOMINING).
 interface Props { titulo?: string; acento?: string; etiqueta?: string; bajada?: string; imagen?: keyof typeof imagenes; id?: string; }
 const { titulo = '', acento, etiqueta, bajada, imagen = 'banner', id = 'titulo-pagina' } = Astro.props;
 const img = imagenes[imagen];
 ---
 <div class="banner">
-  <img class="banner__foto" src={img.src} alt={img.alt} width={img.width} height={img.height} decoding="async" />
+  <img class="banner__foto" src={withBase(img.src)} alt={img.alt} width={img.width} height={img.height} decoding="async" />
   <div class="banner__velo" aria-hidden="true"></div>
   <div class="wrap banner__in">
     {etiqueta && <p class="etiqueta etiqueta--clara anim" style="--d:0ms">{etiqueta}</p>}

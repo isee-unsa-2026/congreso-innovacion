@@ -5,16 +5,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFlotante from '../components/WhatsAppFlotante.astro';
 import site from '../data/site.json';
+import { withBase } from '../utils/paths';
 
 interface Props { title?: string; description?: string; evento?: boolean; noindex?: boolean; }
 const path = Astro.url.pathname;
-const { title, description = site.description, evento = path === '/' || path === '/programa/', noindex = false } = Astro.props;
+const { title, description = site.description, evento = path === withBase('/') || path === withBase('/programa/'), noindex = false } = Astro.props;
 // Título: "Página · Congreso de Innovación en Minería"; la portada usa su propio título completo.
 const full = !title ? `${site.name} · ${site.kicker}`
   : title.includes(site.name) ? title : `${title} · ${site.name}`;
 const url = new URL(path, Astro.site);
-const origin = new URL('/', Astro.site).href;
-const ogImage = new URL('/og-image.png', Astro.site).href;
+const origin = new URL(withBase('/'), Astro.site).href;
+const ogImage = new URL(withBase('/og-image.png'), Astro.site).href;
 const ogAlt = `${site.kicker}: ${site.name}. ${site.dates}, ${site.city}`;
 // Las horas del programa son preliminares: se usa 00:00:00-05:00 (America/Lima) hasta confirmarlas.
 const lugar = { '@type': 'Place', name: site.venue, address: { '@type': 'PostalAddress', addressLocality: 'Arequipa', addressCountry: 'PE' } };
@@ -41,7 +42,7 @@ const ld = {
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     location: lugar,
-    url: new URL('/reto/', Astro.site).href,
+    url: new URL(withBase('/reto/'), Astro.site).href,
     description: site.retoDescription,
   },
   isAccessibleForFree: site.free,
@@ -50,7 +51,7 @@ const ld = {
     price: '0',
     priceCurrency: 'PEN',
     availability: 'https://schema.org/InStock',
-    url: new URL('/inscripciones/', Astro.site).href,
+    url: new URL(withBase('/inscripciones/'), Astro.site).href,
   },
   image: [ogImage],
   description: site.description,
@@ -67,7 +68,7 @@ const ldJson = JSON.stringify(ld).replace(/</g, '\\u003c');
     <meta name="theme-color" content="#ffffff" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={url.href} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${site.name} · ${site.kicker}`} />
     <meta property="og:locale" content="es_PE" />

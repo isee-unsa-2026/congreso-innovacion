@@ -9,6 +9,68 @@ const CEL = /^(?:(?:\+?51)?9\d{8}|\+\d{8,15})$/;
 const normalizarCel = (v) => v.replace(/[\s\-().]/g, '');
 const MAX_POR_DEFECTO = 300;
 
+// Debe coincidir con contarPalabras_ en apps-script/Code.gs.
+function contarPalabras(texto) {
+  const t = String(texto || '').trim();
+  return t ? t.split(/\s+/).length : 0;
+}
+
+// Contador visible de palabras: <p class="contador" id="{id}-contador"> junto a un campo con data-max-palabras.
+function iniciarContadores(form) {
+  const campos = [...form.querySelectorAll('[data-max-palabras]')];
+  const actualizar = (c) => {
+    const el = form.querySelector('#' + CSS.escape(c.id + '-contador'));
+    if (!el) return;
+    const max = Number(c.dataset.maxPalabras);
+    const n = contarPalabras(c.value);
+    el.textContent = `${n} / ${max} palabras`;
+    el.classList.toggle('contador--excede', n > max);
+  };
+  campos.forEach((c) => {
+    c.addEventListener('input', () => actualizar(c));
+    actualizar(c);
+  });
+  return () => campos.forEach(actualizar);
+}
+
+// Aviso no bloqueante: data-dominio-recomendado="unsa.edu.pe" y <p class="advertencia" id="{id}-aviso" hidden>.
+function avisarDominio(campo) {
+  const dominio = campo.dataset && campo.dataset.dominioRecomendado;
+  if (!dominio) return;
+  const el = campo.form.querySelector('#' + CSS.escape(campo.id + '-aviso'));
+  if (!el) return;
+  const v = campo.value.trim().toLowerCase();
+  const mostrar = EMAIL.test(v) && !v.endsWith('@' + dominio);
+  el.textContent = mostrar ? `Recomendado: usa el correo institucional @${dominio}. Puedes continuar con este.` : '';
+  el.hidden = !mostrar;
+}
+
+// Reglas de conformación del equipo (data-reglas="innomining"). Deben coincidir con validarInnomining_ en Code.gs.
+const MINAS = 'Ingeniería de Minas';
+function claveCarrera(form, n) {
+  const sel = form.elements.namedItem(`i${n}_carrera`);
+  const v = sel ? sel.value.trim() : '';
+  if (v !== 'Otra') return v;
+  const otra = form.elements.namedItem(`i${n}_carrera_otra`);
+  return 'Otra:' + (otra ? otra.value.trim().toLowerCase().replace(/\s+/g, ' ') : '');
+}
+function reglasInnomining(form) {
+  const claves = [1, 2, 3, 4].map((n) => claveCarrera(form, n));
+  const primera = form.elements.namedItem('i1_carrera');
+  if (new Set(claves).size < 3) {
+    return { campo: primera, mensaje: 'El equipo debe tener integrantes de al menos 3 carreras distintas.' };
+  }
+  if (!claves.includes(MINAS)) {
+    return { campo: primera, mensaje: `Al menos un integrante debe ser de ${MINAS}.` };
+  }
+  const codigos = [1, 2, 3, 4].map((n) => (form.elements.namedItem(`i${n}_codigo`) || {}).value?.trim().toLowerCase());
+  if (new Set(codigos).size < 4) {
+    return { campo: form.elements.namedItem('i1_codigo'), mensaje: 'Cada integrante debe tener un código UNSA distinto: una persona solo puede integrar un equipo.' };
+  }
+  return null;
+}
+const REGLAS = { innomining: reglasInnomining };
+
 function grupoRadio(campo) {
   return [...campo.form.querySelectorAll(`input[type="radio"][name="${CSS.escape(campo.name)}"]`)];
 }
@@ -57,6 +119,10 @@ function validarCampo(campo) {
   if (valor === '') return '';
   const max = Number(campo.getAttribute('maxlength')) || MAX_POR_DEFECTO;
   if (valor.length > max) return `Máximo ${max} caracteres.`;
+  const maxPalabras = Number(campo.dataset.maxPalabras) || 0;
+  if (maxPalabras && contarPalabras(valor) > maxPalabras) {
+    return `Máximo ${maxPalabras} palabras (llevas ${contarPalabras(valor)}).`;
+  }
   if (campo.type === 'email' && !EMAIL.test(valor)) return 'Escribe un correo válido, por ejemplo nombre@dominio.com.';
   if (campo.dataset.validar === 'celular') {
     return CEL.test(normalizarCel(valor)) ? '' : 'Escribe un celular válido: 9 dígitos que empiecen con 9 (p. ej. 987 654 321) o un número con + y código de país.';
@@ -153,6 +219,14 @@ function iniciar(form) {
       : Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
   const meta = { id: nuevoId(), t: Date.now() };
   const aplicarCondicionales = iniciarCondicionales(form);
+  const actualizarContadores = iniciarContadores(form);
+  const regla = REGLAS[form.dataset.reglas];
+  const errorEquipo = form.querySelector('[data-error-equipo]');
+  const marcarEquipo = (mensaje) => {
+    if (!errorEquipo) return;
+    errorEquipo.textContent = mensaje || '';
+    errorEquipo.hidden = !mensaje;
+  };
 
   // Éxito: mensaje + invitación al grupo oficial de WhatsApp (enlace en data-whatsapp).
   function mostrarExito() {
@@ -173,6 +247,22 @@ function iniciar(form) {
     sr.textContent = ' (se abre en una pestaña nueva)';
     a.append(sr);
     estado.append(p, a);
+    // Enlace secundario a Instagram (data-instagram y data-instagram-user).
+    const ig = (form.dataset.instagram || '').trim();
+    if (!/^https:\/\/www\.instagram\.com\//.test(ig)) return;
+    const pi = document.createElement('p');
+    pi.className = 'estado__ig';
+    const ai = document.createElement('a');
+    ai.href = ig;
+    ai.target = '_blank';
+    ai.rel = 'noopener';
+    ai.textContent = `Síguenos también en Instagram (${form.dataset.instagramUser || ''})`;
+    const sri = document.createElement('span');
+    sri.className = 'sr';
+    sri.textContent = ' (se abre en una pestaña nueva)';
+    ai.append(sri);
+    pi.append(ai);
+    estado.append(pi);
   }
 
   function mostrar(tipo, texto, reintentar) {
@@ -236,7 +326,9 @@ function iniciar(form) {
       }
       form.reset();
       aplicarCondicionales();
-      camposDe(form).forEach((c) => marcar(c, ''));
+      actualizarContadores();
+      marcarEquipo('');
+      camposDe(form).forEach((c) => { marcar(c, ''); avisarDominio(c); });
       meta.id = nuevoId();
       meta.t = Date.now();
       mostrarExito();
@@ -258,9 +350,17 @@ function iniciar(form) {
     }
     const { primero, total } = validarForm(form);
     if (primero) {
+      marcarEquipo('');
       const n = total === 1 ? 'Hay 1 campo con error' : `Hay ${total} campos con error`;
       mostrar('error', `${n}. Empieza por: ${etiquetaDe(primero)}.`);
       primero.focus();
+      return;
+    }
+    const fallo = regla && regla(form);
+    marcarEquipo(fallo ? fallo.mensaje : '');
+    if (fallo) {
+      mostrar('error', fallo.mensaje);
+      if (fallo.campo) fallo.campo.focus();
       return;
     }
     limpiarEstado();
@@ -282,6 +382,7 @@ function iniciar(form) {
         && !c.closest('.trampa') && c.value.trim() !== '') {
       marcar(c, validarCampo(c));
     }
+    if (c.matches && c.matches('input[type="email"]')) avisarDominio(c);
   });
 }
 
