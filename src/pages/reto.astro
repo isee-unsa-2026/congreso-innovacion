@@ -1,62 +1,160 @@
 ---
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
+import Acordeon from '../components/Acordeon.astro';
 import site from '../data/site.json';
 import reto from '../data/reto.json';
 import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
 
+const etapas = reto.etapas.map((e) => ({ titulo: `${e.nombre} · ${e.fecha}`, texto: e.texto.replace('{lugar}', site.place), pendiente: e.pendiente }));
+const datos = [...reto.datosClave.slice(0, 1), { dato: 'Lugar', valor: site.place }, ...reto.datosClave.slice(1)];
 const img = imagenes.reto;
+const wa = { href: site.whatsapp, target: '_blank', rel: 'noopener' };
+const secciones = [
+  { id: 'resumen', label: 'Resumen' },
+  { id: 'retos', label: 'Retos' },
+  { id: 'participan', label: 'Quiénes participan' },
+  { id: 'presentan', label: 'Qué presentan' },
+  { id: 'claves', label: 'Cosas clave' },
+  { id: 'cronograma', label: 'Cronograma' },
+  { id: 'reconocimientos', label: 'Reconocimientos' },
+  { id: 'practicas', label: 'Buenas prácticas' },
+  { id: 'proximamente', label: 'Próximamente' },
+];
 ---
-<Base title={site.retoName} description={`${site.retoName}, concurso del ${site.name}: retos planteados por ENAEX para equipos multidisciplinarios de la UNSA. Bases e inscripción, próximamente.`}>
+<Base title={site.retoName} description={`${site.retoName}, concurso del ${site.name}: equipos multidisciplinarios de la UNSA proponen soluciones a retos planteados por ENAEX o por el propio equipo, con foco en perforación y voladura. Sustentaciones el ${site.dates}.`}>
   <Banner etiqueta={`Concurso del ${site.name}`} bajada={site.retoFullName} imagen="banner"><span class="wordmark"><span class="wordmark__inno">INNO</span>MINING</span></Banner>
 
-  <section class="seccion" aria-labelledby="t-que">
+  <nav class="subnav" aria-label="Secciones del concurso">
+    <div class="wrap">
+      <ul>
+        {secciones.map((s) => <li><a href={`#${s.id}`}>{s.label}</a></li>)}
+      </ul>
+    </div>
+  </nav>
+
+  <section class="seccion" id="resumen" aria-labelledby="t-resumen">
     <div class="wrap dos">
       <div data-reveal>
-        <h2 id="t-que" class="titulo-2">Qué es <em>{site.retoName}</em></h2>
+        <h2 id="t-resumen" class="titulo-2">Soluciones a <em>problemas reales</em></h2>
         <p class="lectura-p resumen-fuerte">{reto.resumen}</p>
-        <h3 class="mini">Retos de ENAEX</h3>
-        <p class="aviso">{reto.retosEnaex}</p>
-        <h3 class="mini">Quiénes pueden participar</h3>
-        <p class="lectura-p">{reto.participan}</p>
+        <h3 class="mini">Qué harán los equipos</h3>
+        <ol class="pasos" role="list">
+          {reto.pasos.map((p) => <li><strong>{p.titulo}</strong><span>{p.texto}</span></li>)}
+        </ol>
+        <p class="lectura-p">{reto.porQue}</p>
       </div>
       <figure class="dos__img" data-reveal data-reveal-delay="100">
         <img src={withBase(img.src)} width={img.width} height={img.height} alt={img.alt} loading="lazy" decoding="async" />
       </figure>
     </div>
+    <div class="wrap">
+      <dl class="datos" data-reveal>
+        {datos.map((d) => <div><dt>{d.dato}</dt><dd>{d.valor}</dd></div>)}
+      </dl>
+    </div>
   </section>
 
-  <section class="seccion seccion--fondo" aria-labelledby="t-claves">
+  <section class="seccion seccion--fondo" id="retos" aria-labelledby="t-retos">
     <div class="wrap fila">
-      <h2 id="t-claves" class="titulo-2" data-reveal>Cosas clave</h2>
-      <ul class="lista" role="list" data-reveal>
+      <div data-reveal>
+        <h2 id="t-retos" class="titulo-2">Los retos</h2>
+        <p class="nota">Dos caminos para elegir el problema.</p>
+      </div>
+      <div data-reveal>
+        <ol class="bloques" role="list">
+          {reto.retos.map((r) => <li><h3>{r.titulo}</h3><p>{r.texto}</p></li>)}
+        </ol>
+        <h3 class="mini">Líneas de referencia</h3>
+        <p>{reto.lineasIntro}</p>
+        <ul class="lineas" role="list">
+          {reto.lineas.map((l) => <li>{l}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="participan" aria-labelledby="t-participan">
+    <div class="wrap fila">
+      <h2 id="t-participan" class="titulo-2" data-reveal>Quiénes participan</h2>
+      <div data-reveal>
+        <ul class="lista" role="list">
+          {reto.participan.map((r) => <li>{r}</li>)}
+        </ul>
+        <table class="tabla">
+          <caption>Perfiles de referencia para un equipo equilibrado</caption>
+          <thead><tr><th scope="col">Carrera</th><th scope="col">Posible aporte</th></tr></thead>
+          <tbody>
+            {reto.perfiles.map((p) => <tr><th scope="row" data-label="Carrera">{p.carrera}</th><td data-label="Posible aporte">{p.aporte}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" id="presentan" aria-labelledby="t-presentan">
+    <div class="wrap fila">
+      <h2 id="t-presentan" class="titulo-2" data-reveal>Qué presentan</h2>
+      <div data-reveal>
+        <ol class="bloques bloques--3" role="list">
+          {reto.entregas.map((e) => <li><h3>{e.titulo}</h3><p>{e.texto}</p></li>)}
+        </ol>
+        <h3 class="mini">Preguntas guía de la sustentación</h3>
+        <ol class="preguntas">
+          {reto.preguntas.map((q) => <li>{q}</li>)}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="claves" aria-labelledby="t-claves">
+    <div class="wrap fila">
+      <div data-reveal>
+        <h2 id="t-claves" class="titulo-2">Cosas clave</h2>
+        <p class="nota">Lo que hace fuerte a una propuesta.</p>
+      </div>
+      <ul class="lista lista--grande" role="list" data-reveal>
         {reto.claves.map((c) => <li>{c}</li>)}
       </ul>
     </div>
   </section>
 
-  <section class="seccion" aria-labelledby="t-sust">
+  <section class="seccion seccion--fondo" id="cronograma" aria-labelledby="t-cronograma">
     <div class="wrap fila">
-      <h2 id="t-sust" class="titulo-2" data-reveal>La sustentación</h2>
+      <h2 id="t-cronograma" class="titulo-2" data-reveal>Cronograma</h2>
       <div data-reveal>
-        <p>Cada equipo presentará su propuesta respondiendo, en general, a estas preguntas:</p>
-        <ol class="preguntas">
-          {reto.preguntas.map((q) => <li>{q}</li>)}
-        </ol>
-        <h3 class="mini">Seguridad</h3>
-        <p>{reto.seguridad}</p>
+        <Acordeon items={etapas} numerado />
+        <p class="nota">{reto.cronogramaNota}</p>
       </div>
     </div>
   </section>
 
-  <section class="seccion seccion--fondo" aria-labelledby="t-pronto">
+  <section class="reco" id="reconocimientos" aria-labelledby="t-reco">
+    <div class="wrap fila">
+      <h2 id="t-reco" class="titulo-2 titulo-2--claro" data-reveal>Reconocimientos</h2>
+      <dl class="reco__lista" data-reveal>
+        {reto.reconocimientos.map((r) => <div><dt>{r.quien}</dt><dd>{r.que}</dd></div>)}
+      </dl>
+    </div>
+  </section>
+
+  <section class="seccion" id="practicas" aria-labelledby="t-practicas">
+    <div class="wrap fila">
+      <h2 id="t-practicas" class="titulo-2" data-reveal>Buenas prácticas</h2>
+      <div class="practicas" data-reveal>
+        {reto.practicas.map((r) => <div><h3>{r.titulo}</h3><p>{r.texto}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" id="proximamente" aria-labelledby="t-pronto">
     <div class="wrap fila">
       <h2 id="t-pronto" class="titulo-2" data-reveal>Próximamente</h2>
       <div data-reveal>
-        <p>{reto.proximamente}</p>
+        <p class="aviso">{reto.proximamente}</p>
         <div class="acciones">
-          <a class="btn" href={site.whatsapp} target="_blank" rel="noopener">Únete al grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>
+          <a class="btn" {...wa}>Únete al grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>
         </div>
       </div>
     </div>
@@ -64,17 +162,54 @@ const img = imagenes.reto;
 </Base>
 
 <style>
+  .subnav { background: var(--blanco); border-bottom: 1px solid var(--linea); }
+  .subnav ul { display: flex; flex-wrap: wrap; justify-content: center; list-style: none; margin: 0; padding: .35rem 0; }
+  .subnav li + li { border-left: 1px solid var(--linea); }
+  .subnav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 .7rem; color: var(--texto); text-decoration: none; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .08em; text-transform: uppercase; transition: color var(--dur-ui) var(--ease); }
+  .subnav a:hover { color: var(--acento); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .3em; }
+  .seccion[id], .reco[id] { scroll-margin-top: .5rem; }
   .fila { display: grid; gap: .5rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr); align-items: start; }
   .fila p:last-child { margin-bottom: 0; }
-  .aviso { padding: .7rem .9rem; border-left: 3px solid var(--cobre); background: var(--fondo); font-weight: 500; }
+  .aviso { margin: 0; padding: .7rem .9rem; border-left: 3px solid var(--cobre); background: var(--blanco); font-weight: 500; }
   .lista { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
-  .lista li { display: flex; align-items: baseline; gap: .6rem; }
-  .lista li::before { content: ""; flex: none; width: 5px; height: 5px; background: var(--acento); transform: translateY(-.15em); }
-  .mini { margin: 1.5rem 0 .5rem; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
-  .preguntas { margin: .25rem 0 0; padding-left: 1.4rem; display: grid; gap: .2rem; }
+  .lista li, .lineas li { display: flex; align-items: baseline; gap: .6rem; }
+  .lista li::before, .lineas li::before { content: ""; flex: none; width: 5px; height: 5px; background: var(--acento); transform: translateY(-.15em); }
+  .lista--grande { gap: 0; border-top: 2px solid var(--texto); }
+  .lista--grande li { padding: .65rem 0; border-bottom: 1px solid var(--linea); font-size: 1.0625rem; }
+  .lineas { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: .45rem 1.75rem; }
+  .mini { margin: 1.75rem 0 .5rem; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+  .nota { margin: .6rem 0 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .tabla { margin-top: 1.5rem; }
+  .bloques { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; counter-reset: b; }
+  .bloques--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bloques li { padding-top: .75rem; border-top: 2px solid var(--texto); counter-increment: b; }
+  .bloques li::before { content: counter(b, decimal-leading-zero); display: block; margin-bottom: .35rem; font: 700 1rem/1.2 var(--f-display); color: var(--acento); }
+  .bloques h3 { margin: 0 0 .3rem; font-size: 1.0625rem; }
+  .bloques p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .preguntas { margin: .25rem 0 0; padding-left: 1.4rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr)); gap: .3rem 1.75rem; }
   .preguntas li::marker { color: var(--acento); font-weight: 700; }
   .resumen-fuerte { color: var(--texto); font-size: 1.0625rem; }
+  .pasos { list-style: none; margin: 0 0 .5rem; padding: 0; border-top: 1px solid var(--linea); counter-reset: p; }
+  .pasos li { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); column-gap: .25rem; padding: .5rem 0; border-bottom: 1px solid var(--linea); counter-increment: p; }
+  .pasos li::before { content: counter(p); grid-row: span 2; font: 700 1rem/1.5 var(--f-display); color: var(--acento); }
+  .pasos strong { font-weight: 600; }
+  .pasos span { font-size: var(--t-sm); color: var(--texto-2); }
+  .datos { margin: clamp(1.75rem, 3vw, 2.5rem) 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); border-top: 2px solid var(--texto); }
+  .datos div { padding: .7rem 1rem .8rem 0; border-bottom: 1px solid var(--linea); }
+  .datos dt { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+  .datos dd { margin: .2rem 0 0; font-size: var(--t-sm); color: var(--texto); }
+  .practicas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; }
+  .practicas h3 { margin: 0 0 .25rem; font-size: 1.0625rem; }
+  .practicas p { margin: 0; color: var(--texto-2); }
+  .reco { padding-block: clamp(2rem, 4vw, 2.75rem); color: #fff; background: linear-gradient(160deg, var(--acento) 0%, var(--acento-oscuro) 100%); }
+  .reco__lista { margin: 0; display: grid; gap: .9rem; }
+  .reco__lista div { padding-bottom: .9rem; border-bottom: 1px solid rgba(255, 255, 255, .22); }
+  .reco__lista dt { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--cobre-2); }
+  .reco__lista dd { margin: .25rem 0 0; font-size: 1.0625rem; line-height: 1.55; color: #fff; max-width: 62ch; }
   @media (max-width: 48rem) {
     .fila { grid-template-columns: minmax(0, 1fr); }
+    .bloques, .bloques--3, .practicas { grid-template-columns: 1fr; }
+    .subnav ul { justify-content: flex-start; }
+    .subnav a { padding: 0 .6rem; }
   }
 </style>
