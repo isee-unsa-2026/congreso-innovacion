@@ -1,0 +1,31 @@
+---
+// Logos de las empresas (site.json → "empresas"), pequeños y sobrios, con tamaño óptico parejo:
+// cada logo ocupa un área visual parecida aunque sus proporciones sean distintas.
+// Si falta el archivo de un logo, se muestra el nombre en texto.
+import site from '../data/site.json';
+import { withBase } from '../utils/paths';
+import { enPublic, altoOptico } from '../utils/medios';
+
+interface Props { area?: number; etiqueta?: string; class?: string; }
+const { area = 2000, etiqueta = 'Empresas', class: clase } = Astro.props;
+const empresas = site.empresas.map((e) => ({ ...e, hay: enPublic(e.logo), h: altoOptico(e.ancho, e.alto, area) }));
+---
+<ul class:list={['logos', clase]} role="list" aria-label={etiqueta}>
+  {empresas.map((e) => (
+    <li class="logos__item">
+      {e.hay
+        ? <img src={withBase(e.logo)} alt={e.alt} width={Math.round(e.ancho)} height={Math.round(e.alto)} style={`--h:${e.h}px`} loading="lazy" decoding="async" />
+        : <span class="logos__texto">{e.nombre}</span>}
+      {e.hay && e.leyenda && <span class="logos__leyenda">{e.leyenda}</span>}
+    </li>
+  ))}
+</ul>
+<style>
+  .logos { list-style: none; margin: 0; padding: 0 0 .9rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1.6rem clamp(1.25rem, 2.5vw, 2rem); }
+  .logos__item { position: relative; display: flex; align-items: center; min-height: 34px; }
+  .logos__item img { width: auto; height: var(--h, 22px); max-width: 100%; object-fit: contain; }
+  .logos__texto { font: 600 1rem/1.3 var(--f-texto); color: var(--texto); }
+  /* Leyenda de texto bajo el logo (p. ej. "Quellaveco": no forma parte del logo de Anglo American).
+     Va fuera del flujo para que todos los logos compartan el mismo eje horizontal. */
+  .logos__leyenda { position: absolute; left: 0; top: calc(100% - .1rem); font: 500 .625rem/1 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--texto-2); white-space: nowrap; }
+</style>

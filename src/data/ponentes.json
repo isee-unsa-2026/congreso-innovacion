@@ -1,23 +1,46 @@
 {
-  "nota": "Los ponentes se publicarán cuando se confirmen.",
+  "nota": "Solo ponentes confirmados por la organización. No publicar días ni horarios de cada ponente hasta que se confirme el programa.",
+  "masPorAnunciar": "Más ponentes por anunciar",
   "ponentes": [
     {
-      "nombre": "Ponente por confirmar",
-      "institucion": "Institución por confirmar",
-      "tema": "Innovación en perforación y voladura",
-      "foto": ""
+      "titulo": "",
+      "nombre": "Ruth Escobar Juárez",
+      "cargo": "Ejecutiva senior y referente en Innovación y Excelencia Operacional",
+      "organizacion": "",
+      "detalle": "Transformación Estratégica en Minería y Energía",
+      "sector": "Industria",
+      "foto": "/img/ponentes/ruth-escobar-juarez.webp",
+      "logo": null
     },
     {
-      "nombre": "Ponente por confirmar",
-      "institucion": "Institución por confirmar",
-      "tema": "Seguridad y gestión de riesgos",
-      "foto": ""
+      "titulo": "Dr.",
+      "nombre": "Bernardo Ramón de la Gala Velásquez",
+      "cargo": "Vicerrector de Investigación",
+      "organizacion": "Universidad Nacional de San Agustín de Arequipa",
+      "detalle": "",
+      "sector": "Academia",
+      "foto": "/img/ponentes/bernardo-de-la-gala.webp",
+      "logo": { "src": "/brand/unsa-logo.png", "alt": "UNSA", "ancho": 206, "alto": 256 }
     },
     {
-      "nombre": "Ponente por confirmar",
-      "institucion": "Institución por confirmar",
-      "tema": "Datos y automatización",
-      "foto": ""
+      "titulo": "Ing.",
+      "nombre": "Néstor Alonso Delgado Ponce",
+      "cargo": "Gerente de Operaciones",
+      "organizacion": "ENAEX Perú",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/nestor-delgado-ponce.webp",
+      "logo": { "src": "/img/logos/enaex.svg", "alt": "Enaex", "ancho": 165.67, "alto": 46.01 }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Dino Yancachajlla Tito",
+      "cargo": "Vicepresidente",
+      "organizacion": "ISEE Perú",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "",
+      "logo": { "src": "/img/logos/isee.png", "alt": "ISEE", "ancho": 400, "alto": 184 }
     }
   ]
 }

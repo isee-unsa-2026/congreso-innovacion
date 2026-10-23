@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
+import LogosEmpresas from '../components/LogosEmpresas.astro';
 import site from '../data/site.json';
 import { withBase } from '../utils/paths';
 const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
@@ -27,8 +28,9 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
           <p>Sede del congreso. Sus estudiantes y egresados son el público de {site.retoName}.</p>
         </article>
         <article data-reveal data-reveal-delay="140">
-          <h2 class="h3">Aliados</h2>
-          <p>Solo se mostrarán instituciones y marcas que autoricen formalmente el uso de su nombre o logotipo. Anuncio próximamente.</p>
+          <h2 class="h3">Empresas</h2>
+          <p>Profesionales de empresas mineras líderes compartirán su experiencia en el congreso. ENAEX es la empresa patrocinadora.</p>
+          <LogosEmpresas etiqueta="Empresas participantes" />
         </article>
       </div>
     </div>

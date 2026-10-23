@@ -86,6 +86,10 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 .etiqueta--clara { color: #fff; }
 .cab-sec { margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem); max-width: 48rem; }
 .cab-sec p { color: var(--texto-2); }
+.cab-sec > p, .cab-sec > div > p { margin: .5rem 0 0; }
+/* Cabecera de sección con enlace a la derecha (p. ej. "Ver ponentes") */
+.cab-fila { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .25rem 2rem; max-width: none; }
+.cab-fila > div { max-width: 48rem; }
 .titulo-2 { margin: 0; color: var(--texto); }
 .titulo-2 em { font-style: italic; color: var(--acento); }
 .titulo-2--claro { color: #fff; }

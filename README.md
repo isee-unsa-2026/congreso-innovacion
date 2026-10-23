@@ -1,8 +1,8 @@
-# I Congreso de Innovación en Minería · ISEE UNSA 2026
+# Primer Congreso de Innovación en Minería · InnoMining ISEE UNSA 2026
 
-Organiza ISEE UNSA (Student Chapter); sede anfitriona: Universidad Nacional de San Agustín de Arequipa. 18 y 19 de noviembre de 2026, Arequipa, ingreso gratuito. "Primera edición · 2026" es la línea pequeña (kicker) sobre el título.
+Organiza ISEE UNSA (Student Chapter); sede anfitriona: Universidad Nacional de San Agustín de Arequipa. 18 y 19 de noviembre de 2026, Arequipa, ingreso gratuito. "InnoMining · ISEE UNSA" es la línea pequeña (kicker) sobre el título; en el hero se destaca "Primer" en cobre.
 
-Sitio estático hecho con [Astro](https://astro.build). Incluye el congreso, ponentes (anuncio próximamente) y el concurso **INNOMINING** (Concurso de Investigación y Soluciones en Voladura, ruta `/reto/`), con dos registros: asistencia (todo público) y postulación de equipos (estudiantes y egresados UNSA).
+Sitio estático hecho con [Astro](https://astro.build). Incluye el congreso, ponentes confirmados (sin días ni horarios) y el concurso **INNOMINING** (Concurso de Investigación y Soluciones en Voladura, ruta `/reto/`), con dos registros: asistencia (todo público) y postulación de equipos (estudiantes y egresados UNSA).
 
 ## Cómo correr
 
@@ -17,9 +17,9 @@ npm run preview  # sirve dist/ para revisarlo
 
 El contenido vive en `src/data/`:
 
-- `site.json`: nombre del evento (`name`), marca pequeña (`kicker`, `brand`, `year`), concurso (`retoName`, `retoFullName`), empresas mencionadas en "Lo que encontrarás" (`empresas`, solo texto), opciones de desafío del formulario (`desafios`), enlace del grupo de WhatsApp (`whatsapp`), fechas, sede, navegación, correo de contacto y `formsEndpoint`.
+- `site.json`: nombre del evento (`name`), marca pequeña (`kicker`, `brand`, `year`), concurso (`retoName`, `retoFullName`), empresas con su logo (`empresas`: nombre, alt, ruta del logo y proporciones; si falta el archivo se muestra el nombre en texto), opciones de desafío del formulario (`desafios`), enlace del grupo de WhatsApp (`whatsapp`), fechas, sede, navegación, correo de contacto y `formsEndpoint`.
 - `programa.json`: borrador del programa (la página `/programa/` solo muestra "se publicará próximamente").
-- `ponentes.json`: borrador de ponentes (sin publicar).
+- `ponentes.json`: ponentes confirmados (título, nombre, cargo, organización, foto WebP en `public/img/ponentes/` y logo). Sin foto, la tarjeta muestra un monograma con las iniciales. No poner días ni horarios.
 - `reto.json`: INNOMINING (resumen, qué harán los equipos, importancia, reconocimiento, entregables, requisitos y etapas).
 
 - `imagenes.json`: todas las imágenes del sitio (clave → ruta + texto alternativo). Ver "Cambiar imágenes".
@@ -133,12 +133,30 @@ Notas:
 - Aliados o auspiciadores: solo con autorización formal de uso de nombre y logo.
 - Bases de INNOMINING: desafíos, reglamento, criterios de evaluación, premios y plazos ("se compartirán próximamente"). Hasta entonces la postulación es una pre-inscripción.
 - Jurado de INNOMINING.
-- Cerro Verde, Anglo American Quellaveco y Enaex se mencionan solo como texto en "Lo que encontrarás"; sus logos solo con autorización formal.
-- Ponentes y programa (hoy: "anuncio próximamente").
+- Programa y horarios (los ponentes ya están publicados, sin horarios). Foto de Ing. Dino Yancachajlla Tito (hoy monograma).
 - Logos de auspiciadores e instituciones, con autorización de uso.
 - Sede específica, aforo y modalidad de ingreso.
 - Certificación: si habrá, tipo y requisitos de asistencia.
 - Correo de contacto oficial (hoy `contacto@por-confirmar.pe` en `site.json`).
+
+## Créditos de imágenes
+
+Fotos de ponentes (recortadas en cuadrado y convertidas a WebP 400 × 400; se muestran en círculo, sin quitar el fondo):
+
+- Ruth Escobar Juárez: Freeport-McMoRan, https://www.fcx.com/freeport-features/112624
+- Dr. Bernardo Ramón de la Gala Velásquez: recorte de la foto de la Lista 4 publicada por El Búho, https://elbuho.pe/wp-content/uploads/2026/08/LISTA-4.png (respaldo: retrato oficial de la UNSA, https://www.unsa.edu.pe/vicerrector-de-investigacion/, en `bernardo-de-la-gala-oficial.webp`).
+- Ing. Néstor Alonso Delgado Ponce: foto de perfil de LinkedIn, https://pe.linkedin.com/in/nestor-delgado-ponce-0a1511118
+- Ing. Dino Yancachajlla Tito: sin foto (monograma).
+
+Logos (`public/img/logos/`, optimizados con svgo; colores y proporciones sin cambios):
+
+- Enaex: https://www.enaex.com (logo de cabecera del sitio oficial).
+- Sociedad Minera Cerro Verde: https://www.cerroverde.pe (versiones color y blanca).
+- Anglo American: https://www.angloamerican.com (versiones color y blanca; "Quellaveco" va como leyenda de texto).
+- ISEE: https://isee.org (logo de cabecera; baja resolución, usar a menos de 80 px de alto).
+- Escudo UNSA: `public/brand/unsa-logo.png` (ya existente).
+
+Las marcas pertenecen a sus titulares; se usan solo para identificar a las organizaciones participantes.
 
 ## Cabeceras de seguridad
 

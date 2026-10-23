@@ -1,0 +1,79 @@
+---
+// Tarjeta de ponente: foto en círculo (aro fino de cobre) sobre un panel granate, nombre, cargo y,
+// al pie, el sector y el logo de su organización. Sin días ni horarios.
+// Si la foto no existe en public/, se muestra un monograma con las iniciales (nunca una foto genérica).
+import { withBase } from '../utils/paths';
+import { enPublic, altoOptico, iniciales } from '../utils/medios';
+
+interface Logo { src: string; alt: string; ancho: number; alto: number; }
+interface Ponente {
+  titulo?: string; nombre: string; cargo: string; organizacion?: string; detalle?: string;
+  sector?: string; foto?: string; logo?: Logo | null;
+}
+interface Props { ponente: Ponente; }
+const { ponente: p } = Astro.props;
+const nombre = [p.titulo, p.nombre].filter(Boolean).join(' ');
+const hayFoto = enPublic(p.foto);
+const logo = p.logo && enPublic(p.logo.src) ? p.logo : null;
+const altoLogo = logo ? altoOptico(logo.ancho, logo.alto, 1800, 18, 34) : 0;
+const linea2 = p.organizacion || p.detalle;
+---
+<article class="ponente">
+  <div class="ponente__panel">
+    {hayFoto
+      ? <img class="ponente__foto" src={withBase(p.foto!)} width="400" height="400" alt={`Foto de ${nombre}`} loading="lazy" decoding="async" />
+      : <span class="ponente__mono" aria-hidden="true">{iniciales(p.nombre)}</span>}
+  </div>
+  <div class="ponente__cuerpo">
+    <h3 class="ponente__nombre">{nombre}</h3>
+    <p class="ponente__cargo">{p.cargo}</p>
+    {linea2 && <p class="ponente__org">{linea2}</p>}
+  </div>
+  {(p.sector || logo) && (
+    <div class="ponente__pie">
+      {p.sector && <span class="ponente__sector">{p.sector}</span>}
+      {logo && <img class="ponente__logo" src={withBase(logo.src)} alt={logo.alt} width={Math.round(logo.ancho)} height={Math.round(logo.alto)} style={`--h:${altoLogo}px`} loading="lazy" decoding="async" />}
+    </div>
+  )}
+</article>
+<style>
+  .ponente { display: grid; grid-template-rows: auto 1fr auto; height: 100%; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); overflow: hidden; }
+
+  /* Panel de marca: granate con una retícula de barrenos casi imperceptible y un filete de cobre al pie */
+  .ponente__panel {
+    position: relative; isolation: isolate; display: grid; place-items: center;
+    padding: clamp(1.75rem, 3vw, 2.25rem) 1rem;
+    background: radial-gradient(120% 95% at 50% 0%, var(--acento-2) 0%, var(--acento) 48%, var(--acento-oscuro) 100%);
+  }
+  .ponente__panel::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; opacity: .55;
+    background: var(--malla, none) center / 64px repeat;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 78%);
+            mask-image: radial-gradient(circle at 50% 50%, transparent 32%, #000 78%);
+  }
+  .ponente__panel::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--cobre); }
+
+  /* Foto en círculo: el recorte resuelve fondos distintos; el aro de cobre las unifica */
+  .ponente__foto, .ponente__mono {
+    width: clamp(7.5rem, 6.5rem + 3vw, 9rem); aspect-ratio: 1; height: auto; border-radius: 50%;
+    outline: 1px solid var(--cobre); outline-offset: 5px;
+    box-shadow: 0 10px 28px rgba(12, 4, 6, .38);
+  }
+  .ponente__foto { object-fit: cover; object-position: 50% 30%; background: var(--acento-oscuro); }
+  .ponente__mono {
+    display: grid; place-items: center;
+    background: linear-gradient(160deg, var(--tinta-2), var(--tinta));
+    color: var(--cobre-2); font: 700 clamp(2rem, 1.6rem + 1.4vw, 2.5rem)/1 var(--f-display); letter-spacing: .06em;
+  }
+
+  .ponente__cuerpo { padding: 1.25rem 1.25rem 1.1rem; text-align: center; }
+  .ponente__nombre { margin: 0 0 .45rem; font-size: 1.1875rem; line-height: 1.25; }
+  .ponente__cargo { margin: 0 auto; max-width: 30ch; font-size: .9375rem; line-height: 1.45; color: var(--texto); }
+  .ponente__org { margin: .45rem auto 0; max-width: 32ch; font-size: var(--t-sm); line-height: 1.45; font-weight: 600; color: var(--acento); }
+
+  /* Pie: sector a la izquierda y logo de la organización a la derecha, siempre a la misma altura */
+  .ponente__pie { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; margin-inline: 1.25rem; padding-block: .6rem; border-top: 1px solid var(--linea); }
+  .ponente__sector { display: inline-flex; align-items: center; gap: .5rem; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
+  .ponente__sector::before { content: ""; width: 6px; height: 6px; background: var(--cobre); }
+  .ponente__logo { width: auto; height: var(--h, 24px); max-width: 6rem; object-fit: contain; }
+</style>

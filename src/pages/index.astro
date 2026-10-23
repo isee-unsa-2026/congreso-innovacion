@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Acordeon from '../components/Acordeon.astro';
 import Encontraras from '../components/Encontraras.astro';
 import RetoBloque from '../components/RetoBloque.astro';
+import PonentesGrid from '../components/PonentesGrid.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
@@ -11,9 +12,9 @@ const hero = imagenes.hero;
 // Enlace que abre Google Calendar con el evento ya cargado (dia completo, 18 y 19 de noviembre).
 const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
   action: 'TEMPLATE',
-  text: site.name,
+  text: `${site.name} · InnoMining ISEE UNSA`,
   dates: `${site.dateStart.replaceAll('-', '')}/20261120`,
-  details: `Organiza ${site.organizer}. Ingreso gratuito. Incluye el concurso ${site.retoName}. Horarios próximamente.`,
+  details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y el concurso ${site.retoName}. Horarios próximamente.`,
   location: `${site.place}, ${site.city}`,
 }).toString().replace('%2F', '/');
 const faq = [
@@ -23,7 +24,7 @@ const faq = [
   { titulo: '¿Cómo me inscribo al congreso?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito.` },
 ];
 ---
-<Base title={`${site.name} · ISEE UNSA 2026`} description={`${site.name}: gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de la industria minera y el concurso ${site.retoName}.`}>
+<Base title={`${site.name} · InnoMining ISEE UNSA 2026`} description={`${site.name} (InnoMining · ISEE UNSA): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de referentes de la industria minera y la academia, y el concurso ${site.retoName}.`}>
   <section class="hero" aria-labelledby="titulo-portada">
     <img class="hero__foto" src={withBase(hero.src)} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
     <div class="hero__velo" aria-hidden="true"></div>
@@ -34,12 +35,12 @@ const faq = [
         <span class="hero__barra" aria-hidden="true">|</span><span class="sr">. </span>
         <span>{site.city}</span>
       </p>
-      <h1 id="titulo-portada" class="anim" style="--d:160ms"><span class="hero__num">I</span> {site.name.replace(/^I /, '')}</h1>
+      <h1 id="titulo-portada" class="anim" style="--d:160ms"><span class="hero__num">Primer</span> {site.name.replace(/^Primer /, '')}</h1>
       <p class="hero__org anim" style="--d:240ms">Organiza <strong>{site.organizer}</strong><span aria-hidden="true"> · </span><span class="sr">. Sede: </span>{site.host}</p>
       <p class="hero__lema anim" style="--d:300ms">“{site.tagline}”</p>
       <div class="acciones acciones--centro anim" style="--d:360ms">
         <a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
-        <a class="btn btn--vidrio" href={withBase('/reto/')}>Conoce {site.retoName}</a>
+        <a class="btn btn--vidrio" href={withBase('/ponentes/')}>Conoce a los ponentes</a>
       </div>
     </div>
     <a class="hero__bajar" href="#t-congreso"><span class="sr">Ir al contenido del congreso</span><span class="hero__flecha" aria-hidden="true"></span></a>
@@ -67,19 +68,21 @@ const faq = [
     </div>
   </section>
 
-  <RetoBloque />
-
-  <section class="seccion" aria-labelledby="t-ponentes">
-    <div class="wrap ponentes">
-      <div data-reveal>
-        <h2 id="t-ponentes" class="titulo-2">Ponentes</h2>
+  <section class="seccion seccion--fondo" id="ponentes" aria-labelledby="t-ponentes">
+    <div class="wrap">
+      <div class="cab-sec cab-fila" data-reveal>
+        <div>
+          <h2 id="t-ponentes" class="titulo-2">Ponentes <em>confirmados</em></h2>
+          <p>Referentes de la industria minera y de la academia compartirán su experiencia en innovación.</p>
+        </div>
+        <a class="enlace-flecha" href={withBase('/ponentes/')}>Ver ponentes</a>
       </div>
-      <div data-reveal data-reveal-delay="80">
-        <p class="ponentes__p">Profesionales de empresas mineras líderes como Cerro Verde, Anglo American Quellaveco y Enaex, junto a la academia, compartirán su experiencia en innovación minera. Sesiones en el horario más aprovechable del día, con coffee break.</p>
-        <p class="ponentes__nota"><span class="ponentes__marca" aria-hidden="true"></span>Anuncio próximamente</p>
-      </div>
+      <PonentesGrid />
     </div>
   </section>
+
+  <RetoBloque />
+
 
   <section class="seccion seccion--fondo" aria-labelledby="t-faq">
     <div class="wrap faq">
@@ -128,10 +131,6 @@ const faq = [
   .hero :focus-visible { outline-color: #fff; }
 
   /* ---------- Ponentes, FAQ y cierre ---------- */
-  .ponentes { display: grid; gap: .75rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: end; padding-top: 1.25rem; border-top: 2px solid var(--texto); }
-  .ponentes__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: var(--texto); max-width: 56ch; }
-  .ponentes__nota { display: flex; align-items: center; gap: .6rem; margin: .6rem 0 0; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
-  .ponentes__marca { width: 6px; height: 6px; background: var(--cobre); }
   .faq { display: grid; gap: .75rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: start; }
   .faq__cal { display: inline-flex; align-items: center; min-height: 44px; margin-top: .25rem; font-size: var(--t-sm); font-weight: 500; }
   .cierre { background: var(--tinta); color: #fff; padding-block: clamp(2rem, 4vw, 2.75rem); }
@@ -143,7 +142,7 @@ const faq = [
   .cierre :focus-visible { outline-color: #fff; }
 
   @media (max-width: 48rem) {
-    .ponentes, .faq { grid-template-columns: 1fr; }
+    .faq { grid-template-columns: 1fr; }
   }
   @media (max-width: 40rem) {
     .hero { min-height: max(30rem, calc(100svh - 69px)); }

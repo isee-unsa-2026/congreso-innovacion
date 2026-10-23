@@ -1,16 +1,18 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//ISEE UNSA//Congreso de Innovacion en Mineria 2026//ES
+PRODID:-//ISEE UNSA//Primer Congreso de Innovacion en Mineria 2026//ES
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
 UID:congreso-innovacion-mineria-2026@isee-unsa
-DTSTAMP:20261014T000000Z
+DTSTAMP:20261022T000000Z
+SEQUENCE:1
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261120
-SUMMARY:I Congreso de Innovación en Minería
+SUMMARY:Primer Congreso de Innovación en Minería · InnoMining ISEE UNSA
 LOCATION:Auditorio de la Facultad de Arquitectura\, UNSA\, Arequipa\, Perú
-DESCRIPTION:Primera edición. Organiza ISEE UNSA. Ingreso gratuito. Inclu
- ye el concurso INNOMINING. Horarios próximamente.
+DESCRIPTION:InnoMining · ISEE UNSA. Organiza ISEE UNSA. Ingreso gratuito. 
+ Ponencias de la industria minera y la academia\, y el concurso INNOMINING.
+  Horarios próximamente.
 END:VEVENT
 END:VCALENDAR

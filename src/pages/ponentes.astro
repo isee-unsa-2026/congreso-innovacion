@@ -1,24 +1,43 @@
 ---
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
+import PonentesGrid from '../components/PonentesGrid.astro';
+import LogosEmpresas from '../components/LogosEmpresas.astro';
 import site from '../data/site.json';
+import datos from '../data/ponentes.json';
 import { withBase } from '../utils/paths';
+const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).join(' ')).join(', ');
 ---
-<Base title="Ponentes" description={`Ponentes del ${site.name} (${site.kicker}): profesionales de empresas mineras líderes y de la academia. Anuncio próximamente.`}>
-  <Banner etiqueta={site.kicker} titulo="" acento="Ponentes" />
+<Base title="Ponentes" description={`Ponentes confirmados del ${site.name} (${site.kicker}): ${nombres}. ${site.dates}, UNSA, Arequipa.`}>
+  <Banner etiqueta={site.kicker} titulo="" acento="Ponentes" bajada="Referentes de la industria minera y de la academia." />
 
-  <section class="seccion" aria-labelledby="t-anuncio">
-    <div class="wrap anuncio" data-reveal>
-      <h2 id="t-anuncio" class="titulo-2">Anuncio <em>próximamente</em></h2>
+  <section class="seccion" aria-labelledby="t-confirmados">
+    <div class="wrap">
+      <div class="cab-sec" data-reveal>
+        <h2 id="t-confirmados" class="titulo-2">Ponentes <em>confirmados</em></h2>
+        <p>Compartirán su experiencia en innovación minera desde la industria y la academia.</p>
+      </div>
+      <PonentesGrid />
+    </div>
+  </section>
+
+  <section class="seccion seccion--fondo" aria-labelledby="t-empresas">
+    <div class="wrap empresas" data-reveal>
       <div>
-        <p class="anuncio__p">Profesionales de empresas mineras líderes y de la academia compartirán su experiencia en innovación minera.</p>
-        <p class="empresas__t">Contaremos con profesionales de</p>
-        <ul class="empresas" role="list">
-          <li>Cerro Verde</li>
-          <li>Anglo American Quellaveco</li>
-          <li>Enaex</li>
-        </ul>
-        <p class="anuncio__p anuncio__p--sec">Las sesiones se concentrarán en el horario más aprovechable del día, sin ocupar la jornada completa, e incluirán coffee break. Iremos anunciando ponentes, horarios y novedades aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp</a>.</p>
+        <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
+        <p class="empresas__p">Contaremos con profesionales de empresas mineras líderes del país, junto a la academia.</p>
+      </div>
+      <div class="empresas__logos">
+        <LogosEmpresas area={2600} etiqueta="Empresas participantes" />
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-sesiones">
+    <div class="wrap sesiones" data-reveal>
+      <h2 id="t-sesiones" class="titulo-2">Cómo serán las <em>sesiones</em></h2>
+      <div>
+        <p class="sesiones__p">Las sesiones se concentrarán en el horario más aprovechable del día, sin ocupar la jornada completa, e incluirán coffee break. Iremos anunciando más ponentes y el programa aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>.</p>
         <div class="acciones">
           <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
           <a class="btn btn--sec" href={withBase('/congreso/')}>Conocer el congreso</a>
@@ -29,13 +48,16 @@ import { withBase } from '../utils/paths';
 </Base>
 
 <style>
-  .anuncio { display: grid; gap: 1rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); padding-top: 2rem; border-top: 2px solid var(--texto); }
-  .anuncio__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 56ch; }
-  .anuncio .acciones { margin-top: 1.5rem; }
-  .anuncio__p--sec { margin-top: 1.25rem; color: var(--texto-2); font-size: 1rem; }
-  .empresas__t { margin: 1.5rem 0 .6rem; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
-  .empresas { display: flex; flex-wrap: wrap; gap: .5rem 0; margin: 0; padding: 0; list-style: none; }
-  .empresas li { padding: .2rem 1.1rem; font: 600 1rem/1.3 var(--f-texto); color: var(--texto); border-left: 1px solid var(--linea); }
-  .empresas li:first-child { padding-left: 0; border-left: 0; }
-  @media (max-width: 48rem) { .anuncio { grid-template-columns: 1fr; } }
+  .empresas { display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; }
+  .empresas__p { margin: .5rem 0 0; color: var(--texto-2); max-width: 46ch; }
+  .empresas__logos { padding: 1.5rem 1.75rem .9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); }
+  .empresas__logos :global(.logos) { justify-content: space-around; }
+  .sesiones { display: grid; gap: 1rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); padding-top: 1.5rem; border-top: 2px solid var(--texto); }
+  .sesiones__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 60ch; }
+  .sesiones .acciones { margin-top: 1.5rem; }
+  @media (max-width: 48rem) {
+    .empresas, .sesiones { grid-template-columns: 1fr; }
+    .empresas__logos { padding: 1.25rem 1.25rem .75rem; }
+    .empresas__logos :global(.logos) { justify-content: flex-start; }
+  }
 </style>
