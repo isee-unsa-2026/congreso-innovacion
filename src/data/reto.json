@@ -3,14 +3,14 @@
   "pasos": [
     { "titulo": "Eligen un reto de ENAEX o plantean uno propio", "texto": "Un problema u oportunidad de mejora concreto en la operación minera." },
     { "titulo": "Proponen una solución original", "texto": "Un dispositivo, un sistema, un software, un modelo o un método." },
-    { "titulo": "Desarrollan un concepto o prototipo", "texto": "Durante aproximadamente el mes previo al congreso." },
-    { "titulo": "Sustentan ante el jurado", "texto": "15 minutos por equipo, durante el congreso." }
+    { "titulo": "Presentan su idea de forma innovadora", "texto": "Como concepto o prototipo, desarrollado en aproximadamente un mes." },
+    { "titulo": "Sustentan ante el jurado", "texto": "15 minutos por equipo; fecha y lugar por confirmar." }
   ],
   "porQue": "Todos los equipos que sustenten recibirán un certificado de participación, y los mejores continuarán con una investigación aplicada con acompañamiento y financiamiento de ENAEX (condiciones por confirmar).",
   "datosClave": [
-    { "dato": "Sustentaciones", "valor": "18 y 19 de noviembre de 2026, por la tarde" },
+    { "dato": "Sustentaciones", "valor": "Fecha y lugar por confirmar" },
     { "dato": "Dirigido a", "valor": "Estudiantes de la UNSA, de preferencia desde el 4.º semestre, y egresados de la UNSA" },
-    { "dato": "Equipos", "valor": "Se recomiendan 4 integrantes de distintas carreras, incluido Ingeniería de Minas" },
+    { "dato": "Equipos", "valor": "Se recomiendan 4 integrantes de distintas carreras, incluido Ingeniería de Minas, con un docente asesor de la UNSA (obligatorio)" },
     { "dato": "Preparación", "valor": "Alrededor de un mes para desarrollar un concepto o prototipo" },
     { "dato": "Inscripción", "valor": "Gratuita; la fecha se anunciará pronto" }
   ],
@@ -32,7 +32,7 @@
   "participan": [
     "Estudiantes de pregrado de la UNSA, de preferencia desde el 4.º semestre, y egresados de la UNSA.",
     "Se recomiendan equipos de 4 integrantes de distintas carreras, incluido al menos un estudiante de Ingeniería de Minas.",
-    "Es recomendable contar con un docente de la UNSA que oriente al equipo; la solución es obra de los estudiantes.",
+    "Cada equipo debe contar con un docente asesor de la UNSA (obligatorio) que lo oriente; la solución es obra de los estudiantes.",
     "Lo más valioso es que cada carrera tenga un aporte claro dentro de la propuesta."
   ],
   "perfiles": [
@@ -43,9 +43,9 @@
     { "carrera": "Geología, Química, Ambiental u otras afines", "aporte": "Comportamiento del macizo rocoso, materiales, impactos y variables del entorno." }
   ],
   "entregas": [
-    { "titulo": "Concepto o prototipo", "texto": "Una idea explicada con detalle técnico o una versión que pueda mostrarse: maqueta, circuito, simulación o software." },
+    { "titulo": "Concepto o prototipo", "texto": "La idea del equipo presentada de forma innovadora: explicada con detalle técnico o en una versión que pueda mostrarse (maqueta, circuito, simulación o software)." },
     { "titulo": "Ficha de propuesta", "texto": "Un documento breve que resume el problema, la solución y cómo se validaría." },
-    { "titulo": "Sustentación de 15 min", "texto": "La presentación del equipo durante el congreso, seguida de preguntas." }
+    { "titulo": "Sustentación de 15 min", "texto": "La presentación del equipo ante el jurado, seguida de preguntas. Fecha y lugar por confirmar." }
   ],
   "preguntas": [
     "¿Cuál es el problema?",
@@ -65,8 +65,8 @@
   ],
   "etapas": [
     { "nombre": "Inscripción", "fecha": "Por anunciar", "texto": "La fecha y el enlace se compartirán por el grupo de WhatsApp oficial junto con las bases.", "pendiente": true },
-    { "nombre": "Desarrollo", "fecha": "Previo al congreso", "texto": "Durante aproximadamente un mes, cada equipo elabora su concepto o prototipo y su ficha de propuesta." },
-    { "nombre": "Sustentación", "fecha": "18 y 19 de noviembre de 2026", "texto": "Cada equipo expone 15 minutos y responde preguntas, por la tarde, en el {lugar}." },
+    { "nombre": "Desarrollo", "fecha": "Aprox. un mes", "texto": "Cada equipo desarrolla su idea de forma innovadora, como concepto o prototipo, junto con su ficha de propuesta." },
+    { "nombre": "Sustentación", "fecha": "Por confirmar", "texto": "Cada equipo expone 15 minutos ante el jurado y responde preguntas. La fecha y el lugar se anunciarán pronto.", "pendiente": true },
     { "nombre": "Investigación aplicada", "fecha": "Desde diciembre de 2026", "texto": "Los mejores equipos continúan su proyecto con acompañamiento y financiamiento de ENAEX (condiciones por confirmar)." }
   ],
   "cronogramaNota": "Las fechas por confirmar se comunicarán por el grupo de WhatsApp oficial.",

@@ -17,14 +17,13 @@ const foto = imagenes['card-perforadora'];
       <ol class="inno__pasos" role="list">
         {reto.pasos.map((p) => <li>{p.titulo}</li>)}
       </ol>
-      <p class="inno__carreras"><strong>Equipos:</strong> se recomiendan 4 integrantes de distintas carreras, incluido Ingeniería de Minas, con estudiantes y egresados de la UNSA.</p>
+      <p class="inno__carreras"><strong>Equipos:</strong> se recomiendan 4 integrantes de distintas carreras, incluido Ingeniería de Minas, con estudiantes y egresados de la UNSA y un docente asesor de la UNSA (obligatorio).</p>
     </div>
     <aside class="inno__tarjeta" aria-label={`Participa en ${site.retoName}`} data-reveal data-reveal-delay="100">
       <img src={withBase(foto.src)} width={foto.width} height={foto.height} alt="" loading="lazy" decoding="async" />
       <div class="inno__tarjeta-in">
         <p class="inno__rec"><span>Reconocimiento</span>{reto.reconocimientoCorto}</p>
-        <p class="inno__bases"><span>Sustentaciones</span>18 y 19 de noviembre</p>
-        <p class="inno__req">{site.place}</p>
+        <p class="inno__bases"><span>Sustentaciones</span>Fecha y lugar por confirmar</p>
         <p class="inno__req inno__req--aviso">{reto.proximamente}</p>
         <a class="btn btn--cobre" href={withBase('/reto/')}>Conoce {site.retoName}</a>
         <a class="btn btn--vidrio" href={site.whatsapp} target="_blank" rel="noopener">Únete al grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>

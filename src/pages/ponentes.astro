@@ -1,4 +1,4 @@
-﻿---
+---
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import PonentesGrid from '../components/PonentesGrid.astro';
@@ -20,7 +20,7 @@ const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).j
   <section class="seccion seccion--fondo" aria-labelledby="t-empresas">
     <div class="wrap empresas" data-reveal>
       <div>
-        <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>lÃ­deres</em></h2>
+        <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
       </div>
       <div class="empresas__logos">
         <LogosEmpresas area={2600} etiqueta="Empresas participantes" />
@@ -30,11 +30,11 @@ const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).j
 
   <section class="seccion" aria-labelledby="t-sesiones">
     <div class="wrap sesiones" data-reveal>
-      <h2 id="t-sesiones" class="titulo-2">CÃ³mo serÃ¡n las <em>sesiones</em></h2>
+      <h2 id="t-sesiones" class="titulo-2">Cómo serán las <em>sesiones</em></h2>
       <div>
-        <p class="sesiones__p">Las sesiones se concentrarÃ¡n en el horario mÃ¡s aprovechable del dÃ­a, sin ocupar la jornada completa, e incluirÃ¡n coffee break. Iremos anunciando mÃ¡s ponentes y el programa aquÃ­ y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp<span class="sr"> (se abre en una pestaÃ±a nueva)</span></a>.</p>
+        <p class="sesiones__p">Las sesiones se concentrarán en el horario más aprovechable del día, sin ocupar la jornada completa, e incluirán coffee break. Iremos anunciando más ponentes y el programa aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>.</p>
         <div class="acciones">
-          <a class="btn" href={withBase('/inscripciones/')}>InscrÃ­bete gratis</a>
+          <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
           <a class="btn btn--sec" href={withBase('/congreso/')}>Conocer el congreso</a>
         </div>
       </div>

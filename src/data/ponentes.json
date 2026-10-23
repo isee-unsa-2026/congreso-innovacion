@@ -6,11 +6,11 @@
       "titulo": "",
       "nombre": "Ruth Escobar Juárez",
       "cargo": "Ejecutiva senior y referente en Innovación y Excelencia Operacional",
-      "organizacion": "",
+      "organizacion": "Cerro Verde",
       "detalle": "Transformación Estratégica en Minería y Energía",
       "sector": "Industria",
       "foto": "/img/ponentes/ruth-escobar-juarez.webp",
-      "logo": null
+      "logo": { "src": "/img/logos/cerro-verde.svg", "alt": "Cerro Verde", "ancho": 231.41, "alto": 46.91 }
     },
     {
       "titulo": "Dr.",
