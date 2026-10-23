@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Acordeon from '../components/Acordeon.astro';
 import Encontraras from '../components/Encontraras.astro';
 import RetoBloque from '../components/RetoBloque.astro';
-import PonentesGrid from '../components/PonentesGrid.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
@@ -68,18 +67,6 @@ const faq = [
     </div>
   </section>
 
-  <section class="seccion seccion--fondo" id="ponentes" aria-labelledby="t-ponentes">
-    <div class="wrap">
-      <div class="cab-sec cab-fila" data-reveal>
-        <div>
-          <h2 id="t-ponentes" class="titulo-2">Ponentes <em>confirmados</em></h2>
-          <p>Referentes de la industria minera y de la academia compartirán su experiencia en innovación.</p>
-        </div>
-        <a class="enlace-flecha" href={withBase('/ponentes/')}>Ver ponentes</a>
-      </div>
-      <PonentesGrid />
-    </div>
-  </section>
 
   <RetoBloque />
 

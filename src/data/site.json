@@ -30,7 +30,7 @@
   "formsEndpoint": "https://script.google.com/macros/s/AKfycbzl8CTKc194oPP9Sn2YZdFNvAOoKgnLcAZLjv58LsVjoCa4UucpLqIpeB7ptwUKDCLSOw/exec",
   "nav": [
     { "label": "Inicio", "href": "/" },
-    { "label": "El congreso", "href": "/congreso/" },
+    { "label": "Congreso", "href": "/congreso/" },
     { "label": "Ponentes", "href": "/ponentes/" },
     { "label": "Concurso", "href": "/reto/" },
     { "label": "Inscripciones", "href": "/inscripciones/", "cta": true }
