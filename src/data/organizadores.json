@@ -1,0 +1,14 @@
+{
+  "nota": "Comité organizador del congreso. Mismo formato que ponentes.json; sin foto se muestra un monograma con las iniciales.",
+  "organizadores": [
+    {
+      "titulo": "Ing.",
+      "nombre": "Azucena Delgado",
+      "cargo": "Comité organizador",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "",
+      "logo": { "src": "/brand/isee-unsa-logo-512.png", "alt": "ISEE UNSA Student Chapter", "ancho": 512, "alto": 512 }
+    }
+  ]
+}
