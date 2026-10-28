@@ -2,11 +2,12 @@
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import Encontraras from '../components/Encontraras.astro';
+import CarruselFotos from '../components/CarruselFotos.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
 ---
-<Base title="El congreso" description={`Qué encontrarás en el ${site.name}: ponencias de la industria, la hackatón ${site.retoName} y networking. ${site.dateShort}, UNSA, Arequipa.`}>
+<Base title="El congreso" description={`Qué encontrarás en el ${site.name}: ponencias de la industria, mesas de diálogo, la hackatón ${site.retoName} y networking. ${site.dateShort}, UNSA, Arequipa.`}>
   <Banner etiqueta={site.kicker} titulo="El" acento="congreso" bajada={site.name} />
 
   <section class="seccion" aria-labelledby="t-intro">
@@ -17,9 +18,7 @@ import { withBase } from '../utils/paths';
         <p class="lectura-p">Tendrá lugar el {site.dates} en el {site.place}, Arequipa. El ingreso es gratuito.</p>
         <div class="acciones"><a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
       </div>
-      <figure class="dos__img" data-reveal data-reveal-delay="100">
-        <img src={withBase(imagenes.congreso.src)} width={imagenes.congreso.width} height={imagenes.congreso.height} alt={imagenes.congreso.alt} loading="lazy" decoding="async" />
-      </figure>
+      <CarruselFotos fotos={imagenes.congresoCarrusel} etiqueta="Fotografías de congresos y de la UNSA" retraso={100} />
     </div>
   </section>
 

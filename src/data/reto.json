@@ -1,17 +1,52 @@
 {
-  "resumen": "INNOMINING es la hackatón del congreso: equipos multidisciplinarios de la UNSA se juntan para idear y presentar soluciones innovadoras a problemas reales de la minería, con foco en la perforación y voladura y el respaldo de ENAEX, empresa patrocinadora.",
+  "resumen": "INNOMINING es la hackatón del congreso: equipos multidisciplinarios de la UNSA trabajan sobre retos propuestos por ENAEX, empresa auspiciadora del congreso, con foco en la perforación y voladura, y presentan una solución propia para afrontarlos.",
+  "enfoque": "No es un desafío de innovación abierta: se trabaja sobre retos propuestos, pero la idea es propia de cada equipo y cualquier tipo de solución es válida para afrontarlos.",
   "pasos": [
-    { "titulo": "Arma tu equipo", "texto": "Estudiantes y egresados de la UNSA de distintas carreras, con un docente asesor de la UNSA." },
-    { "titulo": "Elige un reto", "texto": "Un problema real de la minería, de preferencia en perforación y voladura." },
-    { "titulo": "Crea tu solución", "texto": "Una idea innovadora, presentada como concepto o prototipo." },
-    { "titulo": "Preséntala ante el jurado", "texto": "Fecha y lugar por confirmar." }
+    {
+      "titulo": "Arma tu equipo",
+      "texto": "Estudiantes y egresados de la UNSA de distintas carreras, con un docente asesor de la UNSA."
+    },
+    {
+      "titulo": "Elige un reto propuesto",
+      "texto": "Los retos se darán a conocer junto con las bases."
+    },
+    {
+      "titulo": "Crea tu propia solución",
+      "texto": "Cualquier enfoque es válido: un dispositivo, un software, un método o un modelo, presentado como concepto o prototipo."
+    },
+    {
+      "titulo": "Preséntala ante el jurado",
+      "texto": "Fecha y lugar por confirmar."
+    }
   ],
   "datosClave": [
-    { "dato": "Formato", "valor": "Hackatón por equipos" },
-    { "dato": "Participan", "valor": "Estudiantes y egresados de la UNSA" },
-    { "dato": "Equipos", "valor": "Multidisciplinarios, con un docente asesor de la UNSA (obligatorio)" },
-    { "dato": "Inscripción", "valor": "Gratuita; fecha por anunciar" }
+    {
+      "dato": "Formato",
+      "valor": "Hackatón por equipos, con retos propuestos"
+    },
+    {
+      "dato": "Participan",
+      "valor": "Estudiantes y egresados de la UNSA"
+    },
+    {
+      "dato": "Equipos",
+      "valor": "Multidisciplinarios, con un docente asesor de la UNSA (obligatorio)"
+    },
+    {
+      "dato": "Inscripción",
+      "valor": "Gratuita; fecha por anunciar"
+    }
   ],
-  "reconocimientoCorto": "Certificado para los equipos participantes. Los mejores continúan con una investigación aplicada con apoyo de ENAEX (condiciones por confirmar).",
-  "proximamente": "Las bases, la fecha de inscripción y más detalles se anunciarán pronto por nuestro grupo de WhatsApp oficial."
+  "reconocimientos": [
+    {
+      "titulo": "Certificado oficial",
+      "texto": "Otorgado por la UNSA y su Vicerrectorado de Investigación a los equipos participantes."
+    },
+    {
+      "titulo": "Artículo o tesis",
+      "texto": "Una oportunidad real para convertir tu propuesta en un artículo científico o en el punto de partida de tu tesis."
+    }
+  ],
+  "reconocimientoCorto": "Certificado de la UNSA y su Vicerrectorado de Investigación, y la oportunidad de convertir tu propuesta en un artículo científico o en tu tesis.",
+  "proximamente": "Las bases, los retos, la fecha de inscripción y más detalles se anunciarán pronto por nuestro grupo de WhatsApp oficial."
 }

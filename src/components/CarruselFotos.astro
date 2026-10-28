@@ -1,0 +1,68 @@
+---
+// Carrusel pequeño de fotos dentro de un marco .dos__img: fundido cada 5 s, puntos para elegir la foto,
+// deslizar en celular y crédito de la foto visible. Con reduced-motion no avanza solo.
+import { withBase } from '../utils/paths';
+
+interface Foto { src: string; width: number; height: number; alt: string; credito?: string }
+interface Props { fotos: Foto[]; etiqueta: string; retraso?: number }
+const { fotos, etiqueta, retraso = 0 } = Astro.props;
+---
+<figure class="dos__img cfotos" data-cfotos data-reveal data-reveal-delay={retraso} aria-roledescription="carrusel" aria-label={etiqueta}>
+  {fotos.map((f, i) => (
+    <img class:list={['cfotos__img', { 'es-activa': i === 0 }]} src={withBase(f.src)} width={f.width} height={f.height} alt={f.alt} data-credito={f.credito} loading="lazy" decoding="async" />
+  ))}
+  <figcaption class="cfotos__pie">
+    <span class="cfotos__credito" data-cfotos-credito>{fotos[0]?.credito}</span>
+    {fotos.length > 1 && (
+      <span class="cfotos__puntos">
+        {fotos.map((_, i) => <button type="button" class:list={['cfotos__punto', { 'es-activa': i === 0 }]} aria-label={`Ver foto ${i + 1} de ${fotos.length}`} aria-current={i === 0 ? 'true' : undefined} data-ir={i}></button>)}
+      </span>
+    )}
+  </figcaption>
+</figure>
+
+<style>
+  .cfotos__img { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s var(--ease), transform 1.2s var(--ease-out); }
+  .cfotos__img.es-previa { opacity: 1; z-index: 0; transition: none; }
+  .cfotos__img.es-activa { opacity: 1; z-index: 1; }
+  .cfotos__pie { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1.5rem .75rem .4rem; background: linear-gradient(180deg, transparent, rgba(12, 12, 13, .6)); }
+  .cfotos__credito { font-size: .6875rem; line-height: 1.3; color: rgba(255, 255, 255, .85); }
+  .cfotos__puntos { display: flex; flex: none; }
+  .cfotos__punto { display: grid; place-items: center; width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; }
+  .cfotos__punto::before { content: ""; width: 14px; height: 2px; background: rgba(255, 255, 255, .5); transition: width .3s var(--ease-out), background .3s var(--ease); }
+  .cfotos__punto.es-activa::before { width: 22px; background: var(--cobre); }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-cfotos]').forEach((caja) => {
+    const fotos = [...caja.querySelectorAll<HTMLImageElement>('.cfotos__img')];
+    const puntos = [...caja.querySelectorAll<HTMLButtonElement>('[data-ir]')];
+    const credito = caja.querySelector('[data-cfotos-credito]');
+    if (fotos.length < 2) return;
+    const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let actual = 0, timer = 0, visible = false;
+    const ir = (n: number) => {
+      fotos.forEach((f) => f.classList.remove('es-previa'));
+      fotos[actual].classList.replace('es-activa', 'es-previa'); puntos[actual].classList.remove('es-activa'); puntos[actual].removeAttribute('aria-current');
+      actual = (n + fotos.length) % fotos.length;
+      fotos[actual].loading = 'eager';
+      fotos[actual].classList.add('es-activa'); puntos[actual].classList.add('es-activa'); puntos[actual].setAttribute('aria-current', 'true');
+      fotos[(actual + 1) % fotos.length].loading = 'eager';
+      if (credito) credito.textContent = fotos[actual].dataset.credito || '';
+    };
+    const seguir = () => {
+      clearInterval(timer); timer = 0;
+      if (!sinMovimiento && visible && !document.hidden) timer = window.setInterval(() => ir(actual + 1), 5000);
+    };
+    puntos.forEach((p) => p.addEventListener('click', () => { ir(Number(p.dataset.ir)); seguir(); }));
+    let x0 = 0, y0 = 0;
+    caja.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    caja.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) { ir(actual + (dx < 0 ? 1 : -1)); seguir(); }
+    }, { passive: true });
+    // Solo avanza mientras está en pantalla
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) fotos[1].loading = 'eager'; seguir(); }).observe(caja);
+    document.addEventListener('visibilitychange', seguir);
+  });
+</script>

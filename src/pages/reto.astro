@@ -9,13 +9,14 @@ import { withBase } from '../utils/paths';
 const img = imagenes.reto;
 const wa = { href: site.whatsapp, target: '_blank', rel: 'noopener' };
 ---
-<Base title={site.retoName} description={`${site.retoName}, la hackatón del ${site.name}: equipos multidisciplinarios de la UNSA crean soluciones innovadoras a problemas reales de la minería.`}>
+<Base title={site.retoName} description={`${site.retoName}, la hackatón del ${site.name}: equipos multidisciplinarios de la UNSA proponen soluciones propias a retos de la minería. Certificado de la UNSA y su Vicerrectorado de Investigación.`}>
   <Banner etiqueta={`Hackatón del ${site.name}`} bajada={site.retoFullName} imagen="banner"><span class="wordmark"><span class="wordmark__inno">INNO</span>MINING</span></Banner>
 
   <section class="seccion" id="resumen" aria-label={`Qué es ${site.retoName}`}>
     <div class="wrap dos">
       <div data-reveal>
         <p class="lectura-p resumen-fuerte resumen-primero">{reto.resumen}</p>
+        <p class="aviso enfoque">{reto.enfoque}</p>
         <h3 class="mini">Cómo funciona</h3>
         <ol class="pasos" role="list">
           {reto.pasos.map((p) => <li><strong>{p.titulo}</strong><span>{p.texto}</span></li>)}
@@ -35,8 +36,10 @@ const wa = { href: site.whatsapp, target: '_blank', rel: 'noopener' };
 
   <section class="reco" aria-labelledby="t-reco">
     <div class="wrap fila">
-      <h2 id="t-reco" class="titulo-2 titulo-2--claro" data-reveal>Reconocimiento</h2>
-      <p class="reco__texto" data-reveal>{reto.reconocimientoCorto}</p>
+      <h2 id="t-reco" class="titulo-2 titulo-2--claro" data-reveal>Lo que te llevas</h2>
+      <dl class="reco__lista" data-reveal>
+        {reto.reconocimientos.map((r) => <div><dt>{r.titulo}</dt><dd>{r.texto}</dd></div>)}
+      </dl>
     </div>
   </section>
 
@@ -71,8 +74,12 @@ const wa = { href: site.whatsapp, target: '_blank', rel: 'noopener' };
   .datos dt { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
   .datos dd { margin: .2rem 0 0; font-size: var(--t-sm); color: var(--texto); }
   .reco { padding-block: clamp(2rem, 4vw, 2.75rem); color: #fff; background: linear-gradient(160deg, var(--acento) 0%, var(--acento-oscuro) 100%); }
-  .reco__texto { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: #fff; max-width: 62ch; }
+  .enfoque { margin: 1rem 0 0; font-size: var(--t-sm); }
+  .reco__lista { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 2.5rem; }
+  .reco__lista div { padding-top: .75rem; border-top: 1px solid rgba(255, 255, 255, .25); }
+  .reco__lista dt { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--cobre-2); }
+  .reco__lista dd { margin: .3rem 0 0; font-size: 1.0625rem; line-height: 1.5; color: #fff; }
   @media (max-width: 48rem) {
-    .fila { grid-template-columns: minmax(0, 1fr); }
+    .fila, .reco__lista { grid-template-columns: minmax(0, 1fr); }
   }
 </style>

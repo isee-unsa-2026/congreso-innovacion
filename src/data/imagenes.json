@@ -103,5 +103,35 @@
       "alt": "Vista aérea de la mina Tintaya, Perú, con su tajo abierto y una laguna turquesa",
       "credito": "Foto: Grullab · Wikimedia Commons (CC BY-SA 4.0)"
     }
+  ],
+  "congresoCarrusel": [
+    {
+      "src": "/img/congreso/congreso-1.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Auditorio lleno durante una conferencia académica",
+      "credito": "Foto: Biswarup Ganguly · Wikimedia Commons (CC BY 3.0)"
+    },
+    {
+      "src": "/img/congreso/congreso-2.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Mesa de diálogo con cuatro panelistas frente al público",
+      "credito": "Foto: Spencer Najera · Wikimedia Commons (CC BY 4.0)"
+    },
+    {
+      "src": "/img/congreso/congreso-3.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Público atento en un auditorio iluminado durante una ponencia",
+      "credito": "Foto: Jorge Jaramillo · Wikimedia Commons (CC BY-SA 4.0)"
+    },
+    {
+      "src": "/img/congreso/congreso-4.jpg",
+      "width": 1280,
+      "height": 800,
+      "alt": "Claustro de la Universidad Nacional de San Agustín de Arequipa",
+      "credito": "Foto: JialiangGao · Wikimedia Commons (CC BY-SA 4.0)"
+    }
   ]
 }

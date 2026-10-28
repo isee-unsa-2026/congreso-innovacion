@@ -143,6 +143,11 @@ Notas:
 
 
 
+
+- Sección El congreso, foto 1 (Auditorio lleno durante una conferencia académica): Biswarup Ganguly, Wikimedia Commons, CC BY 3.0 — https://commons.wikimedia.org/wiki/File:Audience_-_Strategic_Transformations_-_Museums_in_21st_Century_-_International_Conference_and_Seminar_-_Science_City_-_Kolkata_2014-02-13_2295.JPG
+- Sección El congreso, foto 2 (Mesa de diálogo con cuatro panelistas frente al público): Spencer Najera, Wikimedia Commons, CC BY 4.0 — https://commons.wikimedia.org/wiki/File:NOLA_NAHJ_2026_Conference_-_(Group)_Charo_Henriquez_%2B_Sabrina_Rodriguez_%2B_Vanessa_Diaz_%2B_Julyssa_Lopez_1.jpg
+- Sección El congreso, foto 3 (Público atento en un auditorio iluminado durante una ponencia): Jorge Jaramillo, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Audience_view_inside_main_auditorium_-_Wikimania_2026_-_Paris_by_@JJxFile_0073_17.jpg
+- Sección El congreso, foto 4 (Claustro de la Universidad Nacional de San Agustín de Arequipa): JialiangGao www.peace-on-earth.org, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Universidad_Nacional_de_San_Agustin_Arequipa_Peru.jpg
 - Portada, foto 2 (Perforadora de taladros trabajando en un tajo abierto): James St. John, Wikimedia Commons, CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Drilling_rig_(Continental_Mine,_Butte,_Montana,_USA)_3.jpg
 - Portada, foto 3 (Técnicos con casco y chaleco dando mantenimiento a un camión minero gigante): Calistemon, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Haul_truck_under_repair_at_Brockman_4,_September_2018.jpg
 - Portada, foto 4 (Tren minero con locomotoras rojas atravesando el desierto rumbo a Toquepala): Kabelleger / David Gubler, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:SPCC_GP31ECO_71_and_72_Ilo_-_Toquepala.jpg

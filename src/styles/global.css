@@ -71,7 +71,7 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 
 .wrap { width: min(100% - 2rem, var(--w)); margin-inline: auto; }
 .lectura { max-width: var(--lectura); }
-.seccion { padding-block: clamp(2.5rem, 4.5vw, 3.5rem); }
+.seccion { padding-block: clamp(2rem, 3.5vw, 2.75rem); }
 .seccion--fondo { background: var(--fondo); }
 .lead { font-size: 1.0625rem; line-height: 1.6; color: var(--texto); }
 .centro { text-align: center; }
@@ -261,10 +261,10 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
   .dos__img img { transition: transform 1.2s var(--ease-out); }
   @media (hover: hover) { .dos__img:hover img { transform: scale(1.04); } }
 
-  /* Logos de empresas: sobrios en gris y a color al pasar el cursor */
+  /* Logos de empresas (a color): se elevan un poco al pasar el cursor */
   @media (hover: hover) {
-    .logos__item img { filter: grayscale(1); opacity: .78; transition: filter .4s var(--ease), opacity .4s var(--ease), transform .4s var(--ease-out); }
-    .logos__item:hover img { filter: none; opacity: 1; transform: translateY(-2px); }
+    .logos__item img { transition: transform .4s var(--ease-out); }
+    .logos__item:hover img { transform: translateY(-2px); }
   }
 }
 

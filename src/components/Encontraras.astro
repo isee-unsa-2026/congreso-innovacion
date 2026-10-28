@@ -6,13 +6,12 @@ import { withBase } from '../utils/paths';
 import LogosEmpresas from './LogosEmpresas.astro';
 const rasgos = [
   {
-    titulo: 'Ponencias de la industria',
-    html: 'Referentes de empresas mineras líderes y de la academia compartirán su experiencia en la operación y la innovación minera.',
-    logos: true,
+    titulo: 'Ponencias y mesas de diálogo',
+    html: 'Referentes de empresas mineras líderes y de la academia comparten su experiencia y, al cierre de cada jornada, dialogan entre sí y responden las preguntas del público.',
   },
   {
     titulo: `Hackatón ${site.retoName}`,
-    html: `Equipos multidisciplinarios de la UNSA crean soluciones innovadoras a problemas reales de la minería, con el respaldo de ENAEX, empresa patrocinadora. <a href="${withBase('/reto/')}">Conoce el concurso</a>.`,
+    html: `Equipos multidisciplinarios de la UNSA proponen soluciones propias a retos de la minería planteados por ENAEX, empresa auspiciadora del congreso. <a href="${withBase('/reto/')}">Conoce la hackatón</a>.`,
   },
   {
     titulo: 'Networking',
@@ -26,23 +25,22 @@ const rasgos = [
       <span class="punto__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
       <h3>{p.titulo}</h3>
       <p set:html={p.html} />
-      {p.logos && (
-        <div class="punto__logos">
-          <p class="punto__t">Con profesionales de</p>
-          <LogosEmpresas area={2700} etiqueta="Empresas participantes" />
-        </div>
-      )}
     </li>
   ))}
 </ul>
+<div class="franja-logos" data-reveal>
+  <p class="franja-logos__t">Con profesionales de</p>
+  <LogosEmpresas area={2400} etiqueta="Empresas participantes" />
+</div>
 <style>
   .rasgos { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 2px solid var(--texto); }
   .punto { padding: 1.25rem 0 1.35rem; border-bottom: 1px solid var(--linea); }
   .punto__n { display: block; margin-bottom: .5rem; font: 700 1rem/1 var(--f-display); color: var(--acento); letter-spacing: .04em; }
   .punto h3 { font-size: 1.125rem; font-weight: 700; line-height: 1.2; margin-bottom: .35rem; }
   .punto p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
-  .punto__logos { margin-top: 1rem; padding-top: .9rem; border-top: 1px dashed var(--linea); }
-  .punto .punto__t { margin: 0 0 .65rem; font: 500 .6875rem/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
+  .franja-logos { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 2.5rem; padding: 1.1rem 0 .3rem; }
+  .franja-logos :global(.logos) { flex: 1; justify-content: space-between; min-width: min(100%, 36rem); }
+  .franja-logos__t { flex: none; margin: 0 0 .9rem; font: 500 .6875rem/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
   @media (min-width: 52rem) {
     .rasgos { grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--linea); }
     .punto { padding: 1.35rem 1.5rem 1.5rem 0; border-bottom: 0; }

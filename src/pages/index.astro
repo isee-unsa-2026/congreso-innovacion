@@ -5,6 +5,7 @@ import Encontraras from '../components/Encontraras.astro';
 import RetoBloque from '../components/RetoBloque.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
+import CarruselFotos from '../components/CarruselFotos.astro';
 import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
@@ -21,7 +22,7 @@ const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearc
 const faq = [
   { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
   { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en el ${site.place}, Arequipa.` },
-  { titulo: `¿Qué es ${site.retoName}?`, html: `Es la hackatón del congreso: equipos multidisciplinarios de estudiantes y egresados de la UNSA, con un docente asesor de la UNSA, crean soluciones innovadoras a problemas reales de la minería, con foco en la perforación y voladura y el respaldo de ENAEX, empresa patrocinadora. Bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
+  { titulo: `¿Qué es ${site.retoName}?`, html: `Es la hackatón del congreso: equipos multidisciplinarios de estudiantes y egresados de la UNSA, con un docente asesor, trabajan sobre retos propuestos por ENAEX, empresa auspiciadora, y presentan una solución propia para afrontarlos. Otorga certificado de la UNSA y su Vicerrectorado de Investigación, y puede ser el inicio de un artículo o una tesis. Bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
   { titulo: '¿Cómo me inscribo al congreso?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito.` },
 ];
 ---
@@ -64,12 +65,10 @@ const faq = [
     <div class="wrap dos">
       <div data-reveal>
         <h2 id="t-congreso" class="titulo-2">Un congreso sobre <em>innovación</em> en minería</h2>
-        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y la hackatón {site.retoName}, donde equipos de la UNSA proponen soluciones innovadoras a problemas reales de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
+        <p class="lectura-p">Dos días de ponencias técnicas, mesas de diálogo entre la industria y la academia, y la hackatón {site.retoName}, donde equipos de la UNSA proponen soluciones propias a retos de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
         <a class="enlace-flecha" href={withBase('/congreso/')}>Conocer el congreso</a>
       </div>
-      <figure class="dos__img" data-reveal data-reveal-delay="100">
-        <img src={withBase(imagenes.congreso.src)} width={imagenes.congreso.width} height={imagenes.congreso.height} alt={imagenes.congreso.alt} loading="lazy" decoding="async" />
-      </figure>
+      <CarruselFotos fotos={imagenes.congresoCarrusel} etiqueta="Fotografías de congresos y de la UNSA" retraso={100} />
     </div>
   </section>
 
@@ -112,7 +111,8 @@ const faq = [
   .hero { position: relative; isolation: isolate; display: grid; align-items: center; min-height: max(32rem, calc(100svh - 77px)); padding: clamp(2.5rem, 5vw, 3.5rem) 0 4.5rem; background: var(--tinta); overflow: hidden; color: #fff; text-align: center; }
   .hero__fotos { position: absolute; inset: 0; z-index: -2; }
   .hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; opacity: 0; transition: opacity 1.4s var(--ease); }
-  .hero__foto.es-activa { opacity: 1; }
+  .hero__foto.es-previa { opacity: 1; z-index: 0; transition: none; }
+  .hero__foto.es-activa { opacity: 1; z-index: 1; }
   /* Controles discretos del carrusel: líneas indicadoras y crédito de la foto (abajo a la izquierda) */
   .hero__ctrl { position: absolute; left: clamp(1rem, 4vw, 2.5rem); bottom: 1.25rem; z-index: 1; display: flex; align-items: center; gap: .75rem; }
   .hero__puntos { display: flex; gap: .15rem; }
@@ -193,7 +193,8 @@ const faq = [
     let enfocado = false;
     const precargar = (n: number) => { fotos[n % fotos.length].loading = 'eager'; };
     const ir = (n: number) => {
-      fotos[actual].classList.remove('es-activa');
+      fotos.forEach((f) => f.classList.remove('es-previa'));
+      fotos[actual].classList.replace('es-activa', 'es-previa');
       puntos[actual].classList.remove('es-activa');
       puntos[actual].removeAttribute('aria-current');
       actual = (n + fotos.length) % fotos.length;

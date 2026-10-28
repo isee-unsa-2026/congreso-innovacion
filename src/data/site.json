@@ -6,7 +6,7 @@
   "organizer": "ISEE UNSA",
   "organizerFull": "ISEE UNSA Student Chapter",
   "tagline": "Soluciones reales para desafíos reales",
-  "description": "El Primer Congreso de Innovación en Minería (InnoMining · ISEE UNSA) es un congreso gratuito organizado por ISEE UNSA en Arequipa: dos días de ponencias de referentes de la industria minera y de la academia, networking y la hackatón INNOMINING, donde equipos multidisciplinarios de la UNSA proponen soluciones innovadoras a problemas reales de la minería.",
+  "description": "El Primer Congreso de Innovación en Minería (InnoMining · ISEE UNSA) es un congreso gratuito organizado por ISEE UNSA en Arequipa: dos días de ponencias de referentes de la industria minera y de la academia, networking y la hackatón INNOMINING, donde equipos multidisciplinarios de la UNSA proponen soluciones propias a retos de la minería.",
   "dates": "18 y 19 de noviembre de 2026",
   "dateShort": "18 — 19 nov 2026",
   "dateStart": "2026-11-18",
@@ -17,7 +17,7 @@
   "free": true,
   "retoName": "INNOMINING",
   "retoFullName": "Hackatón de innovación minera",
-  "retoDescription": "Hackatón en la que equipos multidisciplinarios de la UNSA, con un docente asesor, crean soluciones innovadoras a problemas reales de la minería, con foco en perforación y voladura y el respaldo de ENAEX, empresa patrocinadora. Bases e inscripción, próximamente.",
+  "retoDescription": "Hackatón en la que equipos multidisciplinarios de la UNSA, con un docente asesor, trabajan sobre retos propuestos por ENAEX, empresa auspiciadora, y presentan una solución propia. Certificado de la UNSA y su Vicerrectorado de Investigación. Bases e inscripción, próximamente.",
   "empresas": [
     {
       "nombre": "Cerro Verde",

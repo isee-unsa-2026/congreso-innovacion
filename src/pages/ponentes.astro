@@ -7,8 +7,14 @@ import site from '../data/site.json';
 import datos from '../data/ponentes.json';
 import { withBase } from '../utils/paths';
 const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).join(' ')).join(', ');
+// Formato de cada jornada (sin horarios: se anunciarán con el programa)
+const formato = [
+  { titulo: 'Ponencias', texto: 'Referentes de la industria y la academia presentan su experiencia en innovación, operación y desarrollo minero.' },
+  { titulo: 'Mesa de diálogo', texto: 'Al cierre de cada jornada, los ponentes conversan entre sí y responden preguntas planteadas por los asistentes y el comité organizador.' },
+  { titulo: 'Coffee break', texto: 'Un espacio para conversar con los ponentes, profesionales y estudiantes de distintas carreras.' },
+];
 ---
-<Base title="Ponentes" description={`Ponentes confirmados del ${site.name} (${site.kicker}): ${nombres}. ${site.dates}, UNSA, Arequipa.`}>
+<Base title="Ponentes" description={`Ponentes confirmados del ${site.name} (${site.kicker}): ${nombres}. Ponencias y mesas de diálogo, ${site.dates}, UNSA, Arequipa.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Ponentes" />
 
   <section class="seccion" aria-label="Ponentes confirmados">
@@ -18,10 +24,8 @@ const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).j
   </section>
 
   <section class="seccion seccion--fondo" aria-labelledby="t-empresas">
-    <div class="wrap empresas" data-reveal>
-      <div>
-        <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
-      </div>
+    <div class="wrap" data-reveal>
+      <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
       <div class="empresas__logos">
         <LogosEmpresas area={2600} etiqueta="Empresas participantes" />
       </div>
@@ -30,29 +34,34 @@ const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).j
 
   <section class="seccion" aria-labelledby="t-sesiones">
     <div class="wrap sesiones" data-reveal>
-      <h2 id="t-sesiones" class="titulo-2">Cómo serán las <em>sesiones</em></h2>
       <div>
-        <p class="sesiones__p">Las sesiones se concentrarán en el horario más aprovechable del día, sin ocupar la jornada completa, e incluirán coffee break. Iremos anunciando más ponentes y el programa aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>.</p>
+        <h2 id="t-sesiones" class="titulo-2">Cómo serán las <em>sesiones</em></h2>
+        <p class="sesiones__p">Dos mañanas de ponencias y diálogo, sin ocupar la jornada completa. Iremos anunciando más ponentes y el programa aquí y en el <a href={site.whatsapp} target="_blank" rel="noopener">grupo de WhatsApp<span class="sr"> (se abre en una pestaña nueva)</span></a>.</p>
         <div class="acciones">
           <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
           <a class="btn btn--sec" href={withBase('/congreso/')}>Conocer el congreso</a>
         </div>
       </div>
+      <ol class="formato" role="list">
+        {formato.map((f) => <li><h3>{f.titulo}</h3><p>{f.texto}</p></li>)}
+      </ol>
     </div>
   </section>
 </Base>
 
 <style>
-  .empresas { display: grid; gap: 1.25rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: center; }
-  .empresas__p { margin: .5rem 0 0; color: var(--texto-2); max-width: 46ch; }
-  .empresas__logos { padding: 1.5rem 1.75rem .9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); }
-  .empresas__logos :global(.logos) { justify-content: space-around; }
-  .sesiones { display: grid; gap: 1rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); padding-top: 1.5rem; border-top: 2px solid var(--texto); }
-  .sesiones__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 60ch; }
-  .sesiones .acciones { margin-top: 1.5rem; }
+  .empresas__logos { margin-top: 1.25rem; padding: 1.4rem clamp(1.25rem, 3vw, 2.5rem) .9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); }
+  .empresas__logos :global(.logos) { justify-content: space-between; }
+  .sesiones { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; }
+  .sesiones__p { margin: .9rem 0 0; font-size: 1.0625rem; line-height: 1.55; max-width: 52ch; }
+  .sesiones .acciones { margin-top: 1.25rem; }
+  .formato { list-style: none; margin: 0; padding: 0; counter-reset: f; border-top: 2px solid var(--texto); }
+  .formato li { display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); padding: .85rem 0; border-bottom: 1px solid var(--linea); counter-increment: f; }
+  .formato li::before { content: counter(f, decimal-leading-zero); grid-row: span 2; font: 700 1rem/1.5 var(--f-display); color: var(--acento); }
+  .formato h3 { margin: 0 0 .2rem; font-size: 1.0625rem; }
+  .formato p { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
   @media (max-width: 48rem) {
-    .empresas, .sesiones { grid-template-columns: 1fr; }
-    .empresas__logos { padding: 1.25rem 1.25rem .75rem; }
-    .empresas__logos :global(.logos) { justify-content: flex-start; }
+    .sesiones { grid-template-columns: 1fr; }
+    .empresas__logos :global(.logos) { justify-content: center; }
   }
 </style>
