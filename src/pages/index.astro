@@ -13,17 +13,17 @@ const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearc
   action: 'TEMPLATE',
   text: `${site.name} · InnoMining ISEE UNSA`,
   dates: `${site.dateStart.replaceAll('-', '')}/20261120`,
-  details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y el concurso ${site.retoName}. Horarios próximamente.`,
+  details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y la hackatón ${site.retoName}. Horarios próximamente.`,
   location: `${site.place}, ${site.city}`,
 }).toString().replace('%2F', '/');
 const faq = [
   { titulo: '¿Tiene costo participar?', texto: `No. El ingreso al ${site.name} es gratuito.` },
   { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en el ${site.place}, Arequipa.` },
-  { titulo: `¿Qué es ${site.retoName}?`, html: `Es el concurso del congreso: equipos multidisciplinarios de estudiantes y egresados de la UNSA proponen soluciones a retos planteados por ENAEX, empresa patrocinadora, o a problemas que identifiquen ellos mismos, de preferencia en perforación y voladura. Cada equipo cuenta con un docente asesor de la UNSA (obligatorio). La fecha y el lugar de las sustentaciones se anunciarán pronto. Más información, bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
+  { titulo: `¿Qué es ${site.retoName}?`, html: `Es la hackatón del congreso: equipos multidisciplinarios de estudiantes y egresados de la UNSA, con un docente asesor de la UNSA, crean soluciones innovadoras a problemas reales de la minería, con foco en la perforación y voladura y el respaldo de ENAEX, empresa patrocinadora. Bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
   { titulo: '¿Cómo me inscribo al congreso?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito.` },
 ];
 ---
-<Base title={`${site.name} · InnoMining ISEE UNSA 2026`} description={`${site.name} (InnoMining · ISEE UNSA): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de referentes de la industria minera y la academia, y el concurso ${site.retoName}.`}>
+<Base title={`${site.name} · InnoMining ISEE UNSA 2026`} description={`${site.name} (InnoMining · ISEE UNSA): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de referentes de la industria minera y la academia, y la hackatón ${site.retoName}.`}>
   <section class="hero" aria-labelledby="titulo-portada">
     <img class="hero__foto" src={withBase(hero.src)} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
     <div class="hero__velo" aria-hidden="true"></div>
@@ -41,7 +41,7 @@ const faq = [
         <a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
         <a class="btn btn--vidrio" href={withBase('/ponentes/')}>Conoce a los ponentes</a>
       </div>
-      <a class="hero__reto anim" style="--d:420ms" href={withBase('/reto/')}>Conoce el concurso {site.retoName}<span aria-hidden="true"> →</span></a>
+      <a class="hero__reto anim" style="--d:420ms" href={withBase('/reto/')}>Conoce la hackatón {site.retoName}<span aria-hidden="true"> →</span></a>
     </div>
     <a class="hero__bajar" href="#t-congreso"><span class="sr">Ir al contenido del congreso</span><span class="hero__flecha" aria-hidden="true"></span></a>
   </section>
@@ -50,7 +50,7 @@ const faq = [
     <div class="wrap dos">
       <div data-reveal>
         <h2 id="t-congreso" class="titulo-2">Un congreso sobre <em>innovación</em> en minería</h2>
-        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y el concurso {site.retoName}, donde equipos de la UNSA proponen soluciones innovadoras a problemas reales de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
+        <p class="lectura-p">Dos días de ponencias técnicas, conversación entre la industria y la academia, y la hackatón {site.retoName}, donde equipos de la UNSA proponen soluciones innovadoras a problemas reales de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
         <a class="enlace-flecha" href={withBase('/congreso/')}>Conocer el congreso</a>
       </div>
       <figure class="dos__img" data-reveal data-reveal-delay="100">

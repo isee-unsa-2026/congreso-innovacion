@@ -6,7 +6,7 @@
   "organizer": "ISEE UNSA",
   "organizerFull": "ISEE UNSA Student Chapter",
   "tagline": "Soluciones reales para desafíos reales",
-  "description": "El Primer Congreso de Innovación en Minería (InnoMining · ISEE UNSA) es un congreso gratuito organizado por ISEE UNSA en Arequipa: dos días de ponencias de referentes de la industria minera y de la academia, networking y el concurso INNOMINING, donde equipos multidisciplinarios de la UNSA proponen soluciones innovadoras a problemas reales de la minería.",
+  "description": "El Primer Congreso de Innovación en Minería (InnoMining · ISEE UNSA) es un congreso gratuito organizado por ISEE UNSA en Arequipa: dos días de ponencias de referentes de la industria minera y de la academia, networking y la hackatón INNOMINING, donde equipos multidisciplinarios de la UNSA proponen soluciones innovadoras a problemas reales de la minería.",
   "dates": "18 y 19 de noviembre de 2026",
   "dateShort": "18 — 19 nov 2026",
   "dateStart": "2026-11-18",
@@ -16,8 +16,8 @@
   "place": "Auditorio de la Facultad de Arquitectura, UNSA",
   "free": true,
   "retoName": "INNOMINING",
-  "retoFullName": "Concurso de Investigación y Soluciones en Voladura",
-  "retoDescription": "Concurso en el que equipos multidisciplinarios de estudiantes y egresados de la UNSA proponen soluciones a retos planteados por ENAEX, empresa patrocinadora del congreso, o a problemas que identifiquen ellos mismos, con foco en la perforación y voladura. Bases e inscripción, próximamente.",
+  "retoFullName": "Hackatón de innovación minera",
+  "retoDescription": "Hackatón en la que equipos multidisciplinarios de la UNSA, con un docente asesor, crean soluciones innovadoras a problemas reales de la minería, con foco en perforación y voladura y el respaldo de ENAEX, empresa patrocinadora. Bases e inscripción, próximamente.",
   "empresas": [
     { "nombre": "Cerro Verde", "alt": "Sociedad Minera Cerro Verde", "logo": "/img/logos/cerro-verde.svg", "ancho": 231.41, "alto": 46.91 },
     { "nombre": "Anglo American Quellaveco", "alt": "Anglo American", "leyenda": "Quellaveco", "logo": "/img/logos/anglo-american.svg", "ancho": 184, "alto": 41 },
@@ -32,7 +32,7 @@
     { "label": "Inicio", "href": "/" },
     { "label": "Congreso", "href": "/congreso/" },
     { "label": "Ponentes", "href": "/ponentes/" },
-    { "label": "Concurso", "href": "/reto/" },
+    { "label": "Hackatón", "href": "/reto/" },
     { "label": "Inscripciones", "href": "/inscripciones/", "cta": true }
   ],
   "host": "Universidad Nacional de San Agustín de Arequipa",

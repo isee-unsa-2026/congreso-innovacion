@@ -1,85 +1,17 @@
 {
-  "resumen": "INNOMINING invita a equipos multidisciplinarios de la UNSA a proponer soluciones innovadoras para la minería, con especial interés en la perforación y voladura de rocas. Los retos los plantea ENAEX, empresa patrocinadora del congreso, y también pueden surgir de los propios equipos.",
+  "resumen": "INNOMINING es la hackatón del congreso: equipos multidisciplinarios de la UNSA se juntan para idear y presentar soluciones innovadoras a problemas reales de la minería, con foco en la perforación y voladura y el respaldo de ENAEX, empresa patrocinadora.",
   "pasos": [
-    { "titulo": "Eligen un reto de ENAEX o plantean uno propio", "texto": "Un problema u oportunidad de mejora concreto en la operación minera." },
-    { "titulo": "Proponen una solución original", "texto": "Un dispositivo, un sistema, un software, un modelo o un método." },
-    { "titulo": "Presentan su idea de forma innovadora", "texto": "Como concepto o prototipo, desarrollado en aproximadamente un mes." },
-    { "titulo": "Sustentan ante el jurado", "texto": "15 minutos por equipo; fecha y lugar por confirmar." }
+    { "titulo": "Arma tu equipo", "texto": "Estudiantes y egresados de la UNSA de distintas carreras, con un docente asesor de la UNSA." },
+    { "titulo": "Elige un reto", "texto": "Un problema real de la minería, de preferencia en perforación y voladura." },
+    { "titulo": "Crea tu solución", "texto": "Una idea innovadora, presentada como concepto o prototipo." },
+    { "titulo": "Preséntala ante el jurado", "texto": "Fecha y lugar por confirmar." }
   ],
-  "porQue": "Todos los equipos que sustenten recibirán un certificado de participación, y los mejores continuarán con una investigación aplicada con acompañamiento y financiamiento de ENAEX (condiciones por confirmar).",
   "datosClave": [
-    { "dato": "Sustentaciones", "valor": "Fecha y lugar por confirmar" },
-    { "dato": "Dirigido a", "valor": "Estudiantes de la UNSA, de preferencia desde el 4.º semestre, y egresados de la UNSA" },
-    { "dato": "Equipos", "valor": "Se recomiendan 4 integrantes de distintas carreras, incluido Ingeniería de Minas, con un docente asesor de la UNSA (obligatorio)" },
-    { "dato": "Preparación", "valor": "Alrededor de un mes para desarrollar un concepto o prototipo" },
-    { "dato": "Inscripción", "valor": "Gratuita; la fecha se anunciará pronto" }
+    { "dato": "Formato", "valor": "Hackatón por equipos" },
+    { "dato": "Participan", "valor": "Estudiantes y egresados de la UNSA" },
+    { "dato": "Equipos", "valor": "Multidisciplinarios, con un docente asesor de la UNSA (obligatorio)" },
+    { "dato": "Inscripción", "valor": "Gratuita; fecha por anunciar" }
   ],
-  "retos": [
-    { "titulo": "Retos de ENAEX", "texto": "ENAEX, empresa patrocinadora del congreso, plantea retos concretos de la industria, centrados en la perforación y voladura. Se darán a conocer junto con las bases." },
-    { "titulo": "Retos del propio equipo", "texto": "Los equipos también pueden plantear un problema que hayan identificado, siempre que tenga relación con la minería y, de preferencia, con la perforación y voladura." }
-  ],
-  "lineasIntro": "Para orientar la elección, estas son algunas líneas de referencia:",
-  "lineas": [
-    "Fragmentación y diseño de voladuras",
-    "Seguridad en perforación y voladura",
-    "Instrumentación, sensores, monitoreo y automatización",
-    "Digitalización, inteligencia artificial y análisis de datos",
-    "Vibraciones, ruido, polvo, gases y otros impactos ambientales",
-    "Productividad, costos y eficiencia operacional",
-    "Geología y geomecánica del macizo rocoso",
-    "Efecto de la fragmentación en carguío, acarreo, chancado y molienda"
-  ],
-  "participan": [
-    "Estudiantes de pregrado de la UNSA, de preferencia desde el 4.º semestre, y egresados de la UNSA.",
-    "Se recomiendan equipos de 4 integrantes de distintas carreras, incluido al menos un estudiante de Ingeniería de Minas.",
-    "Cada equipo debe contar con un docente asesor de la UNSA (obligatorio) que lo oriente; la solución es obra de los estudiantes.",
-    "Lo más valioso es que cada carrera tenga un aporte claro dentro de la propuesta."
-  ],
-  "perfiles": [
-    { "carrera": "Ingeniería de Minas", "aporte": "Conocimiento del problema operativo, de perforación y voladura, y de las condiciones reales de campo." },
-    { "carrera": "Ingeniería Electrónica", "aporte": "Sensores, instrumentación, circuitos y adquisición de datos." },
-    { "carrera": "Ingeniería Mecánica", "aporte": "Diseño y construcción del dispositivo, materiales y resistencia." },
-    { "carrera": "Sistemas o Ciencia de la Computación", "aporte": "Programación, análisis de datos, modelos predictivos y visualización." },
-    { "carrera": "Geología, Química, Ambiental u otras afines", "aporte": "Comportamiento del macizo rocoso, materiales, impactos y variables del entorno." }
-  ],
-  "entregas": [
-    { "titulo": "Concepto o prototipo", "texto": "La idea del equipo presentada de forma innovadora: explicada con detalle técnico o en una versión que pueda mostrarse (maqueta, circuito, simulación o software)." },
-    { "titulo": "Ficha de propuesta", "texto": "Un documento breve que resume el problema, la solución y cómo se validaría." },
-    { "titulo": "Sustentación de 15 min", "texto": "La presentación del equipo ante el jurado, seguida de preguntas. Fecha y lugar por confirmar." }
-  ],
-  "preguntas": [
-    "¿Cuál es el problema?",
-    "¿Por qué es importante resolverlo?",
-    "¿Cuál es la solución propuesta y cómo funciona?",
-    "¿Qué tiene de novedoso o diferente?",
-    "¿Cómo se comprobaría o validaría?",
-    "¿Qué impacto tendría para la minería?",
-    "¿Cómo aporta cada carrera del equipo?"
-  ],
-  "claves": [
-    "Una idea original, con aporte propio del equipo.",
-    "Sustento técnico y una forma realista de validarla.",
-    "Impacto posible en seguridad, productividad, costos o sostenibilidad.",
-    "Trabajo de verdad multidisciplinario.",
-    "Una exposición clara para un público de distintas carreras."
-  ],
-  "etapas": [
-    { "nombre": "Inscripción", "fecha": "Por anunciar", "texto": "La fecha y el enlace se compartirán por el grupo de WhatsApp oficial junto con las bases.", "pendiente": true },
-    { "nombre": "Desarrollo", "fecha": "Aprox. un mes", "texto": "Cada equipo desarrolla su idea de forma innovadora, como concepto o prototipo, junto con su ficha de propuesta." },
-    { "nombre": "Sustentación", "fecha": "Por confirmar", "texto": "Cada equipo expone 15 minutos ante el jurado y responde preguntas. La fecha y el lugar se anunciarán pronto.", "pendiente": true },
-    { "nombre": "Investigación aplicada", "fecha": "Desde diciembre de 2026", "texto": "Los mejores equipos continúan su proyecto con acompañamiento y financiamiento de ENAEX (condiciones por confirmar)." }
-  ],
-  "cronogramaNota": "Las fechas por confirmar se comunicarán por el grupo de WhatsApp oficial.",
-  "reconocimientos": [
-    { "quien": "Todos los equipos que sustenten", "que": "Certificado de participación." },
-    { "quien": "Los mejores equipos", "que": "Continúan con una investigación aplicada, con acompañamiento y financiamiento de ENAEX (condiciones por confirmar)." }
-  ],
-  "reconocimientoCorto": "Certificado para todos los equipos que sustenten. Los mejores continúan con una investigación aplicada con apoyo de ENAEX (condiciones por confirmar).",
-  "practicas": [
-    { "titulo": "Seguridad", "texto": "No se manipulan, fabrican ni ensayan explosivos ni accesorios de voladura: el trabajo es conceptual, de análisis, modelamiento o diseño." },
-    { "titulo": "Originalidad", "texto": "Se espera una propuesta propia. Se pueden usar estudios, normas o productos existentes como antecedentes, citándolos." },
-    { "titulo": "Inteligencia artificial", "texto": "Puede servir de apoyo para buscar, organizar o programar, sin reemplazar el trabajo del equipo; se recomienda mencionarlo." },
-    { "titulo": "Confidencialidad", "texto": "La información que compartan las empresas se usa solo para el proyecto." }
-  ],
-  "proximamente": "Pronto compartiremos las bases y la fecha de inscripción por nuestro grupo de WhatsApp oficial."
+  "reconocimientoCorto": "Certificado para los equipos participantes. Los mejores continúan con una investigación aplicada con apoyo de ENAEX (condiciones por confirmar).",
+  "proximamente": "Las bases, la fecha de inscripción y más detalles se anunciarán pronto por nuestro grupo de WhatsApp oficial."
 }

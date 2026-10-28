@@ -10,7 +10,12 @@
       "detalle": "Transformación Estratégica en Minería y Energía",
       "sector": "Industria",
       "foto": "/img/ponentes/ruth-escobar-juarez.webp",
-      "logo": { "src": "/img/logos/cerro-verde.svg", "alt": "Cerro Verde", "ancho": 231.41, "alto": 46.91 }
+      "logo": {
+        "src": "/img/logos/cerro-verde.svg",
+        "alt": "Cerro Verde",
+        "ancho": 231.41,
+        "alto": 46.91
+      }
     },
     {
       "titulo": "Dr.",
@@ -20,7 +25,12 @@
       "detalle": "",
       "sector": "Academia",
       "foto": "/img/ponentes/bernardo-de-la-gala.webp",
-      "logo": { "src": "/brand/unsa-logo.png", "alt": "UNSA", "ancho": 206, "alto": 256 }
+      "logo": {
+        "src": "/brand/unsa-logo.png",
+        "alt": "UNSA",
+        "ancho": 206,
+        "alto": 256
+      }
     },
     {
       "titulo": "Ing.",
@@ -30,17 +40,72 @@
       "detalle": "",
       "sector": "Industria",
       "foto": "/img/ponentes/nestor-delgado-ponce.webp",
-      "logo": { "src": "/img/logos/enaex.svg", "alt": "Enaex", "ancho": 165.67, "alto": 46.01 }
+      "logo": {
+        "src": "/img/logos/enaex.svg",
+        "alt": "Enaex",
+        "ancho": 165.67,
+        "alto": 46.01
+      }
     },
     {
       "titulo": "Ing.",
       "nombre": "Dino Yancachajlla Tito",
-      "cargo": "Vicepresidente",
-      "organizacion": "ISEE Perú",
+      "cargo": "Presidente",
+      "organizacion": "ISEE Arequipa",
       "detalle": "",
       "sector": "Industria",
       "foto": "/img/ponentes/dino-yancachajlla-tito.webp",
-      "logo": { "src": "/img/logos/isee.png", "alt": "ISEE", "ancho": 400, "alto": 184 }
+      "logo": {
+        "src": "/img/logos/isee.png",
+        "alt": "ISEE",
+        "ancho": 400,
+        "alto": 184
+      }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Giancarlo Pinto",
+      "cargo": "Director de Operaciones",
+      "organizacion": "Fortuna Mining Corp.",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "",
+      "logo": {
+        "src": "/img/logos/fortuna.png",
+        "alt": "Fortuna Mining",
+        "ancho": 400,
+        "alto": 130
+      }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Wilbert Pacheco",
+      "cargo": "Superintendente de Perforación y Voladura",
+      "organizacion": "Anglo American Quellaveco",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "",
+      "logo": {
+        "src": "/img/logos/anglo-american.svg",
+        "alt": "Anglo American",
+        "ancho": 184,
+        "alto": 41
+      }
+    },
+    {
+      "titulo": "",
+      "nombre": "Eduardo Asmat",
+      "cargo": "Director de Asuntos Corporativos y Sostenibilidad",
+      "organizacion": "Minera Bateas",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/eduardo-asmat.webp",
+      "logo": {
+        "src": "/img/logos/fortuna.png",
+        "alt": "Minera Bateas · Fortuna Mining",
+        "ancho": 400,
+        "alto": 130
+      }
     }
   ]
 }
