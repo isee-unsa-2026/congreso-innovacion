@@ -242,6 +242,37 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 /* Lo que ya estaba pintado al cargar el script queda visible, sin parpadeo */
 .js [data-reveal].is-quieto { transition: none; }
 
+/* ---------- Dinamismo sobrio (solo transform/opacity/filter; todo se apaga con reduced-motion) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  /* El revelado entra con un leve desenfoque que se aclara */
+  .js [data-reveal] { filter: blur(3px); transition-property: opacity, transform, filter; }
+  .js [data-reveal].is-in { filter: none; }
+  .js [data-reveal].is-quieto { filter: none; }
+
+  /* Títulos de sección: un filete de cobre se traza bajo el título al aparecer */
+  .js [data-reveal] .titulo-2::after, .js .titulo-2[data-reveal]::after {
+    content: ""; display: block; width: 2.5rem; height: 2px; margin-top: .55rem; background: var(--cobre);
+    transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease-out) calc(var(--rd, 0) * 1ms + 250ms);
+  }
+  .js [data-reveal].is-in .titulo-2::after, .js .titulo-2[data-reveal].is-in::after { transform: none; }
+  .js [data-reveal].is-quieto .titulo-2::after, .js .titulo-2[data-reveal].is-quieto::after { transform: none; transition: none; }
+
+  /* Fotos dentro de marcos: acercamiento lento al pasar el cursor */
+  .dos__img img { transition: transform 1.2s var(--ease-out); }
+  @media (hover: hover) { .dos__img:hover img { transform: scale(1.04); } }
+
+  /* Logos de empresas: sobrios en gris y a color al pasar el cursor */
+  @media (hover: hover) {
+    .logos__item img { filter: grayscale(1); opacity: .78; transition: filter .4s var(--ease), opacity .4s var(--ease), transform .4s var(--ease-out); }
+    .logos__item:hover img { filter: none; opacity: 1; transform: translateY(-2px); }
+  }
+}
+
+/* Barra de progreso de lectura (fina, cobre) y cabecera con sombra al bajar */
+.progreso { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: var(--cobre); transform: scaleX(var(--p, 0)); transform-origin: left; pointer-events: none; }
+.cab { transition: box-shadow .3s var(--ease); }
+.cab.cab--bajo { box-shadow: 0 6px 20px -12px rgba(18, 19, 21, .35); }
+
 /* Movimiento reducido: sin desplazamientos ni animaciones; se conservan los cambios de color y el foco */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

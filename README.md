@@ -142,6 +142,12 @@ Notas:
 ## Créditos de imágenes
 
 
+
+- Portada, foto 2 (Perforadora de taladros trabajando en un tajo abierto): James St. John, Wikimedia Commons, CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Drilling_rig_(Continental_Mine,_Butte,_Montana,_USA)_3.jpg
+- Portada, foto 3 (Técnicos con casco y chaleco dando mantenimiento a un camión minero gigante): Calistemon, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Haul_truck_under_repair_at_Brockman_4,_September_2018.jpg
+- Portada, foto 4 (Tren minero con locomotoras rojas atravesando el desierto rumbo a Toquepala): Kabelleger / David Gubler, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:SPCC_GP31ECO_71_and_72_Ilo_-_Toquepala.jpg
+- Portada, foto 5 (Camión minero de acarreo cargado avanzando por una mina a tajo abierto): Roy Luck, Wikimedia Commons, CC BY 2.0 — https://commons.wikimedia.org/wiki/File:Caterpillar_haul_truck,_Luminant_Energy_Kosse_lignite_mine_(5556779421).jpg
+- Portada, foto 6 (Vista aérea de la mina Tintaya): Grullab, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Minas_de_Tintaya,_Peru.JPG
 - Foto del área de Ingenierías de la UNSA (página de la hackatón): Carlos Zanabria Angulo, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Fachada_ingenier%C3%ADas.jpg
 - Foto de Giancarlo Pinto: proporcionada por el organizador.
 Fotos de ponentes (recortadas en cuadrado y convertidas a WebP 400 × 400; se muestran en círculo, sin quitar el fondo):

@@ -53,5 +53,23 @@ function initMenu() {
   });
 }
 
-function init() { initMenu(); initReveal(); }
+/* ---------- Barra de progreso y cabecera con sombra al bajar ---------- */
+function initScroll() {
+  const cab = document.querySelector('[data-cab]');
+  const barra = document.createElement('div');
+  barra.className = 'progreso';
+  barra.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(barra);
+  let pendiente = false;
+  const pintar = () => {
+    pendiente = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    barra.style.setProperty('--p', max > 0 ? String(Math.min(1, window.scrollY / max)) : '0');
+    if (cab) cab.classList.toggle('cab--bajo', window.scrollY > 8);
+  };
+  window.addEventListener('scroll', () => { if (!pendiente) { pendiente = true; requestAnimationFrame(pintar); } }, { passive: true });
+  pintar();
+}
+
+function init() { initMenu(); initReveal(); initScroll(); }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();

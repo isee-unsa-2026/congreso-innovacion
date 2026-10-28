@@ -59,5 +59,49 @@
     "alt": "",
     "width": 1920,
     "height": 420
-  }
+  },
+  "carrusel": [
+    {
+      "src": "/img/fotos/hero.jpg",
+      "width": 2040,
+      "height": 771,
+      "alt": "Ilustración generada con IA de una mina a tajo abierto en los Andes al atardecer, con una voladura que levanta una columna de polvo y camiones de acarreo",
+      "credito": ""
+    },
+    {
+      "src": "/img/hero/hero-2.jpg",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Perforadora de taladros trabajando en un tajo abierto, con operarios junto a la máquina",
+      "credito": "Foto: James St. John · Wikimedia Commons (CC BY 2.0)"
+    },
+    {
+      "src": "/img/hero/hero-3.jpg",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Técnicos con casco y chaleco dando mantenimiento a un camión minero gigante",
+      "credito": "Foto: Calistemon · Wikimedia Commons (CC BY-SA 4.0)"
+    },
+    {
+      "src": "/img/hero/hero-4.jpg",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Tren minero con locomotoras rojas atravesando el desierto rumbo a Toquepala, Perú",
+      "credito": "Foto: Kabelleger / David Gubler · Wikimedia Commons (CC BY-SA 4.0)"
+    },
+    {
+      "src": "/img/hero/hero-5.jpg",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Camión minero de acarreo cargado avanzando por una mina a tajo abierto",
+      "credito": "Foto: Roy Luck · Wikimedia Commons (CC BY 2.0)"
+    },
+    {
+      "src": "/img/hero/hero-6.jpg",
+      "width": 1920,
+      "height": 1080,
+      "alt": "Vista aérea de la mina Tintaya, Perú, con su tajo abierto y una laguna turquesa",
+      "credito": "Foto: Grullab · Wikimedia Commons (CC BY-SA 4.0)"
+    }
+  ]
 }

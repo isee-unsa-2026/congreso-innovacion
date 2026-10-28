@@ -7,7 +7,7 @@ const malla = `--malla:url(${withBase('/img/patron-malla-claro.svg')})`;
 ---
 <ul class="ponentes-grid" role="list" style={malla}>
   {datos.ponentes.map((p, i) => (
-    <li data-reveal data-reveal-delay={i * 80}><PonenteTarjeta ponente={p} /></li>
+    <li data-reveal data-reveal-delay={(i % 4) * 110}><PonenteTarjeta ponente={p} /></li>
   ))}
 </ul>
 {datos.masPorAnunciar && (

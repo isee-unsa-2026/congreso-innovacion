@@ -8,6 +8,8 @@ import imagenes from '../data/imagenes.json';
 import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
+// Carrusel de portada: fotos reales de minería (imagenes.json → "carrusel"); si no hay, queda la foto principal.
+const fotos: { src: string; width: number; height: number; alt: string; credito?: string }[] = (imagenes as any).carrusel?.length ? (imagenes as any).carrusel : [hero];
 // Enlace que abre Google Calendar con el evento ya cargado (dia completo, 18 y 19 de noviembre).
 const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
   action: 'TEMPLATE',
@@ -25,7 +27,19 @@ const faq = [
 ---
 <Base title={`${site.name} · InnoMining ISEE UNSA 2026`} description={`${site.name} (InnoMining · ISEE UNSA): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de referentes de la industria minera y la academia, y la hackatón ${site.retoName}.`}>
   <section class="hero" aria-labelledby="titulo-portada">
-    <img class="hero__foto" src={withBase(hero.src)} width={hero.width} height={hero.height} alt={hero.alt} fetchpriority="high" decoding="async" />
+    <div class="hero__fotos" data-carrusel aria-roledescription="carrusel" aria-label="Fotografías de la industria minera">
+      {fotos.map((f, i) => (
+        <img class:list={['hero__foto', { 'es-activa': i === 0 }]} src={withBase(f.src)} width={f.width} height={f.height} alt={f.alt} data-credito={f.credito} fetchpriority={i === 0 ? 'high' : 'low'} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+      ))}
+    </div>
+    {fotos.length > 1 && (
+      <div class="hero__ctrl" data-carrusel-ctrl>
+        <div class="hero__puntos">
+          {fotos.map((_, i) => <button type="button" class:list={['hero__punto', { 'es-activa': i === 0 }]} aria-label={`Ver foto ${i + 1} de ${fotos.length}`} aria-current={i === 0 ? 'true' : undefined} data-ir={i}></button>)}
+        </div>
+        <p class="hero__credito" data-credito-txt aria-hidden="true">{fotos[0].credito}</p>
+      </div>
+    )}
     <div class="hero__velo" aria-hidden="true"></div>
     <div class="wrap hero__in">
       <p class="hero__kicker anim" style="--d:0ms">{site.kicker}</p>
@@ -96,11 +110,21 @@ const faq = [
 <style>
   /* ---------- Hero centrado: foto con velo oscuro; protagonista el congreso ---------- */
   .hero { position: relative; isolation: isolate; display: grid; align-items: center; min-height: max(32rem, calc(100svh - 77px)); padding: clamp(2.5rem, 5vw, 3.5rem) 0 4.5rem; background: var(--tinta); overflow: hidden; color: #fff; text-align: center; }
-  .hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; z-index: -2; }
+  .hero__fotos { position: absolute; inset: 0; z-index: -2; }
+  .hero__foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 45%; opacity: 0; transition: opacity 1.4s var(--ease); }
+  .hero__foto.es-activa { opacity: 1; }
+  /* Controles discretos del carrusel: líneas indicadoras y crédito de la foto (abajo a la izquierda) */
+  .hero__ctrl { position: absolute; left: clamp(1rem, 4vw, 2.5rem); bottom: 1.25rem; z-index: 1; display: flex; align-items: center; gap: .75rem; }
+  .hero__puntos { display: flex; gap: .15rem; }
+  .hero__credito { order: 2; margin: 0; font-size: .6875rem; color: rgba(255, 255, 255, .6); max-width: none; }
+  .hero__punto { display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 0; background: none; cursor: pointer; }
+  .hero__punto::before { content: ""; width: 16px; height: 2px; background: rgba(255, 255, 255, .45); transition: background .3s var(--ease), width .3s var(--ease-out); }
+  .hero__punto.es-activa::before { width: 26px; background: var(--cobre); }
+  .hero__punto:hover::before { background: #fff; }
   .hero__velo { position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse 70% 60% at 50% 48%, rgba(12, 12, 13, .3) 0%, rgba(12, 12, 13, .5) 100%), linear-gradient(180deg, rgba(12, 12, 13, .4) 0%, rgba(12, 12, 13, .12) 45%, rgba(12, 12, 13, .75) 100%); }
   /* Entrada con acercamiento lento de la foto y flecha para bajar */
-  .hero__foto { animation: acerca 2.8s cubic-bezier(.2, .7, .2, 1) both; }
-  @keyframes acerca { from { transform: scale(1.1); } to { transform: scale(1); } }
+  .hero__foto.es-activa { animation: acerca 7s cubic-bezier(.2, .7, .2, 1) both; }
+  @keyframes acerca { from { transform: scale(1.08); } to { transform: scale(1); } }
   .hero__bajar { position: absolute; left: 50%; bottom: 1.25rem; display: grid; place-items: center; width: 44px; height: 44px; translate: -50% 0; color: #fff; }
   .hero__flecha { width: 12px; height: 12px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); animation: baja 1.8s ease-in-out infinite; opacity: .85; }
   @keyframes baja { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 4px; } }
@@ -137,6 +161,9 @@ const faq = [
   @media (max-width: 40rem) {
     .hero { min-height: max(30rem, calc(100svh - 69px)); }
     .hero__foto { object-position: 70% 50%; }
+    .hero__bajar { display: none; }
+    .hero__ctrl { flex-wrap: wrap; row-gap: .1rem; bottom: .75rem; right: 5rem; }
+    .hero__credito { flex-basis: 100%; font-size: .625rem; line-height: 1.35; }
     .hero__kicker { font-size: var(--t-xs); letter-spacing: .18em; }
     .hero__kicker::before, .hero__kicker::after { width: 1.25rem; }
     .hero__marco { font-size: .875rem; }
@@ -150,3 +177,52 @@ const faq = [
     .hero__marco { padding-inline: .6rem; }
   }
 </style>
+
+<script>
+  // Carrusel de portada: fundido entre fotos cada 5 s. Se detiene mientras se usan los controles con
+  // teclado y cuando la pestaña no está visible. Con reduced-motion no avanza solo.
+  const caja = document.querySelector('[data-carrusel]');
+  const ctrl = document.querySelector('[data-carrusel-ctrl]');
+  if (caja && ctrl) {
+    const fotos = [...caja.querySelectorAll('img')];
+    const puntos = [...ctrl.querySelectorAll<HTMLButtonElement>('[data-ir]')];
+    const credito = ctrl.querySelector('[data-credito-txt]');
+    let actual = 0;
+    let timer = 0;
+    const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let enfocado = false;
+    const precargar = (n: number) => { fotos[n % fotos.length].loading = 'eager'; };
+    const ir = (n: number) => {
+      fotos[actual].classList.remove('es-activa');
+      puntos[actual].classList.remove('es-activa');
+      puntos[actual].removeAttribute('aria-current');
+      actual = (n + fotos.length) % fotos.length;
+      precargar(actual);
+      fotos[actual].classList.add('es-activa');
+      puntos[actual].classList.add('es-activa');
+      puntos[actual].setAttribute('aria-current', 'true');
+      precargar(actual + 1);
+      if (credito) credito.textContent = fotos[actual].dataset.credito || '';
+    };
+    const parar = () => { clearInterval(timer); timer = 0; };
+    const seguir = () => {
+      parar();
+      if (!sinMovimiento && !enfocado && !document.hidden) timer = window.setInterval(() => ir(actual + 1), 5000);
+    };
+    puntos.forEach((p) => p.addEventListener('click', () => { ir(Number(p.dataset.ir)); seguir(); }));
+    ctrl.addEventListener('focusin', () => { enfocado = true; parar(); });
+    ctrl.addEventListener('focusout', () => { enfocado = false; seguir(); });
+    document.addEventListener('visibilitychange', seguir);
+    // En celular: deslizar a los lados cambia de foto (solo gestos claramente horizontales)
+    const hero = caja.closest('.hero');
+    let x0 = 0, y0 = 0;
+    hero?.addEventListener('touchstart', (e) => { const t = (e as TouchEvent).touches[0]; x0 = t.clientX; y0 = t.clientY; }, { passive: true });
+    hero?.addEventListener('touchend', (e) => {
+      const t = (e as TouchEvent).changedTouches[0];
+      const dx = t.clientX - x0, dy = t.clientY - y0;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) { ir(actual + (dx < 0 ? 1 : -1)); seguir(); }
+    }, { passive: true });
+    precargar(1);
+    seguir();
+  }
+</script>
