@@ -7,8 +7,13 @@
       "cargo": "Comité organizador",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
-      "foto": "",
-      "logo": { "src": "/brand/isee-unsa-logo-512.png", "alt": "ISEE UNSA Student Chapter", "ancho": 512, "alto": 512 }
+      "foto": "/img/organizadores/azucena-delgado.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      }
     }
   ]
 }

@@ -1,0 +1,71 @@
+---
+// Comité organizador en formato editorial (distinto a las tarjetas de ponentes): foto vertical con
+// marco de cobre desplazado y nombre en grande sobre fondo oscuro. La foto entra con una cortina.
+import { withBase } from '../utils/paths';
+import { enPublic, iniciales } from '../utils/medios';
+import datos from '../data/organizadores.json';
+
+const lista = datos.organizadores.map((o: any) => ({
+  ...o,
+  nombreCompleto: [o.titulo, o.nombre].filter(Boolean).join(' '),
+  hayFoto: enPublic(o.foto),
+  hayLogo: o.logo && enPublic(o.logo.src),
+}));
+---
+<ol class="orgs" role="list">
+  {lista.map((o, i) => (
+    <li class="org" data-reveal>
+      <figure class="org__foto">
+        {o.hayFoto
+          ? <img src={withBase(o.foto)} width="640" height="800" alt={`Foto de ${o.nombreCompleto}`} loading="lazy" decoding="async" />
+          : <span class="org__mono" aria-hidden="true">{iniciales(o.nombre)}</span>}
+      </figure>
+      <div class="org__texto">
+        <p class="org__n"><span>{String(i + 1).padStart(2, '0')}</span>{o.cargo}</p>
+        <h3 class="org__nombre">{o.nombreCompleto}</h3>
+        {o.frase && <p class="org__frase">{o.frase}</p>}
+        <div class="org__pie">
+          {o.hayLogo && <img class="org__logo" src={withBase(o.logo.src)} alt="" width={o.logo.ancho} height={o.logo.alto} loading="lazy" decoding="async" />}
+          <span class="org__org">{o.organizacion}</span>
+        </div>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .orgs { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(2rem, 4vw, 3rem); }
+  .org { display: grid; grid-template-columns: minmax(12rem, 19rem) minmax(0, 1fr); gap: clamp(1.75rem, 4vw, 3.5rem); align-items: center; }
+
+  /* Foto vertical con marco de cobre desplazado */
+  .org__foto { position: relative; margin: 0 1rem 1rem 0; aspect-ratio: 4 / 5; }
+  .org__foto::before { content: ""; position: absolute; inset: 1rem -1rem -1rem 1rem; border: 1px solid var(--cobre); border-radius: var(--radio); }
+  .org__foto img, .org__mono { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: var(--radio); background: var(--acento-oscuro); }
+  .org__mono { display: grid; place-items: center; color: var(--cobre-2); font: 700 3.5rem/1 var(--f-display); letter-spacing: .06em; background: linear-gradient(160deg, var(--acento), var(--acento-oscuro)); }
+
+  .org__n { display: flex; align-items: center; gap: .75rem; margin: 0 0 .9rem; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--cobre-2); }
+  .org__n span { font: 700 1rem/1 var(--f-display); letter-spacing: .04em; color: var(--cobre); }
+  .org__n span::after { content: ""; display: inline-block; width: 2rem; height: 1px; margin-left: .75rem; vertical-align: middle; background: var(--cobre); }
+  .org__nombre { margin: 0; color: #fff; font: 700 clamp(2rem, 1.4rem + 2.4vw, 3.25rem)/1.05 var(--f-display); letter-spacing: -.01em; }
+  .org__frase { margin: 1rem 0 0; max-width: 46ch; color: rgba(255, 255, 255, .8); font-size: 1.0625rem; line-height: 1.55; }
+  .org__pie { display: flex; align-items: center; gap: .85rem; margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid rgba(255, 255, 255, .18); max-width: 28rem; }
+  .org__logo { width: 44px; height: 44px; object-fit: contain; background: #fff; border-radius: 50%; padding: 3px; }
+  .org__org { color: rgba(255, 255, 255, .88); font-weight: 600; font-size: var(--t-sm); }
+
+  /* Entrada: la foto se descubre con una cortina y el marco se desliza a su sitio */
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.js) .org[data-reveal] { transform: none; filter: none; }
+    :global(.js) .org[data-reveal] .org__foto img, :global(.js) .org[data-reveal] .org__mono { clip-path: inset(0 0 100% 0); transform: scale(1.06); transition: clip-path 1.1s var(--ease-out), transform 1.6s var(--ease-out); }
+    :global(.js) .org[data-reveal] .org__foto::before { opacity: 0; transform: translate(-1rem, -1rem); transition: opacity .8s var(--ease-out) .5s, transform .9s var(--ease-out) .5s; }
+    :global(.js) .org[data-reveal] .org__texto { opacity: 0; transform: translateX(16px); transition: opacity .8s var(--ease-out) .35s, transform .8s var(--ease-out) .35s; }
+    :global(.js) .org[data-reveal].is-in .org__foto img, :global(.js) .org[data-reveal].is-in .org__mono { clip-path: inset(0 0 0 0); transform: none; }
+    :global(.js) .org[data-reveal].is-in .org__foto::before { opacity: 1; transform: none; }
+    :global(.js) .org[data-reveal].is-in .org__texto { opacity: 1; transform: none; }
+    :global(.js) .org[data-reveal].is-quieto *, :global(.js) .org[data-reveal].is-quieto .org__foto::before { transition: none; }
+  }
+
+  @media (max-width: 40rem) {
+    .org { grid-template-columns: 1fr; }
+    .org__foto { max-width: 17rem; }
+  }
+</style>
