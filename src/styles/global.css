@@ -251,11 +251,12 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 
   /* Títulos de sección: un filete de cobre se traza bajo el título al aparecer */
   .js [data-reveal] .titulo-2::after, .js .titulo-2[data-reveal]::after {
-    content: ""; display: block; width: 2.5rem; height: 2px; margin-top: .55rem; background: var(--cobre);
+    content: ""; display: block; width: 2.5rem; height: 2px; margin-top: .55rem; background: var(--acento);
     transform: scaleX(0); transform-origin: left; transition: transform .9s var(--ease-out) calc(var(--rd, 0) * 1ms + 250ms);
   }
   .js [data-reveal].is-in .titulo-2::after, .js .titulo-2[data-reveal].is-in::after { transform: none; }
   .js [data-reveal].is-quieto .titulo-2::after, .js .titulo-2[data-reveal].is-quieto::after { transform: none; transition: none; }
+  .js .titulo-2--claro::after { background: var(--cobre); }
 
   /* Fotos dentro de marcos: acercamiento lento al pasar el cursor */
   .dos__img img { transition: transform 1.2s var(--ease-out); }
@@ -269,7 +270,7 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 }
 
 /* Barra de progreso de lectura (fina, cobre) y cabecera con sombra al bajar */
-.progreso { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: var(--cobre); transform: scaleX(var(--p, 0)); transform-origin: left; pointer-events: none; }
+.progreso { position: fixed; top: 0; left: 0; right: 0; z-index: 60; height: 2px; background: var(--acento); transform: scaleX(var(--p, 0)); transform-origin: left; pointer-events: none; }
 .cab { transition: box-shadow .3s var(--ease); }
 .cab.cab--bajo { box-shadow: 0 6px 20px -12px rgba(18, 19, 21, .35); }
 

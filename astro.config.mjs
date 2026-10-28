@@ -11,6 +11,8 @@ export default defineConfig({
   build: { format: 'directory' },
   // La CSP exige script-src 'self': nunca inyectar scripts en linea.
   vite: { build: { assetsInlineLimit: 0 } },
+  // La antigua página /organizacion/ ahora es /organizadores/
+  redirects: { '/organizacion/': '/congreso-innovacion/organizadores/' },
   integrations: [sitemap({ filter: (page) => !/\/(programa|organizacion)\/?$/.test(page) })],
 });
 

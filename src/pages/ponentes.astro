@@ -5,7 +5,6 @@ import PonentesGrid from '../components/PonentesGrid.astro';
 import LogosEmpresas from '../components/LogosEmpresas.astro';
 import site from '../data/site.json';
 import datos from '../data/ponentes.json';
-import OrganizadoresPerfil from '../components/OrganizadoresPerfil.astro';
 import { withBase } from '../utils/paths';
 const nombres = datos.ponentes.map((p) => [p.titulo, p.nombre].filter(Boolean).join(' ')).join(', ');
 // Formato de cada jornada (sin horarios: se anunciarán con el programa)
@@ -24,15 +23,7 @@ const formato = [
     </div>
   </section>
 
-  <section class="seccion organiza" aria-labelledby="t-organizadores">
-    <div class="wrap">
-      <p class="etiqueta etiqueta--clara" data-reveal>Organización</p>
-      <h2 id="t-organizadores" class="titulo-2 titulo-2--claro organiza__t" data-reveal>Quienes lo <em>organizan</em></h2>
-      <OrganizadoresPerfil />
-    </div>
-  </section>
-
-  <section class="seccion" aria-labelledby="t-empresas">
+  <section class="seccion seccion--fondo" aria-labelledby="t-empresas">
     <div class="wrap" data-reveal>
       <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
       <div class="empresas__logos">
@@ -41,7 +32,7 @@ const formato = [
     </div>
   </section>
 
-  <section class="seccion seccion--fondo" aria-labelledby="t-sesiones">
+  <section class="seccion" aria-labelledby="t-sesiones">
     <div class="wrap sesiones" data-reveal>
       <div>
         <h2 id="t-sesiones" class="titulo-2">Cómo serán las <em>sesiones</em></h2>
@@ -59,9 +50,6 @@ const formato = [
 </Base>
 
 <style>
-  .organiza { color: #fff; background: radial-gradient(90% 120% at 85% 0%, rgba(94, 21, 29, .55) 0%, transparent 60%), var(--tinta); }
-  .organiza__t { margin: .4rem 0 clamp(1.75rem, 3vw, 2.5rem); }
-  .organiza .titulo-2 em { color: var(--cobre-2); }
   .empresas__logos { margin-top: 1.25rem; padding: 1.4rem clamp(1.25rem, 3vw, 2.5rem) .9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); }
   .empresas__logos :global(.logos) { justify-content: space-between; }
   .sesiones { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; }

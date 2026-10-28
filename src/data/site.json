@@ -79,6 +79,10 @@
       "href": "/reto/"
     },
     {
+      "label": "Organizadores",
+      "href": "/organizadores/"
+    },
+    {
       "label": "Inscripciones",
       "href": "/inscripciones/",
       "cta": true
