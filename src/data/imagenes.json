@@ -12,10 +12,11 @@
     "height": 900
   },
   "reto": {
-    "src": "/img/fotos/reto.jpg",
-    "alt": "Ilustración generada con IA de un equipo de cuatro estudiantes trabajando con planos de mina, muestras de roca y una laptop en un laboratorio",
-    "width": 1200,
-    "height": 900
+    "src": "/img/fotos/unsa-ingenierias.jpg",
+    "alt": "Ingreso al área de Ingenierías de la Universidad Nacional de San Agustín de Arequipa",
+    "width": 1280,
+    "height": 720,
+    "credito": "Foto: Carlos Zanabria Angulo, Wikimedia Commons (CC BY-SA 4.0)"
   },
   "card-camiones": {
     "src": "/img/fotos/card-camiones.jpg",

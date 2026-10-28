@@ -19,9 +19,42 @@
   "retoFullName": "Hackatón de innovación minera",
   "retoDescription": "Hackatón en la que equipos multidisciplinarios de la UNSA, con un docente asesor, crean soluciones innovadoras a problemas reales de la minería, con foco en perforación y voladura y el respaldo de ENAEX, empresa patrocinadora. Bases e inscripción, próximamente.",
   "empresas": [
-    { "nombre": "Cerro Verde", "alt": "Sociedad Minera Cerro Verde", "logo": "/img/logos/cerro-verde.svg", "ancho": 231.41, "alto": 46.91 },
-    { "nombre": "Anglo American Quellaveco", "alt": "Anglo American", "leyenda": "Quellaveco", "logo": "/img/logos/anglo-american.svg", "ancho": 184, "alto": 41 },
-    { "nombre": "Enaex", "alt": "Enaex", "logo": "/img/logos/enaex.svg", "ancho": 165.67, "alto": 46.01 }
+    {
+      "nombre": "Cerro Verde",
+      "alt": "Sociedad Minera Cerro Verde",
+      "logo": "/img/logos/cerro-verde.svg",
+      "ancho": 231.41,
+      "alto": 46.91
+    },
+    {
+      "nombre": "Anglo American Quellaveco",
+      "alt": "Anglo American",
+      "leyenda": "Quellaveco",
+      "logo": "/img/logos/anglo-american.svg",
+      "ancho": 184,
+      "alto": 41
+    },
+    {
+      "nombre": "Enaex",
+      "alt": "Enaex",
+      "logo": "/img/logos/enaex.svg",
+      "ancho": 165.67,
+      "alto": 46.01
+    },
+    {
+      "nombre": "Fortuna Mining",
+      "alt": "Fortuna Mining",
+      "logo": "/img/logos/fortuna.png",
+      "ancho": 400,
+      "alto": 130
+    },
+    {
+      "nombre": "ISEE",
+      "alt": "ISEE (International Society of Explosives Engineers)",
+      "logo": "/img/logos/isee.png",
+      "ancho": 400,
+      "alto": 184
+    }
   ],
   "whatsapp": "https://chat.whatsapp.com/H9CeCPRjUTTI6PncEu5Qh6",
   "instagram": "https://www.instagram.com/isee_2026/",
@@ -29,11 +62,27 @@
   "contactEmail": "isee.unsa.2026@gmail.com",
   "formsEndpoint": "https://script.google.com/macros/s/AKfycbzl8CTKc194oPP9Sn2YZdFNvAOoKgnLcAZLjv58LsVjoCa4UucpLqIpeB7ptwUKDCLSOw/exec",
   "nav": [
-    { "label": "Inicio", "href": "/" },
-    { "label": "Congreso", "href": "/congreso/" },
-    { "label": "Ponentes", "href": "/ponentes/" },
-    { "label": "Hackatón", "href": "/reto/" },
-    { "label": "Inscripciones", "href": "/inscripciones/", "cta": true }
+    {
+      "label": "Inicio",
+      "href": "/"
+    },
+    {
+      "label": "Congreso",
+      "href": "/congreso/"
+    },
+    {
+      "label": "Ponentes",
+      "href": "/ponentes/"
+    },
+    {
+      "label": "Hackatón",
+      "href": "/reto/"
+    },
+    {
+      "label": "Inscripciones",
+      "href": "/inscripciones/",
+      "cta": true
+    }
   ],
   "host": "Universidad Nacional de San Agustín de Arequipa",
   "hostShort": "UNSA"

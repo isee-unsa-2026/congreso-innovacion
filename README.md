@@ -141,6 +141,9 @@ Notas:
 
 ## Créditos de imágenes
 
+
+- Foto del área de Ingenierías de la UNSA (página de la hackatón): Carlos Zanabria Angulo, Wikimedia Commons, CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Fachada_ingenier%C3%ADas.jpg
+- Foto de Giancarlo Pinto: proporcionada por el organizador.
 Fotos de ponentes (recortadas en cuadrado y convertidas a WebP 400 × 400; se muestran en círculo, sin quitar el fondo):
 
 - Ruth Escobar Juárez: Freeport-McMoRan, https://www.fcx.com/freeport-features/112624
