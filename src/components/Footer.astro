@@ -7,21 +7,18 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
 ---
 <footer class="pie">
   <div class="wrap pie__top">
-    <p class="pie__marca" aria-hidden="true">{site.brand} <span>{site.year}</span></p>
-    <div class="pie__logos">
-      <img src={withBase('/brand/isee-unsa-logo-512.png')} width="64" height="64" alt={site.organizerFull} loading="lazy" decoding="async" />
-      {hayUnsa && (
-        <>
-          <span class="pie__sep" aria-hidden="true"></span>
-          <img class="pie__unsa" src={withBase('/brand/unsa-logo.png')} width="206" height="256" alt={site.host} loading="lazy" decoding="async" />
-        </>
-      )}
+    <div class="pie__id">
+      <div class="pie__logos">
+        <img src={withBase('/brand/isee-unsa-logo-512.png')} width="44" height="44" alt={site.organizerFull} loading="lazy" decoding="async" />
+        {hayUnsa && <img class="pie__unsa" src={withBase('/brand/unsa-logo.png')} width="35" height="44" alt={site.host} loading="lazy" decoding="async" />}
+      </div>
+      <p class="pie__marca">{site.name}<span>{site.kicker} · {site.dates}</span></p>
     </div>
   </div>
   <div class="wrap pie__in">
     <div>
-      <p class="pie__t">El evento</p>
-      <p>{site.name}<br /><span class="pie__suave">{site.kicker} · {site.year}</span><br />{site.dates}<br />{site.place}<br />{site.city}</p>
+      <p class="pie__t">Lugar</p>
+      <p>{site.place}<br />{site.city}</p>
     </div>
     <nav aria-label="Pie de página">
       <p class="pie__t">Navegación</p>
@@ -31,7 +28,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     </nav>
     <div>
       <p class="pie__t">Organiza</p>
-      <p>{site.organizerFull}<br /><span class="pie__suave">Sede anfitriona: {site.host}</span></p>
+      <p>{site.organizerFull}<br />Sede: {site.host}</p>
     </div>
     <div>
       <p class="pie__t">Contacto</p>
@@ -41,30 +38,29 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   </div>
   <div class="wrap pie__fin">
     <span>© 2026 {site.organizerFull}. Ingreso gratuito.</span>
-    <span><a href={withBase('/privacidad/')}>Privacidad</a> · <a href={withBase('/organizadores/')}>Organizadores</a></span>
+    <span><a href={withBase('/privacidad/')}>Privacidad</a></span>
   </div>
 </footer>
 <style>
-  .pie { background: var(--pie); color: #c4c8cd; padding-block: clamp(2rem, 4vw, 2.75rem) 8rem; /* espacio para los botones flotantes (WhatsApp + Instagram) */ font-size: var(--t-sm); }
+  /* Pie sobrio: letra pequeña y grises suaves; los enlaces se aclaran al pasar el cursor */
+  .pie { background: var(--pie); color: #9aa0a7; padding-block: 1.75rem 6rem; /* espacio para los botones flotantes (WhatsApp + Instagram) */ font-size: .8125rem; line-height: 1.6; }
   .pie p { margin: 0; max-width: none; }
-  .pie a { color: #e8eaed; text-underline-offset: .2em; }
-  .pie a:hover { color: var(--blanco); }
+  .pie a { color: #d3d6da; text-decoration: none; }
+  .pie a:hover { color: var(--blanco); text-decoration: underline; text-underline-offset: .2em; }
   .pie :focus-visible { outline-color: var(--blanco); }
-  .pie__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; padding-bottom: 1.25rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, .14); }
-  .pie__marca { font: 700 clamp(1.375rem, 1.1rem + 1vw, 1.75rem)/1.1 var(--f-display); letter-spacing: .02em; color: #fff; }
-  .pie__marca span { color: var(--cobre); }
-  .pie__logos { display: flex; align-items: center; gap: 1rem; }
-  .pie__logos img { width: 64px; height: 64px; object-fit: contain; background: var(--blanco); border-radius: var(--radio); padding: 4px; }
-  .pie__logos .pie__unsa { width: auto; height: 64px; background: transparent; padding: 0; }
-  .pie__sep { width: 1px; height: 48px; background: rgba(255, 255, 255, .3); }
-  .pie__in { display: grid; gap: 1.25rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr)); }
-  .pie .pie__t { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--cobre); margin-bottom: .6rem; }
-  .pie__suave { color: #a9afb6; }
-  .pie .pie__ig { margin-top: .4rem; }
-  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, max-content); column-gap: 2rem; }
-  .pie li a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
-  .pie li a:hover { text-decoration: underline; }
-  .pie__fin { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1.5rem; margin-top: 1.25rem; padding-top: .75rem; border-top: 1px solid rgba(255, 255, 255, .14); font-size: var(--t-xs); color: #aeb4bb; }
-  .pie__fin a { display: inline-flex; align-items: center; min-height: 44px; }
+  .pie__top { padding-bottom: 1.1rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+  .pie__id { display: flex; align-items: center; gap: 1rem; }
+  .pie__logos { display: flex; align-items: center; gap: .6rem; }
+  .pie__logos img { width: 44px; height: 44px; object-fit: contain; background: var(--blanco); border-radius: 50%; padding: 3px; }
+  .pie__logos .pie__unsa { width: auto; height: 44px; background: transparent; padding: 0; border-radius: 0; }
+  .pie__marca { display: grid; gap: .1rem; font: 600 .9375rem/1.3 var(--f-display); color: #eef0f2; }
+  .pie__marca span { font: 400 .75rem/1.3 var(--f-texto); color: #8a9098; }
+  .pie__in { display: grid; gap: 1rem 2rem; grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr)); }
+  .pie .pie__t { font: 600 .6875rem/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: #6f767e; margin-bottom: .45rem; }
+  .pie .pie__ig { margin-top: .2rem; }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, max-content); column-gap: 1.5rem; }
+  .pie li a { display: inline-flex; align-items: center; min-height: 28px; }
+  .pie__fin { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1.5rem; margin-top: 1.25rem; padding-top: .6rem; border-top: 1px solid rgba(255, 255, 255, .1); font-size: .75rem; color: #737a82; }
+  .pie__fin a { display: inline-flex; align-items: center; min-height: 28px; color: #9aa0a7; }
   @media (max-width: 22rem) { .pie ul { grid-template-columns: 1fr; } }
 </style>
