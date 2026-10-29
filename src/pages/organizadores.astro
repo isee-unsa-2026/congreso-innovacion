@@ -11,13 +11,13 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
 <Base title="Organizadores" description={`Comité organizador del ${site.name}: ${site.organizerFull} como organizador y la ${site.host} como sede anfitriona.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Organizadores" />
 
-  <section class="seccion" aria-label="Comité organizador">
+  <section class="seccion seccion--fondo" aria-label="Comité organizador">
     <div class="wrap">
       <OrganizadoresPerfil />
     </div>
   </section>
 
-  <section class="seccion seccion--fondo" aria-labelledby="t-instituciones">
+  <section class="seccion" aria-labelledby="t-instituciones">
     <div class="wrap">
       <h2 id="t-instituciones" class="titulo-2" data-reveal>Instituciones</h2>
       <div class="inst">

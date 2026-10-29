@@ -1,10 +1,10 @@
 {
-  "nota": "Comité organizador del congreso. Mismo formato que ponentes.json; sin foto se muestra un monograma con las iniciales.",
+  "nota": "Comité organizador. \"cargo\" es el rol de cada persona (déjalo vacío si no hay); sin foto se muestra un monograma.",
   "organizadores": [
     {
       "titulo": "Ing.",
       "nombre": "Azucena Delgado",
-      "cargo": "Comité organizador",
+      "cargo": "",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/azucena-delgado.webp",

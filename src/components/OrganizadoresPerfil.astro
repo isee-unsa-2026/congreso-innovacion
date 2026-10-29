@@ -1,91 +1,83 @@
 ---
-// Comité organizador en formato de perfil (distinto a las tarjetas de ponentes): foto vertical con un
-// bloque granate desplazado detrás, nombre grande en tinta y datos en filas sobrias. Sin dorado.
+// Comité organizador como credenciales del congreso (fotocheck colgando de una cinta granate):
+// franja superior con la marca, foto, nombre, cargo y franja "Organizador". Compactas: son varios.
+// Al aparecer, la credencial cae con un balanceo leve. Sin dorado.
 import { withBase } from '../utils/paths';
 import { enPublic, iniciales } from '../utils/medios';
+import site from '../data/site.json';
 import datos from '../data/organizadores.json';
 
 const lista = datos.organizadores.map((o: any) => ({
   ...o,
   nombreCompleto: [o.titulo, o.nombre].filter(Boolean).join(' '),
   hayFoto: enPublic(o.foto),
-  hayLogo: o.logo && enPublic(o.logo.src),
 }));
 ---
-<ol class="orgs" role="list">
+<ul class="creds" role="list">
   {lista.map((o, i) => (
-    <li class="org" data-reveal>
-      <figure class="org__foto">
-        {o.hayFoto
-          ? <img src={withBase(o.foto)} width="640" height="800" alt={`Foto de ${o.nombreCompleto}`} loading="lazy" decoding="async" />
-          : <span class="org__mono" aria-hidden="true">{iniciales(o.nombre)}</span>}
-      </figure>
-      <div class="org__texto">
-        <p class="org__n">{String(i + 1).padStart(2, '0')}</p>
-        <h3 class="org__nombre">{o.nombreCompleto}</h3>
-        <p class="org__cargo">{o.cargo}</p>
-        {o.frase && <p class="org__frase">{o.frase}</p>}
-        <dl class="org__datos">
-          <div>
-            <dt>Organización</dt>
-            <dd>
-              {o.hayLogo && <img class="org__logo" src={withBase(o.logo.src)} alt="" width={o.logo.ancho} height={o.logo.alto} loading="lazy" decoding="async" />}
-              {o.organizacion}
-            </dd>
-          </div>
-          <div>
-            <dt>Evento</dt>
-            <dd>{datos.evento}</dd>
-          </div>
-        </dl>
-      </div>
+    <li class="cred-item" data-reveal data-reveal-delay={(i % 5) * 90}>
+      <span class="cinta" aria-hidden="true"><span class="cinta__clip"></span></span>
+      <article class="cred">
+        <header class="cred__cab">
+          <span class="cred__marca">{site.kicker}</span>
+        </header>
+        <div class="cred__cuerpo">
+          <figure class="cred__foto">
+            {o.hayFoto
+              ? <img src={withBase(o.foto)} width="640" height="800" alt={`Foto de ${o.nombreCompleto}`} loading="lazy" decoding="async" />
+              : <span class="cred__mono" aria-hidden="true">{iniciales(o.nombre)}</span>}
+          </figure>
+          <h3 class="cred__nombre">{o.nombreCompleto}</h3>
+          {o.cargo && <p class="cred__cargo">{o.cargo}</p>}
+        </div>
+        <footer class="cred__pie">
+          <span>Organizador</span>
+        </footer>
+      </article>
     </li>
   ))}
-</ol>
+</ul>
 
 <style>
-  .orgs { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
-  .org { display: grid; grid-template-columns: minmax(13rem, 20rem) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: end; }
+  .creds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem clamp(1rem, 2.5vw, 1.75rem); }
+  .cred-item { position: relative; width: min(14rem, 100%); padding-top: 2.6rem; }
 
-  /* Foto vertical con bloque granate desplazado detrás */
-  .org__foto { position: relative; isolation: isolate; margin: 0 0 1.25rem 1.25rem; aspect-ratio: 4 / 5; }
-  .org__foto::before { content: ""; position: absolute; z-index: -1; left: -1.25rem; bottom: -1.25rem; width: 72%; height: 64%; background: var(--acento); border-radius: var(--radio); }
-  .org__foto img, .org__mono { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; border-radius: var(--radio); box-shadow: 0 20px 40px -24px rgba(18, 19, 21, .45); }
-  .org__mono { display: grid; place-items: center; color: #fff; font: 700 3.5rem/1 var(--f-display); letter-spacing: .06em; background: linear-gradient(160deg, var(--tinta-2), var(--tinta)); }
+  /* Cinta y clip */
+  .cinta { position: absolute; z-index: 2; top: 0; left: 50%; width: 18px; height: 2.9rem; translate: -50% 0; background: linear-gradient(90deg, var(--acento-oscuro), var(--acento) 30%, var(--acento) 70%, var(--acento-oscuro)); }
+  .cinta::before { content: ""; position: absolute; inset: 0 5px; border-inline: 1px dashed rgba(255, 255, 255, .35); }
+  .cinta__clip { position: absolute; left: 50%; bottom: -.55rem; width: 28px; height: 13px; translate: -50% 0; border-radius: 4px; background: linear-gradient(180deg, #d9dadc, #9ea1a6); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
 
-  .org__texto { padding-bottom: 1.25rem; }
-  .org__n { margin: 0 0 .75rem; font: 700 clamp(2.75rem, 2rem + 3vw, 4.5rem)/.9 var(--f-display); color: transparent; -webkit-text-stroke: 1px var(--linea-2, #c9c4bd); }
-  .org__nombre { margin: 0; color: var(--texto); font: 700 clamp(2rem, 1.4rem + 2.4vw, 3.25rem)/1.05 var(--f-display); letter-spacing: -.015em; }
-  .org__cargo { margin: .6rem 0 0; font: 600 var(--t-sm)/1.3 var(--f-texto); letter-spacing: .12em; text-transform: uppercase; color: var(--acento); }
-  .org__frase { margin: 1rem 0 0; max-width: 48ch; color: var(--texto-2); font-size: 1.0625rem; line-height: 1.55; }
-  .org__datos { margin: 1.75rem 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 36rem; border-top: 2px solid var(--texto); }
-  .org__datos div { padding: .75rem 1rem .8rem 0; border-bottom: 1px solid var(--linea); }
-  .org__datos dt { font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
-  .org__datos dd { display: flex; align-items: center; gap: .55rem; margin: .35rem 0 0; font-size: var(--t-sm); font-weight: 600; color: var(--texto); }
-  .org__logo { flex: none; width: 30px; height: 30px; object-fit: contain; }
+  /* Credencial */
+  .cred { position: relative; overflow: hidden; background: #fff; border-radius: 14px; border: 1px solid var(--linea); box-shadow: 0 24px 40px -26px rgba(18, 19, 21, .5), 0 2px 6px rgba(18, 19, 21, .06); text-align: center; }
+  .cred::before { content: ""; position: absolute; top: .45rem; left: 50%; z-index: 1; width: 36px; height: 7px; translate: -50% 0; border-radius: 4px; background: var(--fondo); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .25); }
+  .cred__cab { display: grid; padding: 1.25rem .75rem .6rem; background: var(--acento); color: #fff; }
+  .cred__marca { font: 700 .625rem/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; }
+  .cred__cuerpo { padding: .9rem .9rem .85rem; }
+  .cred__foto { width: 7.25rem; margin: 0 auto .75rem; aspect-ratio: 4 / 5; border-radius: 8px; overflow: hidden; border: 3px solid #fff; outline: 1px solid var(--linea); box-shadow: 0 8px 18px -12px rgba(18, 19, 21, .5); }
+  .cred__foto img, .cred__mono { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+  .cred__mono { display: grid; place-items: center; color: #fff; font: 700 2rem/1 var(--f-display); background: linear-gradient(160deg, var(--tinta-2), var(--tinta)); }
+  .cred__nombre { margin: 0; color: var(--texto); font: 700 1.125rem/1.2 var(--f-display); letter-spacing: -.01em; }
+  .cred__cargo { margin: .35rem 0 0; font: 600 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--acento); }
+  .cred__pie { display: flex; justify-content: center; align-items: center; padding: .45rem .75rem; background: var(--tinta); color: #fff; font: 700 .625rem/1 var(--f-texto); letter-spacing: .22em; text-transform: uppercase; }
 
-  /* Entrada: el bloque granate crece, la foto se descubre de abajo hacia arriba y luego llega el texto */
+  /* Entrada: cae desde arriba y se balancea hasta quedar quieta */
   @media (prefers-reduced-motion: no-preference) {
-    :global(.js) .org[data-reveal] { transform: none; filter: none; }
-    :global(.js) .org[data-reveal] .org__foto::before { transform: scale(.4); transform-origin: left bottom; opacity: 0; transition: transform 1s var(--ease-out), opacity .6s var(--ease-out); }
-    :global(.js) .org[data-reveal] .org__foto img, :global(.js) .org[data-reveal] .org__mono { clip-path: inset(100% 0 0 0); transition: clip-path 1.1s var(--ease-out) .2s; }
-    :global(.js) .org[data-reveal] .org__texto > * { opacity: 0; transform: translateY(12px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
-    :global(.js) .org[data-reveal] .org__texto > :nth-child(2) { transition-delay: .45s; }
-    :global(.js) .org[data-reveal] .org__texto > :nth-child(3) { transition-delay: .55s; }
-    :global(.js) .org[data-reveal] .org__texto > :nth-child(n+4) { transition-delay: .65s; }
-    :global(.js) .org[data-reveal] .org__texto > :first-child { transition-delay: .35s; }
-    :global(.js) .org[data-reveal].is-in .org__foto::before { transform: none; opacity: 1; }
-    :global(.js) .org[data-reveal].is-in .org__foto img, :global(.js) .org[data-reveal].is-in .org__mono { clip-path: inset(0 0 0 0); }
-    :global(.js) .org[data-reveal].is-in .org__texto > * { opacity: 1; transform: none; }
-    :global(.js) .org[data-reveal].is-quieto .org__foto::before,
-    :global(.js) .org[data-reveal].is-quieto .org__foto img,
-    :global(.js) .org[data-reveal].is-quieto .org__mono,
-    :global(.js) .org[data-reveal].is-quieto .org__texto > * { transition: none; }
+    :global(.js) .cred-item[data-reveal] { opacity: 1; filter: none; transform: none; }
+    :global(.js) .cred-item[data-reveal] .cred, :global(.js) .cred-item[data-reveal] .cinta { opacity: 0; }
+    :global(.js) .cred-item[data-reveal].is-in .cinta { opacity: 1; animation: cinta-baja .5s var(--ease-out) calc(var(--rd, 0) * 1ms) both; }
+    :global(.js) .cred-item[data-reveal].is-in .cred { opacity: 1; transform-origin: 50% -2.5rem; animation: cred-cae 1.5s var(--ease-out) calc(var(--rd, 0) * 1ms + 150ms) both; }
+    :global(.js) .cred-item[data-reveal].is-quieto .cinta, :global(.js) .cred-item[data-reveal].is-quieto .cred { animation: none; }
+    @media (hover: hover) {
+      .cred-item:hover .cred { animation: cred-mece 1.4s var(--ease-out); transform-origin: 50% -2.5rem; }
+    }
   }
-
-  @media (max-width: 44rem) {
-    .org { grid-template-columns: 1fr; align-items: start; }
-    .org__foto { max-width: 17rem; }
-    .org__datos { grid-template-columns: 1fr; }
+  @keyframes cinta-baja { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+  @keyframes cred-cae {
+    0% { opacity: 0; transform: translateY(-2.5rem) rotate(-7deg); }
+    35% { opacity: 1; transform: translateY(0) rotate(4deg); }
+    60% { transform: rotate(-2deg); }
+    80% { transform: rotate(.8deg); }
+    100% { transform: none; }
   }
+  @keyframes cred-mece { 0%, 100% { transform: none; } 30% { transform: rotate(2.5deg); } 60% { transform: rotate(-1.5deg); } 80% { transform: rotate(.5deg); } }
 </style>
