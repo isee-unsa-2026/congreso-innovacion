@@ -45,8 +45,8 @@ const filas = [
 ))}
 
 <style>
-  .creds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem; }
-  .cred-item { position: relative; display: flex; width: min(11.25rem, 100%); } /* 6 por fila en escritorio */
+  .creds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem clamp(1rem, 2.5vw, 1.75rem); }
+  .cred-item { position: relative; display: flex; width: min(14rem, 100%); }
   .cred-item > .cred { flex: 1; display: flex; flex-direction: column; } /* misma altura en cada fila */
   .cred-item .cred__cuerpo { flex: 1; }
   .creds + .creds { margin-top: clamp(1.5rem, 3vw, 2.25rem); }
@@ -57,8 +57,8 @@ const filas = [
   .cred::before { content: ""; position: absolute; top: .45rem; left: 50%; z-index: 1; width: 36px; height: 7px; translate: -50% 0; border-radius: 4px; background: var(--fondo); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .25); }
   .cred__cab { display: grid; padding: 1.25rem .75rem 3.1rem; background: var(--acento); color: #fff; }
   .cred__marca { font: 700 .5625rem/1.2 var(--f-texto); letter-spacing: .1em; white-space: nowrap; text-transform: uppercase; }
-  .cred__cuerpo { min-height: 10rem; padding: 0 .75rem .8rem; } /* misma altura con o sin nombre */
-  .cred__foto { position: relative; z-index: 1; width: 8rem; margin: -2.6rem auto .8rem; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 4px solid #fff; outline: 2px solid var(--acento); outline-offset: 2px; box-shadow: 0 12px 24px -14px rgba(18, 19, 21, .6); }
+  .cred__cuerpo { min-height: 11.75rem; padding: 0 .9rem .85rem; } /* misma altura con o sin nombre */
+  .cred__foto { position: relative; z-index: 1; width: 8.75rem; margin: -2.6rem auto .8rem; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 4px solid #fff; outline: 2px solid var(--acento); outline-offset: 2px; box-shadow: 0 12px 24px -14px rgba(18, 19, 21, .6); }
   .cred__foto img, .cred__mono { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
   .cred__mono { display: grid; place-items: center; color: #fff; font: 700 2rem/1 var(--f-display); background: linear-gradient(160deg, var(--tinta-2), var(--tinta)); }
   .cred__nombre { margin: 0; color: #3b4047; font: 500 .875rem/1.35 var(--f-texto); letter-spacing: .01em; }

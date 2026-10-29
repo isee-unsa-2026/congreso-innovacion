@@ -39,6 +39,36 @@
       "cargo": "",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
+      "foto": "/img/organizadores/organizador-7.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Directivo"
+    },
+    {
+      "titulo": "",
+      "nombre": "",
+      "cargo": "",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "/img/organizadores/organizador-6.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Directivo"
+    },
+    {
+      "titulo": "",
+      "nombre": "",
+      "cargo": "",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
       "foto": "/img/organizadores/organizador-2.webp",
       "logo": {
         "src": "/brand/isee-unsa-logo-512.png",
@@ -85,36 +115,6 @@
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-5.webp",
-      "logo": {
-        "src": "/brand/isee-unsa-logo-512.png",
-        "alt": "ISEE UNSA Student Chapter",
-        "ancho": 512,
-        "alto": 512
-      },
-      "rol": "Directivo"
-    },
-    {
-      "titulo": "",
-      "nombre": "",
-      "cargo": "",
-      "organizacion": "ISEE UNSA Student Chapter",
-      "sector": "Organización",
-      "foto": "/img/organizadores/organizador-6.webp",
-      "logo": {
-        "src": "/brand/isee-unsa-logo-512.png",
-        "alt": "ISEE UNSA Student Chapter",
-        "ancho": 512,
-        "alto": 512
-      },
-      "rol": "Directivo"
-    },
-    {
-      "titulo": "",
-      "nombre": "",
-      "cargo": "",
-      "organizacion": "ISEE UNSA Student Chapter",
-      "sector": "Organización",
-      "foto": "/img/organizadores/organizador-7.webp",
       "logo": {
         "src": "/brand/isee-unsa-logo-512.png",
         "alt": "ISEE UNSA Student Chapter",
