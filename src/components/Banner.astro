@@ -8,10 +8,10 @@ interface Props { titulo?: string; acento?: string; etiqueta?: string; bajada?: 
 const { titulo = '', acento, etiqueta, bajada, imagen = 'banner', id = 'titulo-pagina' } = Astro.props;
 const img = imagenes[imagen];
 ---
-<div class="banner">
+<div class={`banner${bajada ? '' : ' banner--corto'}`}>
   <img class="banner__foto" src={withBase(img.src)} alt={img.alt} width={img.width} height={img.height} decoding="async" />
   <div class="banner__velo" aria-hidden="true"></div>
-  <div class="wrap banner__in">
+  <div class="wrap wrap--ancho banner__in">
     {etiqueta && <p class="etiqueta etiqueta--clara anim" style="--d:0ms">{etiqueta}</p>}
     <h1 id={id} class="anim" style="--d:90ms">{Astro.slots.has('default') ? <slot /> : <>{titulo}{titulo && acento ? ' ' : ''}{acento && <em>{acento}</em>}</>}</h1>
     {bajada && <p class="banner__bajada anim" style="--d:170ms">{bajada}</p>}
@@ -28,6 +28,10 @@ const img = imagenes[imagen];
   }
   .banner__in { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: start; gap: .25rem; padding-block: 2rem 1.75rem; }
   .banner .etiqueta { margin-bottom: .75rem; }
+  /* Sin bajada: la franja se ajusta al texto */
+  .banner--corto { min-height: 0; }
+  .banner--corto .banner__in { padding-block: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem); }
+  .banner--corto .etiqueta { margin-bottom: .4rem; }
   .banner h1 { margin: 0; color: #fff; font-size: clamp(1.875rem, 1.4rem + 2vw, 2.625rem); font-weight: 700; line-height: 1.1; }
   .banner h1 em { font-style: italic; color: var(--cobre-2); }
   .banner__bajada { margin: .6rem 0 0; color: rgba(255, 255, 255, .88); font-size: 1.0625rem; max-width: 52ch; }

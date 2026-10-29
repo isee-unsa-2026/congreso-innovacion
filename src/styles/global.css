@@ -70,6 +70,8 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
 .skip:focus { left: 1rem; top: 1rem; }
 
 .wrap { width: min(100% - 2rem, var(--w)); margin-inline: auto; }
+/* Cabecera y franja de título: más pegadas a los bordes que el contenido */
+.wrap--ancho { width: min(100% - clamp(2rem, 5vw, 5rem), 110rem); }
 .lectura { max-width: var(--lectura); }
 .seccion { padding-block: clamp(2rem, 3.5vw, 2.75rem); }
 .seccion--fondo { background: var(--fondo); }

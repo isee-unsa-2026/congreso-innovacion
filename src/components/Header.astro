@@ -8,7 +8,7 @@ const actual = Astro.url.pathname;
 const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-logo.png'));
 ---
 <header class="cab" data-cab>
-  <div class="wrap cab__in">
+  <div class="wrap wrap--ancho cab__in">
     <div class="cab__marcas">
       <a class="cab__marca" href={withBase('/')} aria-label={`${site.organizerFull}, organizador del ${site.name}. Ir al inicio`}>
         <img src={withBase('/brand/isee-unsa-logo-512.png')} width="72" height="72" alt="" />
