@@ -23,10 +23,10 @@ const lista = datos.organizadores.map((o: any) => ({
         <div class="cred__cuerpo">
           <figure class="cred__foto">
             {o.hayFoto
-              ? <img src={withBase(o.foto)} width="400" height="400" alt={`Foto de ${o.nombreCompleto}`} loading="lazy" decoding="async" />
+              ? <img src={withBase(o.foto)} width="400" height="400" alt={o.nombreCompleto ? `Foto de ${o.nombreCompleto}` : "Foto de un integrante del comité organizador"} loading="lazy" decoding="async" />
               : <span class="cred__mono" aria-hidden="true">{iniciales(o.nombre)}</span>}
           </figure>
-          <h3 class="cred__nombre">{o.nombreCompleto}</h3>
+          {o.nombreCompleto && <h3 class="cred__nombre">{o.nombreCompleto}</h3>}
           {o.cargo && <p class="cred__cargo">{o.cargo}</p>}
         </div>
         <footer class="cred__pie">
@@ -47,7 +47,7 @@ const lista = datos.organizadores.map((o: any) => ({
   .cred::before { content: ""; position: absolute; top: .45rem; left: 50%; z-index: 1; width: 36px; height: 7px; translate: -50% 0; border-radius: 4px; background: var(--fondo); box-shadow: inset 0 1px 2px rgba(0, 0, 0, .25); }
   .cred__cab { display: grid; padding: 1.25rem .75rem 3.1rem; background: var(--acento); color: #fff; }
   .cred__marca { font: 700 .625rem/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; }
-  .cred__cuerpo { padding: 0 .9rem .85rem; }
+  .cred__cuerpo { min-height: 11.75rem; padding: 0 .9rem .85rem; } /* misma altura con o sin nombre */
   .cred__foto { position: relative; z-index: 1; width: 8.75rem; margin: -2.6rem auto .8rem; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 4px solid #fff; outline: 2px solid var(--acento); outline-offset: 2px; box-shadow: 0 12px 24px -14px rgba(18, 19, 21, .6); }
   .cred__foto img, .cred__mono { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
   .cred__mono { display: grid; place-items: center; color: #fff; font: 700 2rem/1 var(--f-display); background: linear-gradient(160deg, var(--tinta-2), var(--tinta)); }
