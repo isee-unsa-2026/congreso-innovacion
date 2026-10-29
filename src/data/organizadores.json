@@ -19,6 +19,22 @@
     },
     {
       "titulo": "",
+      "nombre": "Eberth Saire Bocangel",
+      "cargo": "Ingeniero",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "/img/organizadores/eberth-saire.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Asesor",
+      "destacado": true
+    },
+    {
+      "titulo": "",
       "nombre": "Eduardo Guerra Gutiérrez",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
@@ -50,7 +66,7 @@
     },
     {
       "titulo": "",
-      "nombre": "",
+      "nombre": "Alexa de la Cruz",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
@@ -80,7 +96,7 @@
     },
     {
       "titulo": "",
-      "nombre": "",
+      "nombre": "Natalia Mamani",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
@@ -95,7 +111,7 @@
     },
     {
       "titulo": "",
-      "nombre": "",
+      "nombre": "Juan Antonio Añasco",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
@@ -110,7 +126,7 @@
     },
     {
       "titulo": "",
-      "nombre": "",
+      "nombre": "Blas Sánchez Sánchez",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
