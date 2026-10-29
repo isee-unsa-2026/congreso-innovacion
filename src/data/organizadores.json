@@ -1,10 +1,10 @@
 {
-  "nota": "Comité organizador. \"rol\" va en la franja inferior de la credencial; \"destacado\" las pone en la primera fila; \"cargo\" es opcional bajo el nombre.",
+  "nota": "Comité organizador. \"cargo\" va arriba del nombre (Ingeniera / Estudiante); \"rol\" va en la franja inferior; \"destacado\" las pone en la primera fila.",
   "organizadores": [
     {
-      "titulo": "Ing.",
+      "titulo": "",
       "nombre": "Azucena Delgado Ponce",
-      "cargo": "",
+      "cargo": "Ingeniera",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/azucena-delgado-circulo.webp",
@@ -20,7 +20,7 @@
     {
       "titulo": "",
       "nombre": "Eduardo Guerra Gutiérrez",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-1.webp",
@@ -36,7 +36,7 @@
     {
       "titulo": "",
       "nombre": "Kaleb Rivera Juárez",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-7.webp",
@@ -51,7 +51,7 @@
     {
       "titulo": "",
       "nombre": "",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-6.webp",
@@ -66,7 +66,7 @@
     {
       "titulo": "",
       "nombre": "Said Chihuantito Molina",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-2.webp",
@@ -81,7 +81,7 @@
     {
       "titulo": "",
       "nombre": "",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-3.webp",
@@ -96,7 +96,7 @@
     {
       "titulo": "",
       "nombre": "",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-4.webp",
@@ -111,7 +111,7 @@
     {
       "titulo": "",
       "nombre": "",
-      "cargo": "",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
       "foto": "/img/organizadores/organizador-5.webp",
