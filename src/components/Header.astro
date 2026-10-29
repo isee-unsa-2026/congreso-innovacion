@@ -36,27 +36,26 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
 </header>
 <style>
   .cab { background: var(--blanco); position: relative; z-index: 50; border-bottom: 1px solid var(--linea); }
-  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 76px; }
-  .cab__marcas { display: flex; align-items: center; gap: 1rem; }
+  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; }
+  .cab__marcas { display: flex; align-items: center; gap: .7rem; }
   .cab__marca { display: block; line-height: 0; }
-  .cab__marca img { width: 58px; height: 58px; object-fit: contain; }
-  .cab__sep { width: 1px; height: 44px; background: #c9c9c4; }
-  .cab__unsa { width: auto; height: 54px; object-fit: contain; }
-  .cab__nav ul { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+  .cab__marca img { width: 44px; height: 44px; object-fit: contain; }
+  .cab__sep { width: 1px; height: 30px; background: #c9c9c4; }
+  .cab__unsa { width: auto; height: 42px; object-fit: contain; }
+  .cab__nav ul { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
   .cab__nav a {
-    position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: .5rem .8rem;
-    color: var(--texto); text-decoration: none; font: 500 .8125rem/1 var(--f-texto); letter-spacing: .1em; text-transform: uppercase;
+    position: relative; display: inline-flex; align-items: center; min-height: 40px; padding: .45rem .6rem;
+    color: var(--texto); text-decoration: none; font: 500 .75rem/1 var(--f-texto); letter-spacing: .08em; text-transform: uppercase;
     transition: color var(--dur-ui) var(--ease), background-color var(--dur-ui) var(--ease), border-color var(--dur-ui) var(--ease), transform var(--dur-press) var(--ease-out);
   }
   .cab__nav a::after { content: ""; position: absolute; left: .8rem; right: .8rem; bottom: .35rem; height: 2px; background: var(--acento); transform: scaleX(0); transform-origin: left; transition: transform var(--dur-ui) var(--ease-out); }
   .cab__nav a:hover { color: var(--acento); }
-  .cab__nav a[aria-current="page"]::after { transform: scaleX(1); }
   @media (hover: hover) and (pointer: fine) {
     .cab__nav a:hover::after { transform: scaleX(1); }
   }
   .cab__nav a.cab__cta:active { transform: scale(.97); }
-  .cab__nav a[aria-current="page"] { color: var(--acento); }
-  .cab__nav a.cab__cta { margin-left: .75rem; padding-inline: 1.25rem; border-radius: var(--radio); background: var(--acento); border: 1px solid var(--acento); color: var(--blanco); }
+  .cab__nav a[aria-current="page"] { color: var(--acento); font-weight: 700; }
+  .cab__nav a.cab__cta { margin-left: .5rem; padding-inline: 1rem; border-radius: var(--radio); background: var(--acento); border: 1px solid var(--acento); color: var(--blanco); }
   .cab__nav a.cab__cta::after { content: none; }
   .cab__nav a.cab__cta:hover, .cab__nav a.cab__cta[aria-current="page"] { background: var(--acento-2); border-color: var(--acento-2); color: var(--blanco); }
   .cab__btn { display: none; width: 48px; height: 48px; border: 1px solid var(--linea); border-radius: var(--radio); background: var(--blanco); cursor: pointer; place-items: center; -webkit-tap-highlight-color: transparent; touch-action: manipulation; transition: border-color var(--dur-ui) var(--ease), transform var(--dur-press) var(--ease-out); }
@@ -72,10 +71,10 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   :global(.cab--abierto) .cab__burger::after { transform: translateY(-7px) rotate(-45deg); }
   @media (max-width: 60rem) {
     :global(.js) .cab__btn { display: grid; }
-    .cab__in { flex-wrap: wrap; min-height: 68px; }
-    .cab__marca img { width: 50px; height: 50px; }
-    .cab__unsa { height: 46px; }
-    .cab__sep { height: 44px; }
+    .cab__in { flex-wrap: wrap; min-height: 60px; }
+    .cab__marca img { width: 42px; height: 42px; }
+    .cab__unsa { height: 40px; }
+    .cab__sep { height: 30px; }
     .cab__marcas { gap: .85rem; }
     .cab__nav { width: 100%; order: 3; padding-bottom: 1rem; }
     :global(.js) .cab__nav { display: none; }

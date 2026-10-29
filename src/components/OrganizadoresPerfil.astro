@@ -1,5 +1,5 @@
 ---
-// Comité organizador como credenciales del congreso (fotocheck colgando de una cinta granate):
+// Comité organizador como credenciales del congreso (fotocheck):
 // franja superior con la marca, foto, nombre, cargo y franja "Organizador". Compactas: son varios.
 // Al aparecer, la credencial cae con un balanceo leve. Sin dorado.
 import { withBase } from '../utils/paths';
@@ -16,7 +16,6 @@ const lista = datos.organizadores.map((o: any) => ({
 <ul class="creds" role="list">
   {lista.map((o, i) => (
     <li class="cred-item" data-reveal data-reveal-delay={(i % 5) * 90}>
-      <span class="cinta" aria-hidden="true"><span class="cinta__clip"></span></span>
       <article class="cred">
         <header class="cred__cab">
           <span class="cred__marca">{site.kicker}</span>
@@ -40,12 +39,8 @@ const lista = datos.organizadores.map((o: any) => ({
 
 <style>
   .creds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem clamp(1rem, 2.5vw, 1.75rem); }
-  .cred-item { position: relative; width: min(14rem, 100%); padding-top: 2.6rem; }
+  .cred-item { position: relative; width: min(14rem, 100%); }
 
-  /* Cinta y clip */
-  .cinta { position: absolute; z-index: 2; top: 0; left: 50%; width: 18px; height: 2.9rem; translate: -50% 0; background: linear-gradient(90deg, var(--acento-oscuro), var(--acento) 30%, var(--acento) 70%, var(--acento-oscuro)); }
-  .cinta::before { content: ""; position: absolute; inset: 0 5px; border-inline: 1px dashed rgba(255, 255, 255, .35); }
-  .cinta__clip { position: absolute; left: 50%; bottom: -.55rem; width: 28px; height: 13px; translate: -50% 0; border-radius: 4px; background: linear-gradient(180deg, #d9dadc, #9ea1a6); box-shadow: 0 1px 2px rgba(0, 0, 0, .3); }
 
   /* Credencial */
   .cred { position: relative; overflow: hidden; background: #fff; border-radius: 14px; border: 1px solid var(--linea); box-shadow: 0 24px 40px -26px rgba(18, 19, 21, .5), 0 2px 6px rgba(18, 19, 21, .06); text-align: center; }
@@ -63,15 +58,13 @@ const lista = datos.organizadores.map((o: any) => ({
   /* Entrada: cae desde arriba y se balancea hasta quedar quieta */
   @media (prefers-reduced-motion: no-preference) {
     :global(.js) .cred-item[data-reveal] { opacity: 1; filter: none; transform: none; }
-    :global(.js) .cred-item[data-reveal] .cred, :global(.js) .cred-item[data-reveal] .cinta { opacity: 0; }
-    :global(.js) .cred-item[data-reveal].is-in .cinta { opacity: 1; animation: cinta-baja .5s var(--ease-out) calc(var(--rd, 0) * 1ms) both; }
-    :global(.js) .cred-item[data-reveal].is-in .cred { opacity: 1; transform-origin: 50% -2.5rem; animation: cred-cae 1.5s var(--ease-out) calc(var(--rd, 0) * 1ms + 150ms) both; }
-    :global(.js) .cred-item[data-reveal].is-quieto .cinta, :global(.js) .cred-item[data-reveal].is-quieto .cred { animation: none; }
+    :global(.js) .cred-item[data-reveal] .cred { opacity: 0; }
+    :global(.js) .cred-item[data-reveal].is-in .cred { opacity: 1; transform-origin: 50% 0; animation: cred-cae 1.5s var(--ease-out) calc(var(--rd, 0) * 1ms + 150ms) both; }
+    :global(.js) .cred-item[data-reveal].is-quieto .cred { animation: none; }
     @media (hover: hover) {
-      .cred-item:hover .cred { animation: cred-mece 1.4s var(--ease-out); transform-origin: 50% -2.5rem; }
+      .cred-item:hover .cred { animation: cred-mece 1.4s var(--ease-out); transform-origin: 50% 0; }
     }
   }
-  @keyframes cinta-baja { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
   @keyframes cred-cae {
     0% { opacity: 0; transform: translateY(-2.5rem) rotate(-7deg); }
     35% { opacity: 1; transform: translateY(0) rotate(4deg); }
