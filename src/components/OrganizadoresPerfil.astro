@@ -12,9 +12,15 @@ const lista = datos.organizadores.map((o: any) => ({
   nombreCompleto: [o.titulo, o.nombre].filter(Boolean).join(' '),
   hayFoto: enPublic(o.foto),
 }));
+// Primera fila: asesora y presidencia; debajo, el resto del equipo directivo
+const filas = [
+  { clase: 'creds creds--lideres', items: lista.filter((o) => o.destacado) },
+  { clase: 'creds', items: lista.filter((o) => !o.destacado) },
+].filter((f) => f.items.length);
 ---
-<ul class="creds" role="list">
-  {lista.map((o, i) => (
+{filas.map((fila) => (
+<ul class={fila.clase} role="list">
+  {fila.items.map((o, i) => (
     <li class="cred-item" data-reveal data-reveal-delay={(i % 5) * 90}>
       <article class="cred">
         <header class="cred__cab">
@@ -30,16 +36,24 @@ const lista = datos.organizadores.map((o: any) => ({
           {o.cargo && <p class="cred__cargo">{o.cargo}</p>}
         </div>
         <footer class="cred__pie">
-          <span>Organizador</span>
+          <span>{o.rol || 'Organizador'}</span>
         </footer>
       </article>
     </li>
   ))}
 </ul>
+))}
 
 <style>
   .creds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem clamp(1rem, 2.5vw, 1.75rem); }
-  .cred-item { position: relative; width: min(14rem, 100%); }
+  .cred-item { position: relative; display: flex; width: min(14rem, 100%); }
+  .cred-item > .cred { flex: 1; display: flex; flex-direction: column; } /* misma altura en cada fila */
+  .cred-item .cred__cuerpo { flex: 1; }
+  .creds + .creds { margin-top: clamp(1.75rem, 3.5vw, 2.5rem); max-width: calc(3 * 14rem + 2 * 1.75rem); margin-inline: auto; } /* filas de 3: sin credenciales sueltas */
+  /* Primera fila un poco más grande */
+  .creds--lideres .cred-item { width: min(15.5rem, 100%); }
+  .creds--lideres .cred__foto { width: 9.75rem; }
+  .creds--lideres .cred__pie { background: var(--acento); }
 
 
   /* Credencial */
@@ -73,4 +87,15 @@ const lista = datos.organizadores.map((o: any) => ({
     100% { transform: none; }
   }
   @keyframes cred-mece { 0%, 100% { transform: none; } 30% { transform: rotate(2.5deg); } 60% { transform: rotate(-1.5deg); } 80% { transform: rotate(.5deg); } }
+  /* Celular: dos por fila, más compactas */
+  @media (max-width: 34rem) {
+    .creds { gap: .9rem .75rem; }
+    .cred-item, .creds--lideres .cred-item { width: calc(50% - .375rem); }
+    .cred__cab { padding: 1.1rem .5rem 2.4rem; }
+    .cred__marca { font-size: .5rem; letter-spacing: .1em; }
+    .cred__foto, .creds--lideres .cred__foto { width: 6.5rem; margin-top: -2rem; border-width: 3px; }
+    .cred__cuerpo { min-height: 9rem; padding: 0 .5rem .7rem; }
+    .cred__nombre { font-size: .9375rem; }
+    .cred__pie { font-size: .5625rem; letter-spacing: .12em; }
+  }
 </style>

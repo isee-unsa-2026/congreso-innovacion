@@ -1,5 +1,5 @@
 {
-  "nota": "Comité organizador. \"cargo\" es el rol de cada persona (déjalo vacío si no hay); sin foto se muestra un monograma.",
+  "nota": "Comité organizador. \"rol\" va en la franja inferior de la credencial; \"destacado\" las pone en la primera fila; \"cargo\" es opcional bajo el nombre.",
   "organizadores": [
     {
       "titulo": "Ing.",
@@ -13,11 +13,13 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Asesora",
+      "destacado": true
     },
     {
       "titulo": "",
-      "nombre": "",
+      "nombre": "Eduardo Emilio Guerra",
       "cargo": "",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
@@ -27,7 +29,9 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Presidente ISEE UNSA",
+      "destacado": true
     },
     {
       "titulo": "",
@@ -41,7 +45,8 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Directivo"
     },
     {
       "titulo": "",
@@ -55,7 +60,8 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Directivo"
     },
     {
       "titulo": "",
@@ -69,7 +75,8 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Directivo"
     },
     {
       "titulo": "",
@@ -83,7 +90,8 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Directivo"
     },
     {
       "titulo": "",
@@ -97,7 +105,23 @@
         "alt": "ISEE UNSA Student Chapter",
         "ancho": 512,
         "alto": 512
-      }
+      },
+      "rol": "Directivo"
+    },
+    {
+      "titulo": "",
+      "nombre": "",
+      "cargo": "",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "/img/organizadores/organizador-7.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Directivo"
     }
   ],
   "evento": "Primer Congreso de Innovación en Minería"
