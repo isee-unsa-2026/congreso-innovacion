@@ -48,6 +48,21 @@
       }
     },
     {
+      "titulo": "",
+      "nombre": "Jorge Cárdenas Miranda",
+      "cargo": "Jefe de Enaex Mining Technical Solutions",
+      "organizacion": "ENAEX Perú",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/jorge-cardenas-miranda.webp",
+      "logo": {
+        "src": "/img/logos/enaex.svg",
+        "alt": "Enaex",
+        "ancho": 165.67,
+        "alto": 46.01
+      }
+    },
+    {
       "titulo": "Ing.",
       "nombre": "Dino Yancachajlla Tito",
       "cargo": "Presidente",
