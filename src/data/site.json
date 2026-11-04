@@ -54,6 +54,14 @@
       "logo": "/img/logos/isee.png",
       "ancho": 400,
       "alto": 184
+    },
+    {
+      "nombre": "Vicerrectorado de Investigación UNSA",
+      "alt": "Vicerrectorado de Investigación de la UNSA",
+      "logo": "/img/logos/vri.png",
+      "ancho": 915,
+      "alto": 180,
+      "escala": 1.45
     }
   ],
   "whatsapp": "https://chat.whatsapp.com/H9CeCPRjUTTI6PncEu5Qh6",

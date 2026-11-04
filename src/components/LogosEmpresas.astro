@@ -8,7 +8,7 @@ import { enPublic, altoOptico } from '../utils/medios';
 
 interface Props { area?: number; etiqueta?: string; class?: string; }
 const { area = 2000, etiqueta = 'Empresas', class: clase } = Astro.props;
-const empresas = site.empresas.map((e) => ({ ...e, hay: enPublic(e.logo), h: altoOptico(e.ancho, e.alto, area) }));
+const empresas = site.empresas.map((e) => ({ ...e, hay: enPublic(e.logo), h: Math.round(altoOptico(e.ancho, e.alto, area) * ((e as any).escala ?? 1) * 10) / 10 }));  // "escala": ajuste para logos de trazo fino
 ---
 <ul class:list={['logos', clase]} role="list" aria-label={etiqueta}>
   {empresas.map((e) => (
