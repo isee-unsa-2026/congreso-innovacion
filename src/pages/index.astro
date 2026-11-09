@@ -11,11 +11,13 @@ import { withBase } from '../utils/paths';
 const hero = imagenes.hero;
 // Carrusel de portada: fotos reales de minería (imagenes.json → "carrusel"); si no hay, queda la foto principal.
 const fotos: { src: string; width: number; height: number; alt: string; credito?: string }[] = (imagenes as any).carrusel?.length ? (imagenes as any).carrusel : [hero];
-// Enlace que abre Google Calendar con el evento ya cargado (dia completo, 18 y 19 de noviembre).
+// Enlace que abre Google Calendar con el evento ya cargado (días completos, del 18 al 20 de noviembre).
+// En Google Calendar la fecha final de un evento de día completo es exclusiva: va el día siguiente a dateEnd.
+const finExclusivo = new Date(Date.parse(site.dateEnd + 'T00:00:00Z') + 864e5).toISOString().slice(0, 10).replaceAll('-', '');
 const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
   action: 'TEMPLATE',
   text: `${site.name} · InnoMining ISEE UNSA`,
-  dates: `${site.dateStart.replaceAll('-', '')}/20261120`,
+  dates: `${site.dateStart.replaceAll('-', '')}/${finExclusivo}`,
   details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y la hackatón ${site.retoName}. Horarios próximamente.`,
   location: `${site.place}, ${site.city}`,
 }).toString().replace('%2F', '/');
@@ -45,7 +47,7 @@ const faq = [
     <div class="wrap hero__in">
       <p class="hero__kicker anim" style="--d:0ms">{site.kicker}</p>
       <p class="hero__marco anim" style="--d:80ms">
-        <span><time datetime={site.dateStart}>18</time> y <time datetime={site.dateEnd}>19 de noviembre, 2026</time></span>
+        <span><time datetime={site.dateStart}>18</time>, 19 y <time datetime={site.dateEnd}>20 de noviembre, 2026</time></span>
         <span class="hero__barra" aria-hidden="true">|</span><span class="sr">. </span>
         <span>{site.city}</span>
       </p>
@@ -65,7 +67,7 @@ const faq = [
     <div class="wrap dos">
       <div data-reveal>
         <h2 id="t-congreso" class="titulo-2">Un congreso sobre <em>innovación</em> en minería</h2>
-        <p class="lectura-p">Dos días de ponencias técnicas, mesas de diálogo entre la industria y la academia, y la hackatón {site.retoName}, donde equipos de la UNSA proponen soluciones propias a retos de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
+        <p class="lectura-p">Tres días de ponencias técnicas, mesas de diálogo entre la industria y la academia, y la hackatón {site.retoName}, donde equipos de la UNSA proponen soluciones propias a retos de la minería. Para estudiantes, docentes, profesionales y todos quienes trabajan en minería.</p>
         <a class="enlace-flecha" href={withBase('/congreso/')}>Conocer el congreso</a>
       </div>
       <CarruselFotos fotos={imagenes.congresoCarrusel} etiqueta="Fotografías de congresos y de la UNSA" retraso={100} />
