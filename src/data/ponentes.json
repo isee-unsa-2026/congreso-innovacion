@@ -115,6 +115,21 @@
         "ancho": 157.82,
         "alto": 51.02
       }
+    },
+    {
+      "titulo": "",
+      "nombre": "Marco Gutiérrez Conde",
+      "cargo": "",
+      "organizacion": "Las Bambas (MMG)",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/marco-gutierrez-conde.webp",
+      "logo": {
+        "src": "/img/logos/mmg.png",
+        "alt": "MMG Las Bambas",
+        "ancho": 344,
+        "alto": 300
+      }
     }
   ]
 }

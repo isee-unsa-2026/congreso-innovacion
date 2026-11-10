@@ -48,6 +48,14 @@
       "alto": 51.02
     },
     {
+      "nombre": "Las Bambas",
+      "alt": "MMG Las Bambas",
+      "leyenda": "Las Bambas",
+      "logo": "/img/logos/mmg.png",
+      "ancho": 344,
+      "alto": 300
+    },
+    {
       "nombre": "ISEE",
       "alt": "ISEE (International Society of Explosives Engineers)",
       "logo": "/img/logos/isee.png",
