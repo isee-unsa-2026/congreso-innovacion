@@ -99,27 +99,21 @@
       "organizacion": "Anglo American Quellaveco",
       "detalle": "",
       "sector": "Industria",
-      "foto": "/img/ponentes/wilbert-pacheco.webp",
-      "logo": {
-        "src": "/img/logos/anglo-american.svg",
-        "alt": "Anglo American",
-        "ancho": 184,
-        "alto": 41
-      }
+      "foto": "/img/ponentes/wilbert-pacheco.webp"
     },
     {
-      "titulo": "",
-      "nombre": "Eduardo Asmat",
-      "cargo": "Director de Asuntos Corporativos y Sostenibilidad",
-      "organizacion": "Minera Bateas",
+      "titulo": "Ing.",
+      "nombre": "Juan Manuel",
+      "cargo": "",
+      "organizacion": "Orica Perú",
       "detalle": "",
       "sector": "Industria",
-      "foto": "/img/ponentes/eduardo-asmat.webp",
+      "foto": "/img/ponentes/juan-manuel.webp",
       "logo": {
-        "src": "/img/logos/fortuna.png",
-        "alt": "Minera Bateas · Fortuna Mining",
-        "ancho": 400,
-        "alto": 130
+        "src": "/img/logos/orica.svg",
+        "alt": "Orica",
+        "ancho": 157.82,
+        "alto": 51.02
       }
     }
   ]

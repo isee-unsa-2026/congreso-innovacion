@@ -49,6 +49,13 @@
       "alto": 130
     },
     {
+      "nombre": "Orica",
+      "alt": "Orica",
+      "logo": "/img/logos/orica.svg",
+      "ancho": 157.82,
+      "alto": 51.02
+    },
+    {
       "nombre": "ISEE",
       "alt": "ISEE (International Society of Explosives Engineers)",
       "logo": "/img/logos/isee.png",
