@@ -138,6 +138,21 @@
         "alto": 512
       },
       "rol": "Directivo"
+    },
+    {
+      "titulo": "",
+      "nombre": "Nicole Aissa Quispe Manayay",
+      "cargo": "Estudiante",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "/img/organizadores/nicole-quispe-manayay.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Directivo"
     }
   ],
   "evento": "Primer Congreso de Innovación en Minería"

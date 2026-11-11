@@ -130,6 +130,21 @@
         "ancho": 344,
         "alto": 300
       }
+    },
+    {
+      "titulo": "",
+      "nombre": "Cristian Ortega Albornoz",
+      "cargo": "",
+      "organizacion": "ENAEX Perú",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/cristian-ortega-albornoz.webp",
+      "logo": {
+        "src": "/img/logos/enaex.svg",
+        "alt": "Enaex",
+        "ancho": 165.67,
+        "alto": 46.01
+      }
     }
   ]
 }
