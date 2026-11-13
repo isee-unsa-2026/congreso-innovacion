@@ -1,22 +1,6 @@
 {
-  "nota": "Solo ponentes confirmados por la organización. No publicar días ni horarios de cada ponente hasta que se confirme el programa.",
-  "masPorAnunciar": "Más ponentes por anunciar",
+  "nota": "Ponentes del programa oficial (cronogramas de los días 1, 2 y 3), en el orden en que exponen.",
   "ponentes": [
-    {
-      "titulo": "",
-      "nombre": "Julia Torreblanca Marmanillo",
-      "cargo": "Vicepresidenta de Asuntos Corporativos",
-      "organizacion": "Cerro Verde",
-      "detalle": "Presidenta de la Sociedad Nacional de Minería, Petróleo y Energía (SNMPE)",
-      "sector": "Industria",
-      "foto": "/img/ponentes/julia-torreblanca.webp",
-      "logo": {
-        "src": "/img/logos/cerro-verde.svg",
-        "alt": "Cerro Verde",
-        "ancho": 231.41,
-        "alto": 46.91
-      }
-    },
     {
       "titulo": "Dr.",
       "nombre": "Bernardo Ramón de la Gala Velásquez",
@@ -30,6 +14,36 @@
         "alt": "UNSA",
         "ancho": 206,
         "alto": 256
+      }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Giancarlo Pinto Guerra",
+      "cargo": "Director de Operaciones",
+      "organizacion": "Fortuna Mining Corp.",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/giancarlo-pinto.webp",
+      "logo": {
+        "src": "/img/logos/fortuna.png",
+        "alt": "Fortuna Mining",
+        "ancho": 400,
+        "alto": 130
+      }
+    },
+    {
+      "titulo": "Dra.",
+      "nombre": "Julia Torreblanca Marmanillo",
+      "cargo": "Vicepresidenta de Asuntos Corporativos",
+      "organizacion": "Cerro Verde",
+      "detalle": "Presidenta de la Sociedad Nacional de Minería, Petróleo y Energía (SNMPE)",
+      "sector": "Industria",
+      "foto": "/img/ponentes/julia-torreblanca.webp",
+      "logo": {
+        "src": "/img/logos/cerro-verde.svg",
+        "alt": "Cerro Verde",
+        "ancho": 231.41,
+        "alto": 46.91
       }
     },
     {
@@ -48,7 +62,46 @@
       }
     },
     {
-      "titulo": "",
+      "titulo": "Ing.",
+      "nombre": "Marco Gutiérrez Conde",
+      "cargo": "Superintendente de Excelencia Operacional",
+      "organizacion": "MMG Las Bambas",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/marco-gutierrez-conde.webp",
+      "logo": {
+        "src": "/img/logos/mmg.png",
+        "alt": "MMG Las Bambas",
+        "ancho": 344,
+        "alto": 300
+      }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Juan Manuel Prado Monje",
+      "cargo": "Marketing Management",
+      "organizacion": "Orica",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/juan-manuel-prado.webp",
+      "logo": {
+        "src": "/img/logos/orica.svg",
+        "alt": "Orica",
+        "ancho": 157.82,
+        "alto": 51.02
+      }
+    },
+    {
+      "titulo": "Ing.",
+      "nombre": "Wilbert Pacheco Bustinza",
+      "cargo": "Superintendente de Perforación y Voladura",
+      "organizacion": "Anglo American Quellaveco",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/wilbert-pacheco.webp"
+    },
+    {
+      "titulo": "Ing.",
       "nombre": "Jorge Cárdenas Miranda",
       "cargo": "Jefe de Enaex Mining Technical Solutions",
       "organizacion": "ENAEX Perú",
@@ -64,75 +117,6 @@
     },
     {
       "titulo": "Ing.",
-      "nombre": "Dino Yancachajlla Tito",
-      "cargo": "Presidente",
-      "organizacion": "ISEE Arequipa",
-      "detalle": "",
-      "sector": "Industria",
-      "foto": "/img/ponentes/dino-yancachajlla-tito.webp",
-      "logo": {
-        "src": "/img/logos/isee.png",
-        "alt": "ISEE",
-        "ancho": 400,
-        "alto": 184
-      }
-    },
-    {
-      "titulo": "Ing.",
-      "nombre": "Giancarlo Pinto",
-      "cargo": "Director de Operaciones",
-      "organizacion": "Fortuna Mining Corp.",
-      "detalle": "",
-      "sector": "Industria",
-      "foto": "/img/ponentes/giancarlo-pinto.webp",
-      "logo": {
-        "src": "/img/logos/fortuna.png",
-        "alt": "Fortuna Mining",
-        "ancho": 400,
-        "alto": 130
-      }
-    },
-    {
-      "titulo": "Ing.",
-      "nombre": "Wilbert Pacheco",
-      "cargo": "Superintendente de Perforación y Voladura",
-      "organizacion": "Anglo American Quellaveco",
-      "detalle": "",
-      "sector": "Industria",
-      "foto": "/img/ponentes/wilbert-pacheco.webp"
-    },
-    {
-      "titulo": "Ing.",
-      "nombre": "Juan Manuel Prado",
-      "cargo": "",
-      "organizacion": "Orica Perú",
-      "detalle": "",
-      "sector": "Industria",
-      "foto": "/img/ponentes/juan-manuel-prado.webp",
-      "logo": {
-        "src": "/img/logos/orica.svg",
-        "alt": "Orica",
-        "ancho": 157.82,
-        "alto": 51.02
-      }
-    },
-    {
-      "titulo": "",
-      "nombre": "Marco Gutiérrez Conde",
-      "cargo": "",
-      "organizacion": "Las Bambas (MMG)",
-      "detalle": "",
-      "sector": "Industria",
-      "foto": "/img/ponentes/marco-gutierrez-conde.webp",
-      "logo": {
-        "src": "/img/logos/mmg.png",
-        "alt": "MMG Las Bambas",
-        "ancho": 344,
-        "alto": 300
-      }
-    },
-    {
-      "titulo": "",
       "nombre": "Cristian Ortega Albornoz",
       "cargo": "",
       "organizacion": "ENAEX Perú",

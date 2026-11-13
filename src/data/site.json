@@ -90,6 +90,10 @@
       "href": "/ponentes/"
     },
     {
+      "label": "Programa",
+      "href": "/programa/"
+    },
+    {
       "label": "Hackatón",
       "href": "/reto/"
     },

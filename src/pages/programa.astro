@@ -1,27 +1,53 @@
 ---
-// El programa aun no se publica: la pagina existe (noindex) con un aviso breve.
-// El borrador de actividades sigue en src/data/programa.json para cuando se confirme.
+// Programa oficial: los cronogramas de los tres días tal como los diseñó la organización (public/img/cronograma).
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
 import { withBase } from '../utils/paths';
+
+const dias = [
+  { n: 1, fecha: 'Miércoles 18 de noviembre', tema: 'Academia, Empresa Minera e Innovación',
+    alt: 'Cronograma del día 1, 18 de noviembre: 9:30 registro; de 10:00 a 11:00 ponencias del Dr. Bernardo de la Gala Velásquez (UNSA), Ing. Giancarlo Pinto Guerra (Fortuna Mining), Dra. Julia Torreblanca (Cerro Verde) e Ing. Néstor Delgado Ponce (ENAEX); 11:20 panel y mesa de diálogo; 12:00 rueda de preguntas de estudiantes; 12:30 coffee break.' },
+  { n: 2, fecha: 'Jueves 19 de noviembre', tema: 'Innovación Minera 360°: desafíos, tecnología y sostenibilidad',
+    alt: 'Cronograma del día 2, 19 de noviembre: 9:30 registro; de 10:00 a 10:40 ponencias del Ing. Marco Gutiérrez Conde (MMG Las Bambas), Ing. Juan Manuel Prado Monje (Orica) e Ing. Wilbert Pacheco Bustinza (Quellaveco); 11:20 panel y mesa de diálogo; 12:00 coffee break.' },
+  { n: 3, fecha: 'Viernes 20 de noviembre', tema: 'Bloque técnico: taller de voladura e innovación',
+    alt: 'Cronograma del día 3, 20 de noviembre: 9:30 registro; 10:00 bloque técnico y taller de voladura con el Ing. Jorge Cárdenas Miranda y el Ing. Christian Ortega (ENAEX); 12:30 coffee break; 17:00 Minería y Academia; 18:00 mesa de diálogo y conclusiones; 19:00 clausura y networking.' },
+];
 ---
-<Base noindex title="Programa" description={`Programa del ${site.name} (${site.kicker}): se publicará próximamente. ${site.dates}, UNSA, Arequipa.`}>
+<Base title="Programa" description={`Programa del ${site.name} (${site.kicker}): ${site.dates}, UNSA, Arequipa. Ingreso libre.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Programa" />
 
-  <section class="seccion" aria-labelledby="t-prog">
-    <div class="wrap prog" data-reveal>
-      <h2 id="t-prog" class="titulo-2">Se publicará <em>próximamente</em></h2>
-      <div>
-        <p class="prog__p">Tres jornadas, el {site.dates}: ponencias técnicas, conversatorios y las presentaciones de la hackatón {site.retoName}.</p>
-        <div class="acciones"><a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
+  <section class="seccion" aria-label="Cronograma por día">
+    <div class="wrap crono">
+      {dias.map((d, i) => (
+        <article class="dia" data-reveal data-reveal-delay={i * 90}>
+          <header class="dia__cab">
+            <span class="dia__n">Día {d.n}</span>
+            <h2 class="dia__f">{d.fecha}</h2>
+            <p class="dia__t">{d.tema}</p>
+          </header>
+          <a class="dia__img" href={withBase(`/img/cronograma/dia-${d.n}.jpg`)} target="_blank" rel="noopener" aria-label={`Ver en grande el cronograma del día ${d.n} (se abre en una pestaña nueva)`}>
+            <img src={withBase(`/img/cronograma/dia-${d.n}.jpg`)} width="1600" height="900" alt={d.alt} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+          </a>
+        </article>
+      ))}
+      <div class="crono__fin" data-reveal>
+        <p>Ingreso libre con inscripción previa.</p>
+        <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .prog { display: grid; gap: 1rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); padding-top: 2rem; border-top: 2px solid var(--texto); }
-  .prog__p { margin: 0; font-size: 1.0625rem; line-height: 1.55; max-width: 56ch; }
-  @media (max-width: 48rem) { .prog { grid-template-columns: 1fr; } }
+  .crono { display: grid; gap: clamp(2rem, 4vw, 3rem); }
+  .dia { display: grid; gap: 1rem; }
+  .dia__cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem 1rem; padding-top: 1rem; border-top: 2px solid var(--texto); }
+  .dia__n { font: 700 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
+  .dia__f { margin: 0; font-size: 1.25rem; font-weight: 700; }
+  .dia__t { margin: 0; color: var(--texto-2); font-size: var(--t-sm); }
+  .dia__img { display: block; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
+  .dia__img img { display: block; width: 100%; height: auto; }
+  .crono__fin { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 2px solid var(--texto); }
+  .crono__fin p { margin: 0; font-weight: 600; }
 </style>
