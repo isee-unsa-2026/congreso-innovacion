@@ -61,30 +61,6 @@
       "logo": "/img/logos/isee.png",
       "ancho": 400,
       "alto": 184
-    },
-    {
-      "nombre": "Vicerrectorado de Investigación UNSA",
-      "alt": "Vicerrectorado de Investigación de la UNSA",
-      "logo": "/img/logos/vri.png",
-      "ancho": 915,
-      "alto": 180,
-      "escala": 1.45
-    },
-    {
-      "nombre": "Dirección de Incubadora de Empresas UNSA",
-      "alt": "Dirección de Incubadora de Empresas (DIE) de la UNSA",
-      "logo": "/img/logos/die.png",
-      "ancho": 745,
-      "alto": 198,
-      "escala": 1.25
-    },
-    {
-      "nombre": "JAKU Emprende UNSA",
-      "alt": "JAKU Emprende UNSA",
-      "logo": "/img/logos/jaku.png",
-      "ancho": 552,
-      "alto": 200,
-      "escala": 1.3
     }
   ],
   "patrocinadores": [

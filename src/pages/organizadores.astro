@@ -55,6 +55,21 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
           </div>
         </article>
       </div>
+      <!-- Vicerrectorado de Investigación y sus unidades de emprendimiento -->
+      <article class="vri" data-reveal>
+        <div class="vri__cab">
+          <img src={withBase('/img/logos/vri.png')} width="915" height="180" alt="Vicerrectorado de Investigación de la UNSA" loading="lazy" decoding="async" />
+          <div>
+            <h3>Vicerrectorado</h3>
+            <p class="inst__nombre">Vicerrectorado de Investigación · UNSA</p>
+            <p class="vri__t">Respalda el congreso y la hackatón {site.retoName}, junto con sus unidades de innovación y emprendimiento.</p>
+          </div>
+        </div>
+        <ul class="vri__u" role="list" aria-label="Unidades del Vicerrectorado de Investigación">
+          <li><img src={withBase('/img/logos/die.png')} width="745" height="198" alt="Dirección de Incubadora de Empresas (DIE) de la UNSA" loading="lazy" decoding="async" /></li>
+          <li><img src={withBase('/img/logos/jaku.png')} width="552" height="200" alt="JAKU Emprende UNSA" loading="lazy" decoding="async" /></li>
+        </ul>
+      </article>
     </div>
   </section>
 </Base>
@@ -71,5 +86,12 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   .inst img { width: 4rem; height: 4rem; object-fit: contain; }
   .inst h3 { margin: 0; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
   .inst__nombre { margin: .3rem 0 .4rem; font-size: 1.125rem; font-weight: 700; color: var(--texto); }
+  .vri { margin-top: 1.75rem; padding-top: 1.1rem; border-top: 2px solid var(--texto); display: grid; gap: 1.1rem 2.5rem; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); align-items: center; }
+  .vri__cab { display: grid; gap: .8rem; }
+  .vri__cab img { width: auto; height: 2.6rem; max-width: 100%; object-fit: contain; object-position: left; }
+  .vri h3 { margin: 0; font: 500 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; color: var(--texto-2); }
+  .vri__t { margin: 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .vri__u { list-style: none; margin: 0; padding: 1rem 1.25rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 1.25rem 2rem; background: var(--fondo); border-radius: var(--radio-lg); }
+  .vri__u img { width: auto; height: 3.1rem; max-width: 100%; object-fit: contain; }
   .inst p:last-child { margin-bottom: 0; font-size: var(--t-sm); color: var(--texto-2); }
 </style>
