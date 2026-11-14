@@ -6,9 +6,9 @@ import site from '../data/site.json';
 import { withBase } from '../utils/paths';
 import { enPublic, altoOptico } from '../utils/medios';
 
-interface Props { area?: number; etiqueta?: string; class?: string; }
-const { area = 2000, etiqueta = 'Empresas', class: clase } = Astro.props;
-const empresas = site.empresas.map((e) => ({ ...e, hay: enPublic(e.logo), h: Math.round(altoOptico(e.ancho, e.alto, area) * ((e as any).escala ?? 1) * 10) / 10 }));  // "escala": ajuste para logos de trazo fino
+interface Props { area?: number; etiqueta?: string; class?: string; lista?: 'empresas' | 'patrocinadores'; }
+const { area = 2000, etiqueta = 'Empresas', class: clase, lista = 'empresas' } = Astro.props;
+const empresas = (site[lista] as typeof site.empresas).map((e) => ({ ...e, hay: enPublic(e.logo), h: Math.round(altoOptico(e.ancho, e.alto, area) * ((e as any).escala ?? 1) * 10) / 10 }));  // "escala": ajuste para logos de trazo fino
 ---
 <ul class:list={['logos', clase]} role="list" aria-label={etiqueta}>
   {empresas.map((e) => (

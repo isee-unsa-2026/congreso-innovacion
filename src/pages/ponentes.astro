@@ -27,7 +27,11 @@ const formato = [
     <div class="wrap" data-reveal>
       <h2 id="t-empresas" class="titulo-2">Profesionales de empresas <em>líderes</em></h2>
       <div class="empresas__logos">
-        <LogosEmpresas area={2600} etiqueta="Empresas participantes" />
+        <LogosEmpresas area={2250} etiqueta="Empresas participantes" />
+      </div>
+      <h2 class="titulo-2 patro__t">Nuestros <em>patrocinadores</em></h2>
+      <div class="empresas__logos patro">
+        <LogosEmpresas area={3400} etiqueta="Patrocinadores" lista="patrocinadores" />
       </div>
     </div>
   </section>
@@ -51,7 +55,9 @@ const formato = [
 
 <style>
   .empresas__logos { margin-top: 1.25rem; padding: 1.4rem clamp(1.25rem, 3vw, 2.5rem) .9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg); }
-  .empresas__logos :global(.logos) { justify-content: space-between; }
+  .empresas__logos :global(.logos) { justify-content: space-between; column-gap: clamp(1.1rem, 1.8vw, 1.8rem); }
+  .patro__t { margin-top: 2.5rem; }
+  .patro :global(.logos) { justify-content: space-around; }
   .sesiones { display: grid; gap: 1.5rem 4rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); align-items: start; }
   .sesiones__p { margin: .9rem 0 0; font-size: 1.0625rem; line-height: 1.55; max-width: 52ch; }
   .sesiones .acciones { margin-top: 1.25rem; }
