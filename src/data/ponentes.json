@@ -2,6 +2,21 @@
   "nota": "Ponentes del programa oficial (cronogramas de los días 1, 2 y 3), en el orden en que exponen.",
   "ponentes": [
     {
+      "titulo": "Ing.",
+      "nombre": "Dino Yancachajlla Tito",
+      "cargo": "Vicepresidente de ISEE Perú",
+      "organizacion": "Capítulo ISEE Perú",
+      "detalle": "",
+      "sector": "Industria",
+      "foto": "/img/ponentes/dino-yancachajlla-tito.webp",
+      "logo": {
+        "src": "/img/logos/isee.png",
+        "alt": "ISEE",
+        "ancho": 400,
+        "alto": 184
+      }
+    },
+    {
       "titulo": "Dr.",
       "nombre": "Bernardo Ramón de la Gala Velásquez",
       "cargo": "Vicerrector de Investigación",
@@ -79,8 +94,8 @@
     {
       "titulo": "Ing.",
       "nombre": "Juan Manuel Prado Monje",
-      "cargo": "Marketing Management",
-      "organizacion": "Orica",
+      "cargo": "Marketing Management / Gerente de Servicios Técnicos",
+      "organizacion": "Orica Perú",
       "detalle": "",
       "sector": "Industria",
       "foto": "/img/ponentes/juan-manuel-prado.webp",

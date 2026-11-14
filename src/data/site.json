@@ -65,6 +65,13 @@
   ],
   "patrocinadores": [
     {
+      "nombre": "Enaex",
+      "alt": "Enaex",
+      "logo": "/img/logos/enaex.svg",
+      "ancho": 165.67,
+      "alto": 46.01
+    },
+    {
       "nombre": "Epiroc",
       "alt": "Epiroc",
       "logo": "/img/logos/epiroc.png",
@@ -79,12 +86,11 @@
       "alto": 51.02
     },
     {
-      "nombre": "ISEE Academy",
-      "alt": "ISEE Academy (International Society of Explosives Engineers)",
-      "leyenda": "Academy",
-      "logo": "/img/logos/isee.png",
-      "ancho": 400,
-      "alto": 184
+      "nombre": "iSE",
+      "alt": "iSE (ISE Academy)",
+      "logo": "/img/logos/ise.png",
+      "ancho": 218,
+      "alto": 88
     }
   ],
   "whatsapp": "https://chat.whatsapp.com/H9CeCPRjUTTI6PncEu5Qh6",
