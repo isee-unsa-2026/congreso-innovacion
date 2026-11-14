@@ -11,6 +11,8 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
       <div class="pie__logos">
         <img src={withBase('/brand/isee-unsa-logo-512.png')} width="44" height="44" alt={site.organizerFull} loading="lazy" decoding="async" />
         {hayUnsa && <img class="pie__unsa" src={withBase('/brand/unsa-logo.png')} width="35" height="44" alt={site.host} loading="lazy" decoding="async" />}
+        <img class="pie__unsa" src={withBase('/brand/fggm-logo.png')} width="46" height="44" alt="Facultad de Geología, Geofísica y Minas de la UNSA" loading="lazy" decoding="async" />
+        <img class="pie__unsa" src={withBase('/brand/minas-logo.png')} width="49" height="44" alt="Escuela Profesional de Ingeniería de Minas de la UNSA" loading="lazy" decoding="async" />
       </div>
       <p class="pie__marca">{site.name}<span>{site.kicker} · {site.dates}</span></p>
     </div>
@@ -28,7 +30,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     </nav>
     <div>
       <p class="pie__t">Organiza</p>
-      <p>{site.organizerFull}<br />Sede: {site.host}</p>
+      <p>{site.organizerFull}<br />Escuela Profesional de Ingeniería de Minas · UNSA<br />Sede: {site.host}</p>
     </div>
     <div>
       <p class="pie__t">Contacto</p>
