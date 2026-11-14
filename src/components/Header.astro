@@ -21,6 +21,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
       )}
       <img class="cab__unsa" src={withBase('/brand/fggm-logo.png')} width="466" height="444" alt="Facultad de Geología, Geofísica y Minas de la UNSA" />
       <img class="cab__unsa" src={withBase('/brand/minas-logo.png')} width="496" height="444" alt="Escuela Profesional de Ingeniería de Minas de la UNSA" />
+      <span class="aniv" aria-label="31 años de la Escuela de Ingeniería de Minas"><b>31</b><i>Años</i></span>
     </div>
     <button class="cab__btn" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú" data-menu-btn>
       <span class="cab__burger" aria-hidden="true"></span>
@@ -38,12 +39,16 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
 </header>
 <style>
   .cab { background: var(--blanco); position: relative; z-index: 50; border-bottom: 1px solid var(--linea); }
-  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 64px; }
+  .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 72px; }
   .cab__marcas { display: flex; align-items: center; gap: .7rem; }
   .cab__marca { display: block; line-height: 0; }
-  .cab__marca img { width: 44px; height: 44px; object-fit: contain; }
+  .cab__marca img { width: 52px; height: 52px; object-fit: contain; }
   .cab__sep { width: 1px; height: 30px; background: #c9c9c4; }
-  .cab__unsa { width: auto; height: 42px; object-fit: contain; }
+  .cab__unsa { width: auto; height: 50px; object-fit: contain; }
+  /* Aniversario de la Escuela, al estilo de un sello: número serif en cursiva + «Años» caligráfico */
+  .aniv { display: inline-flex; align-items: flex-start; gap: .1rem; color: var(--acento); line-height: .8; }
+  .aniv b { font: italic 900 2.6rem/.8 "Playfair Display", Georgia, serif; letter-spacing: -.04em; }
+  .aniv i { font: 400 1rem/1 Lobster, cursive; margin-top: .05rem; }
   .cab__nav ul { display: flex; align-items: center; gap: 0; list-style: none; margin: 0; padding: 0; }
   .cab__nav a {
     position: relative; display: inline-flex; align-items: center; min-height: 40px; padding: .45rem .6rem;
@@ -75,7 +80,8 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     :global(.js) .cab__btn { display: grid; }
     .cab__in { flex-wrap: wrap; min-height: 60px; }
     .cab__marca img { width: 42px; height: 42px; }
-    .cab__unsa { height: 40px; }
+    .cab__unsa { height: 42px; }
+    .aniv b { font-size: 2.1rem; } .aniv i { font-size: .85rem; }
     .cab__sep { height: 30px; }
     .cab__marcas { gap: .85rem; }
     .cab__nav { width: 100%; order: 3; padding-bottom: 1rem; }
