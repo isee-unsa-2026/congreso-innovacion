@@ -45,7 +45,6 @@ const faq = [
     )}
     <div class="hero__velo" aria-hidden="true"></div>
     <div class="wrap hero__in">
-      <img class="hero__logo anim" style="--d:0ms" src={withBase('/brand/innomining-logo.png')} width="155" height="174" alt="InnoMining, logo oficial" decoding="async" />
       <p class="hero__kicker anim" style="--d:0ms">{site.kicker}</p>
       <p class="hero__marco anim" style="--d:80ms">
         <span><time datetime={site.dateStart}>18</time>, 19 y <time datetime={site.dateEnd}>20 de noviembre, 2026</time></span>
@@ -133,8 +132,6 @@ const faq = [
   @keyframes baja { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 4px; } }
   @media (prefers-reduced-motion: reduce) { .hero__foto, .hero__flecha { animation: none; } }
   .hero__in { display: grid; justify-items: center; }
-  .hero__logo { width: 7rem; height: 7rem; margin: 0 0 1rem; padding: .8rem; box-sizing: border-box; object-fit: contain; background: #fff; border-radius: 1.4rem; border: 3px solid var(--acento); box-shadow: 0 14px 30px -16px rgba(0,0,0,.6); }
-  @media (max-width: 30rem) { .hero__logo { width: 5.5rem; height: 5.5rem; padding: .6rem; border-radius: 1.1rem; } }
   .hero__kicker { display: inline-flex; align-items: center; gap: .85rem; margin: 0 0 .9rem; font: 500 var(--t-sm)/1.2 var(--f-texto); letter-spacing: .22em; text-transform: uppercase; color: var(--cobre-2); max-width: none; }
   .hero__kicker::before, .hero__kicker::after { content: ""; width: 2.25rem; height: 1px; background: var(--cobre); }
   .hero__num { color: var(--cobre); }

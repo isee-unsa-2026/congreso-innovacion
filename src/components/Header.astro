@@ -11,6 +11,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   <div class="wrap wrap--ancho cab__in">
     <div class="cab__marcas">
       <a class="cab__marca" href={withBase('/')} aria-label={`${site.organizerFull}, organizador del ${site.name}. Ir al inicio`}>
+        <img class="cab__inno" src={withBase('/brand/innomining-logo.png')} width="155" height="174" alt="" />
         <img src={withBase('/brand/isee-unsa-logo-512.png')} width="72" height="72" alt="" />
       </a>
       {hayUnsa && (
@@ -43,8 +44,9 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   .cab { background: var(--blanco); position: relative; z-index: 50; border-bottom: 1px solid var(--linea); }
   .cab__in { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 72px; }
   .cab__marcas { display: flex; align-items: center; gap: .7rem; }
-  .cab__marca { display: block; line-height: 0; }
+  .cab__marca { display: flex; align-items: center; gap: .7rem; line-height: 0; }
   .cab__marca img { width: 60px; height: 60px; object-fit: contain; }
+  .cab__marca .cab__inno { width: auto; height: 60px; }
   .cab__sep { width: 1px; height: 36px; background: #c9c9c4; }
   .cab__unsa { width: auto; height: 60px; object-fit: contain; }
   /* Escuela de Minas + aniversario: bloque propio, separado del resto de logos */
@@ -84,6 +86,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     :global(.js) .cab__btn { display: grid; }
     .cab__in { flex-wrap: wrap; min-height: 60px; }
     .cab__marca img { width: 42px; height: 42px; }
+    .cab__marca .cab__inno { width: auto; height: 42px; }
     .cab__unsa { height: 42px; }
     .cab__escuela { gap: .4rem; }
     .aniv b { font-size: 2.1rem; } .aniv i { font-size: .85rem; }
@@ -97,6 +100,15 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     .cab__nav a { width: 100%; min-height: 52px; padding-inline: 0; }
     .cab__nav a::after { left: 0; right: auto; width: 2rem; }
     .cab__nav a.cab__cta { margin: .75rem 0 0; justify-content: center; }
+  }
+  @media (max-width: 30rem) {
+    .cab__marcas, .cab__marca { gap: .4rem; }
+    .cab__marca img, .cab__unsa, .cab__marca .cab__inno { height: 34px; }
+    .cab__marca img { width: 34px; }
+    .cab__marca .cab__inno { width: auto; }
+    .cab__sep { height: 26px; }
+    .aniv b { font-size: 1.7rem; } .aniv i { font-size: .7rem; }
+    .cab__btn { width: 44px; height: 44px; }
   }
   @keyframes menu-abre { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 </style>
