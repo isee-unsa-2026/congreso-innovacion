@@ -28,6 +28,10 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
           <p class="escuela__n">Escuela Profesional de Ingeniería de Minas · UNSA</p>
           <p class="escuela__t">El {site.name} nace en nuestra Escuela: estudiantes, egresados y docentes de Ingeniería de Minas lo impulsan para acercar la innovación de la industria a las aulas de la UNSA.</p>
         </div>
+        <div class="escuela__aniv">
+          <span class="aniv" aria-hidden="true"><b>31</b><i>Años</i></span>
+          <p>Este congreso se realiza en el marco del <strong>31.º aniversario</strong> de la Escuela Profesional de Ingeniería de Minas.</p>
+        </div>
       </article>
       <div class="inst">
         <article data-reveal>
@@ -80,7 +84,19 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   .escuela__k { margin: 0; font: 600 var(--t-xs)/1.3 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
   .escuela__n { margin: .35rem 0 .5rem; font-size: 1.375rem; font-weight: 700; line-height: 1.2; color: var(--texto); }
   .escuela__t { margin: 0; max-width: 62ch; color: var(--texto-2); line-height: 1.55; }
-  @media (max-width: 30rem) { .escuela { grid-template-columns: 1fr; } .escuela img { width: 5rem; } }
+  /* Aniversario de la Escuela: sello «31 Años» (serif cursiva + caligráfica) con su nota */
+  .escuela { grid-template-columns: 6.5rem minmax(0, 1fr) minmax(11rem, 14rem); }
+  .escuela__aniv { display: grid; justify-items: center; gap: .6rem; padding-left: 1.5rem; border-left: 1px solid var(--linea); text-align: center; }
+  .escuela__aniv p { margin: 0; font-size: var(--t-xs); line-height: 1.45; color: var(--texto-2); }
+  .escuela__aniv strong { color: var(--acento); }
+  .aniv { display: inline-flex; align-items: flex-start; gap: .1rem; color: var(--acento); line-height: .8; }
+  .aniv b { font: italic 900 3.4rem/.8 "Playfair Display", Georgia, serif; letter-spacing: -.04em; }
+  .aniv i { font: 400 1.25rem/1 Lobster, cursive; margin-top: .05rem; }
+  @media (max-width: 52rem) {
+    .escuela { grid-template-columns: 6.5rem minmax(0, 1fr); }
+    .escuela__aniv { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr); justify-items: start; align-items: center; gap: 1rem; padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--linea); text-align: left; }
+  }
+  @media (max-width: 30rem) { .escuela { grid-template-columns: 1fr; } .escuela img { width: 5rem; } .aniv b { font-size: 2.6rem; } .aniv i { font-size: 1rem; } }
   .inst { display: grid; gap: 1.25rem 2.5rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); }
   .inst article { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: 1.1rem; align-items: start; padding-top: 1.1rem; border-top: 2px solid var(--texto); }
   .inst img { width: 4rem; height: 4rem; object-fit: contain; }
