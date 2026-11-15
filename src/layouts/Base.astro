@@ -20,8 +20,8 @@ const url = new URL(path, Astro.site);
 const origin = new URL(withBase('/'), Astro.site).href;
 const ogImage = new URL(withBase('/og-image.png'), Astro.site).href;
 const ogAlt = `${site.kicker}: ${site.name}. ${site.dates}, ${site.city}`;
-// Las horas del programa son preliminares: se usa 00:00:00-05:00 (America/Lima) hasta confirmarlas.
-// Ponentes confirmados (sin horarios: el programa aún no se publica).
+// Fechas sin hora (ISO 8601 de día completo): no se publican horas que no estén confirmadas.
+// Ponentes confirmados.
 const performer = ponentes.ponentes.map((p) => ({
   '@type': 'Person',
   name: p.nombre,
@@ -40,8 +40,8 @@ const ld = {
   name: site.name,
   alternateName: site.kicker,
   slogan: site.tagline,
-  startDate: `${site.dateStart}T00:00:00-05:00`,
-  endDate: `${site.dateEnd}T00:00:00-05:00`,
+  startDate: site.dateStart,
+  endDate: site.dateEnd,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
   eventStatus: 'https://schema.org/EventScheduled',
   location: lugar,
@@ -50,8 +50,8 @@ const ld = {
   subEvent: {
     '@type': 'Event',
     name: `${site.retoName}: ${site.retoFullName}`,
-    startDate: `${site.dateStart}T00:00:00-05:00`,
-    endDate: `${site.dateEnd}T00:00:00-05:00`,
+    startDate: site.dateStart,
+    endDate: site.dateEnd,
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     eventStatus: 'https://schema.org/EventScheduled',
     location: lugar,
@@ -78,10 +78,13 @@ const ldJson = JSON.stringify(ld).replace(/</g, '\\u003c');
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{full}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#5e151d" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={url.href} />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={withBase('/icons/icon-192.png')} type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href={withBase('/icons/apple-touch-icon.png')} sizes="180x180" />
+    <link rel="manifest" href={withBase('/manifest.webmanifest')} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={`${site.name} · ${site.kicker}`} />
     <meta property="og:locale" content="es_PE" />

@@ -1,0 +1,67 @@
+---
+// Franja de portada con los ponentes confirmados (src/data/ponentes.json): retrato en círculo, nombre y
+// organización. Mismo criterio que PonenteTarjeta: si la foto no existe en public/, monograma con iniciales.
+// Móvil: carrusel horizontal con scroll-snap (sin autoplay ni flechas). Escritorio (≥60rem): rejilla de 5 columnas.
+import datos from '../data/ponentes.json';
+import { withBase } from '../utils/paths';
+import { enPublic, iniciales } from '../utils/medios';
+
+const enlace = withBase('/ponentes/');
+const lista = datos.ponentes.map((p) => ({
+  nombre: [p.titulo, p.nombre].filter(Boolean).join(' '),
+  iniciales: iniciales(p.nombre),
+  org: p.organizacion || p.detalle || '',
+  foto: enPublic(p.foto) ? withBase(p.foto!) : null,
+}));
+---
+<ul class="previa" role="list" aria-label="Ponentes confirmados">
+  {lista.map((p, i) => (
+    <li class="previa__item" data-reveal data-reveal-delay={(i % 5) * 80}>
+      <a class="previa__enlace" href={enlace}>
+        {p.foto
+          ? <img class="previa__foto" src={p.foto} width="88" height="88" alt="" loading="lazy" decoding="async" />
+          : <span class="previa__foto previa__mono" aria-hidden="true">{p.iniciales}</span>}
+        <span class="previa__nombre">{p.nombre}</span>
+        {p.org && <span class="previa__org">{p.org}</span>}
+      </a>
+    </li>
+  ))}
+</ul>
+<style>
+  .previa {
+    list-style: none; margin: 0; padding: .25rem 0 .75rem; min-width: 0;
+    display: flex; gap: 1rem; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: 0; scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .previa__item { flex: 0 0 min(10.5rem, 44%); min-width: 0; scroll-snap-align: start; }
+  .previa__enlace {
+    display: grid; justify-items: center; align-content: start; gap: .35rem; height: 100%;
+    padding: 1.1rem .75rem 1rem; text-align: center; text-decoration: none; color: var(--texto);
+    background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio-lg);
+  }
+  .previa__enlace:focus-visible { outline-offset: 2px; }
+  .previa__foto {
+    width: 88px; height: 88px; margin-bottom: .45rem; border-radius: 50%;
+    object-fit: cover; object-position: 50% 30%; background: var(--acento);
+    border: 1px solid var(--acento); outline: 1px solid var(--linea); outline-offset: 3px;
+  }
+  .previa__mono {
+    display: grid; place-items: center; color: #fff;
+    font: 700 1.5rem/1 var(--f-display); letter-spacing: .06em;
+  }
+  .previa__nombre { font: 600 .9375rem/1.3 var(--f-texto); color: var(--texto); text-wrap: balance; }
+  .previa__org { font-size: var(--t-xs); line-height: 1.4; color: var(--acento); font-weight: 500; text-wrap: balance; }
+
+  @media (min-width: 60rem) {
+    .previa { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.25rem; overflow: visible; padding-bottom: 0; scroll-snap-type: none; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    .previa__enlace { transition: border-color var(--dur-ui) var(--ease-out), transform var(--dur-ui) var(--ease-out); }
+    .previa__foto { transition: outline-color var(--dur-ui) var(--ease-out); }
+    .previa__enlace:hover { border-color: var(--acento); transform: translateY(-2px); }
+    .previa__enlace:hover .previa__foto { outline-color: var(--acento); }
+    .previa__enlace:hover .previa__nombre { color: var(--acento); }
+  }
+</style>

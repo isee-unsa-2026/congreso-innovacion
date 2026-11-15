@@ -283,3 +283,17 @@ a:hover { color: var(--acento-2); text-decoration-thickness: 2px; }
   .js [data-reveal] { opacity: 1; transform: none; }
   .btn:active { transform: none; }
 }
+
+/* Impresión: solo el contenido, en blanco y negro; el programa muestra los tres días */
+@media print {
+  .cab, .pie, .flotantes, .wa-flotante, .ig-flotante, .progreso, .btn, [role="tablist"], .dia__tabs, .dia__oficial summary { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  body * { color: #000 !important; background: transparent !important; box-shadow: none !important; text-shadow: none !important; }
+  [data-reveal], .js [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .dia[hidden], [role="tabpanel"][hidden] { display: grid !important; }
+  .dia__oficial::details-content { content-visibility: visible; display: block; }
+  .dia__img { border: 0 !important; transform: none !important; }
+  .dia { break-inside: avoid; page-break-inside: avoid; }
+  .dia__img img { max-height: 24cm; width: auto; margin-inline: auto; }
+  a { text-decoration: none; }
+}

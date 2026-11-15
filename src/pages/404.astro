@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import Banner from '../components/Banner.astro';
+import site from '../data/site.json';
+import { withBase } from '../utils/paths';
+---
+<Base title="Página no encontrada" description={`La página solicitada no existe en el sitio del ${site.name}.`} noindex>
+  <Banner etiqueta="Error 404" titulo="Página no" acento="encontrada" />
+
+  <section class="seccion" aria-labelledby="t-404">
+    <div class="wrap nf">
+      <h2 id="t-404" class="titulo-2">La dirección solicitada no está disponible</h2>
+      <p class="nf__txt">
+        Es posible que el enlace haya cambiado o que la dirección contenga un error. El {site.name} se realiza el
+        {' '}{site.dates} en el {site.place}, {site.city}.
+      </p>
+      <p class="nf__acc">
+        <a class="btn" href={withBase('/programa/')}>Ver el programa</a>
+      </p>
+      <nav class="nf__nav" aria-labelledby="t-404-nav">
+        <h3 id="t-404-nav" class="nf__t">Accesos del sitio</h3>
+        <ul>
+          {site.nav.map((item) => (
+            <li><a class="enlace-flecha" href={withBase(item.href)}>{item.label}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </section>
+</Base>
+<style>
+  .nf { max-width: 46rem; }
+  .nf__txt { margin: .75rem 0 0; color: var(--texto-2); max-width: 60ch; }
+  .nf__acc { margin: 1.5rem 0 0; }
+  .nf__nav { margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--linea); }
+  .nf__t { margin: 0 0 .75rem; font-size: var(--t-sm); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--acento); }
+  .nf__nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); gap: .6rem 1.5rem; }
+</style>

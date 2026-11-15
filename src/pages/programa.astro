@@ -1,57 +1,203 @@
 ---
-// Programa oficial: los cronogramas de los tres días tal como los diseñó la organización (public/img/cronograma).
+// Programa oficial: agenda en texto por día (src/data/programa.json) y, a pedido, la imagen del cronograma oficial (public/img/cronograma).
+// Con JS: pestañas por día (se abre el día de hoy en hora de Lima, o ?dia=N). Sin JS: los tres días seguidos.
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import site from '../data/site.json';
+import programa from '../data/programa.json';
 import { withBase } from '../utils/paths';
 
-const dias = [
-  { n: 1, fecha: 'Miércoles 18 de noviembre', tema: 'Academia, Empresa Minera e Innovación',
-    alt: 'Programa oficial del día 1, miércoles 18 de noviembre: 9:30 registro, acreditación y apertura protocolar con autoridades de la Facultad; 10:00 Ing. Dino Yancachajlla Tito (vicepresidente de ISEE Perú); 10:15 Dr. Bernardo Ramón de la Gala Velásquez (vicerrector de Investigación de la UNSA); 10:30 Ing. Giancarlo Pinto Guerra (Fortuna Mining Corp.); 10:45 Dra. Julia Torreblanca (Sociedad Minera Cerro Verde); 11:00 Ing. Néstor Alonso Delgado Ponce (ENAEX Perú); 11:20 panel «Del Conocimiento a la Transformación», mesa de diálogo y debate con todos los ponentes; 12:00 rueda de preguntas de estudiantes; 12:30 coffee break. Auspician Enaex, Epiroc, Orica e iSE.' },
-  { n: 2, fecha: 'Jueves 19 de noviembre', tema: 'Innovación Minera 360°: desafíos, tecnología y sostenibilidad',
-    alt: 'Programa oficial del día 2, jueves 19 de noviembre: 9:30 registro y acreditación; 10:00 Ing. Marco Gutiérrez Conde (MMG Las Bambas); 10:20 Ing. Juan Manuel Prado Monje (Orica Perú); 10:40 Ing. Wilbert Pacheco Bustinza (Quellaveco, Anglo American); 11:00 ponente por confirmar; 11:20 panel «Innovación Minera 360°», mesa de diálogo y debate; 12:00 coffee break. Auspician Enaex, Epiroc, Orica e iSE.' },
-  { n: 3, fecha: 'Viernes 20 de noviembre', tema: 'Bloque técnico: taller de voladura e innovación',
-    alt: 'Programa oficial del día 3, viernes 20 de noviembre: 9:30 registro y acreditación; 10:00 bloque técnico, taller de voladura e innovación con el Ing. Jorge Cárdenas Miranda y el Ing. Christian Ortega (ENAEX); 11:30 panelistas y comité organizador; 12:30 coffee break y networking; 17:00 bloque Minería y Academia con el Ing. Jorge Meza. Auspician Enaex, Epiroc, Orica e iSE.' },
-];
+const dias = programa.dias;
+// "9:30" -> "2026-11-18T09:30" para el atributo datetime de <time>.
+const dt = (iso: string, hora: string) => `${iso}T${hora.padStart(5, '0')}`;
 ---
 <Base title="Programa" description={`Programa del ${site.name} (${site.kicker}): ${site.dates}, UNSA, Arequipa. Ingreso libre.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Programa" />
 
   <section class="seccion" aria-label="Cronograma por día">
-    <div class="wrap crono">
+    <div class="wrap crono" data-crono>
+      <div class="dia__tabs" role="tablist" aria-label="Días del congreso" hidden data-tablist>
+        {dias.map((d, i) => (
+          <button class="dia__tab" type="button" role="tab" id={`tab-dia-${d.n}`} aria-controls={`dia-${d.n}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-tab={d.n} data-iso={d.iso}>
+            <span class="dia__tab-n">Día {d.n}</span>
+            <span class="dia__tab-f">{d.fecha.split(' ').slice(1).join(' ')}</span>
+            <span class="hoy" hidden data-hoy>Hoy</span>
+          </button>
+        ))}
+      </div>
+
       {dias.map((d, i) => (
-        <article class="dia" data-reveal data-reveal-delay={i * 90}>
+        <article class="dia" id={`dia-${d.n}`} data-reveal data-reveal-delay={i * 90} data-panel={d.n}>
           <header class="dia__cab">
             <span class="dia__n">Día {d.n}</span>
             <h2 class="dia__f">{d.fecha}</h2>
+            <span class="hoy" hidden data-hoy>Hoy</span>
             <p class="dia__t">{d.tema}</p>
           </header>
-          <a class="dia__img" href={withBase(`/img/cronograma/dia-${d.n}.jpg`)} target="_blank" rel="noopener" aria-label={`Ver en grande el cronograma del día ${d.n} (se abre en una pestaña nueva)`}>
-            <img src={withBase(`/img/cronograma/dia-${d.n}.jpg`)} width="1296" height="1620" alt={d.alt} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
-          </a>
+
+          <ol class="agenda">
+            {d.actividades.map((a) => (
+              <li class="agenda__item">
+                <time class="agenda__h" datetime={dt(d.iso, a.hora)}>{a.hora}</time>
+                <div class="agenda__c">
+                  <strong class="agenda__a">{a.actividad}</strong>
+                  {a.detalle && <span class="agenda__d">{a.detalle}</span>}
+                </div>
+              </li>
+            ))}
+          </ol>
+
+          <details class="dia__oficial">
+            <summary>Ver cronograma oficial (imagen)</summary>
+            <a class="dia__img" href={withBase(`/img/cronograma/dia-${d.n}.jpg`)} target="_blank" rel="noopener" aria-label={`Ver en grande el cronograma del día ${d.n} (se abre en una pestaña nueva)`}>
+              <img src={withBase(`/img/cronograma/dia-${d.n}.jpg`)} width="1296" height="1620" alt={d.alt} loading="lazy" decoding="async" />
+            </a>
+          </details>
         </article>
       ))}
+
       <div class="crono__fin" data-reveal>
         <p>Ingreso libre con inscripción previa.</p>
-        <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
+        <div class="crono__acc">
+          <a class="enlace-flecha" href={withBase('/congreso-isee-unsa-2026.ics')} download>Agregar al calendario (.ics)</a>
+          <a class="btn" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
+        </div>
       </div>
     </div>
   </section>
 </Base>
 
+<script>
+  // Pestañas por día (patrón WAI-ARIA Tabs, activación automática).
+  const raiz = document.querySelector<HTMLElement>('[data-crono]');
+  const lista = raiz?.querySelector<HTMLElement>('[data-tablist]');
+  if (raiz && lista) {
+    const tabs = Array.from(lista.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const paneles = tabs.map((t) => raiz.querySelector<HTMLElement>(`[data-panel="${t.dataset.tab}"]`));
+
+    const activar = (idx: number, foco = false, url = false) => {
+      tabs.forEach((t, i) => {
+        const sel = i === idx;
+        t.setAttribute('aria-selected', String(sel));
+        t.tabIndex = sel ? 0 : -1;
+        const p = paneles[i];
+        if (p) p.hidden = !sel;
+      });
+      if (foco) tabs[idx].focus();
+      if (url) {
+        try {
+          const u = new URL(location.href);
+          u.searchParams.set('dia', tabs[idx].dataset.tab || '1');
+          history.replaceState(null, '', u);
+        } catch { /* sin cambios en la URL */ }
+      }
+    };
+
+    paneles.forEach((p, i) => {
+      if (!p) return;
+      p.setAttribute('role', 'tabpanel');
+      p.setAttribute('aria-labelledby', tabs[i].id);
+      p.tabIndex = 0;
+    });
+
+    // Día de hoy en Arequipa (America/Lima): etiqueta "Hoy" discreta.
+    let hoy = -1;
+    try {
+      const f = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Lima', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+      hoy = tabs.findIndex((t) => t.dataset.iso === f);
+    } catch { /* sin etiqueta */ }
+    if (hoy >= 0) {
+      tabs[hoy].querySelector<HTMLElement>('[data-hoy]')?.removeAttribute('hidden');
+      paneles[hoy]?.querySelector<HTMLElement>('[data-hoy]')?.removeAttribute('hidden');
+    }
+
+    // ?dia=N tiene prioridad; si no, el día de hoy; si no, el día 1.
+    const pedido = tabs.findIndex((t) => t.dataset.tab === new URLSearchParams(location.search).get('dia'));
+    activar(pedido >= 0 ? pedido : hoy >= 0 ? hoy : 0);
+    lista.hidden = false;
+    raiz.classList.add('crono--tabs');
+
+    tabs.forEach((t, i) => t.addEventListener('click', () => activar(i, false, true)));
+    lista.addEventListener('keydown', (e) => {
+      const actual = tabs.findIndex((t) => t.getAttribute('aria-selected') === 'true');
+      let sig = -1;
+      if (e.key === 'ArrowRight') sig = (actual + 1) % tabs.length;
+      else if (e.key === 'ArrowLeft') sig = (actual - 1 + tabs.length) % tabs.length;
+      else if (e.key === 'Home') sig = 0;
+      else if (e.key === 'End') sig = tabs.length - 1;
+      if (sig < 0) return;
+      e.preventDefault();
+      activar(sig, true, true);
+    });
+
+    // Impresión: los tres días y el cronograma oficial abiertos; se restaura al terminar.
+    let abiertos: HTMLDetailsElement[] = [];
+    addEventListener('beforeprint', () => {
+      abiertos = Array.from(raiz.querySelectorAll<HTMLDetailsElement>('details.dia__oficial:not([open])'));
+      abiertos.forEach((d) => { d.open = true; });
+    });
+    addEventListener('afterprint', () => {
+      abiertos.forEach((d) => { d.open = false; });
+      abiertos = [];
+    });
+  }
+</script>
+
 <style>
   .crono { display: grid; gap: clamp(2rem, 4vw, 3rem); }
-  .dia { display: grid; gap: 1rem; }
+  .dia { display: grid; gap: 1.25rem; min-width: 0; }
+  .dia[hidden], .dia__tabs[hidden], .hoy[hidden] { display: none; }
+  .dia:focus-visible { outline: 2px solid var(--acento); outline-offset: 6px; border-radius: var(--radio); }
+
+  /* Pestañas (solo con JS) */
+  .dia__tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-bottom: calc(clamp(2rem, 4vw, 3rem) * -.5); border-bottom: 1px solid var(--linea); }
+  .dia__tab {
+    display: flex; flex-direction: column; align-items: flex-start; gap: .15rem; min-height: 48px; padding: .6rem .25rem .7rem;
+    background: none; border: 0; border-bottom: 3px solid transparent; margin-bottom: -1px; color: var(--texto-2);
+    font: inherit; text-align: left; cursor: pointer;
+  }
+  .dia__tab-n { font: 700 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .14em; text-transform: uppercase; }
+  .dia__tab-f { font-size: var(--t-sm); line-height: 1.3; }
+  .dia__tab:hover { color: var(--texto); }
+  .dia__tab[aria-selected="true"] { color: var(--tinta, var(--texto)); border-bottom-color: var(--acento); }
+  .dia__tab[aria-selected="true"] .dia__tab-n { color: var(--acento); }
+  .dia__tab:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .dia__tab { transition: color var(--dur-ui) var(--ease-out), border-color var(--dur-ui) var(--ease-out); }
+  }
+
+  .hoy { display: inline-block; padding: .1rem .45rem; border: 1px solid var(--acento); border-radius: 999px; color: var(--acento); font: 700 .6875rem/1.4 var(--f-texto); letter-spacing: .1em; text-transform: uppercase; }
+
   .dia__cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35rem 1rem; padding-top: 1rem; border-top: 2px solid var(--texto); }
+  /* Con pestañas, la línea inferior de la lista ya separa: se evita la doble línea. */
+  .crono--tabs .dia__cab { border-top: 0; padding-top: .25rem; }
   .dia__n { font: 700 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: var(--acento); }
   .dia__f { margin: 0; font-size: 1.25rem; font-weight: 700; }
-  .dia__t { margin: 0; color: var(--texto-2); font-size: var(--t-sm); }
-  .dia__img { display: block; width: 100%; max-width: 46rem; justify-self: center; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
+  .dia__t { flex-basis: 100%; margin: 0; color: var(--texto-2); font-size: var(--t-sm); }
+
+  /* Agenda en texto */
+  .agenda { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
+  .agenda__item { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: .25rem 1rem; padding: .85rem 0; border-bottom: 1px solid var(--linea); }
+  .agenda__item:first-child { border-top: 1px solid var(--linea); }
+  .agenda__h { font-weight: 700; color: var(--acento); font-variant-numeric: tabular-nums; line-height: 1.5; }
+  .agenda__c { display: grid; gap: .15rem; min-width: 0; }
+  .agenda__a { font-weight: 700; color: var(--texto); line-height: 1.45; overflow-wrap: anywhere; }
+  .agenda__d { color: var(--texto-2); font-size: var(--t-sm); line-height: 1.45; }
+  @media (min-width: 640px) { .agenda__item { grid-template-columns: 5rem minmax(0, 1fr); } }
+
+  /* Cronograma oficial (imagen) a pedido */
+  .dia__oficial { max-width: 46rem; }
+  .dia__oficial summary { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; cursor: pointer; font-weight: 600; font-size: var(--t-sm); color: var(--acento); }
+  .dia__oficial summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 4px; }
+  .dia__oficial[open] summary { margin-bottom: .75rem; }
+  .dia__img { display: block; width: 100%; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
   .dia__img img { display: block; width: 100%; height: auto; }
   @media (prefers-reduced-motion: no-preference) and (hover: hover) {
     .dia__img { transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out); }
     .dia__img:hover { transform: translateY(-4px); box-shadow: 0 28px 48px -28px rgba(18, 19, 21, .6); }
   }
+
   .crono__fin { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 2px solid var(--texto); }
   .crono__fin p { margin: 0; font-weight: 600; }
+  .crono__acc { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.5rem; }
 </style>

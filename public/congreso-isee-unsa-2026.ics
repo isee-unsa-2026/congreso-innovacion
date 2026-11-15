@@ -4,15 +4,44 @@ PRODID:-//ISEE UNSA//Primer Congreso de Innovacion en Mineria 2026//ES
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:congreso-innovacion-mineria-2026@isee-unsa
-DTSTAMP:20261022T000000Z
-SEQUENCE:1
+UID:congreso-innovacion-mineria-2026-dia-1@isee-unsa-2026.github.io
+DTSTAMP:20261115T000000Z
+SEQUENCE:2
 DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:Congreso InnoMining · Día 1: Academia\, Empresa Minera e Innovaci
+ ón
+LOCATION:Nuevo Auditorio “Aurelio Pastor”\, Facultad de Arquitectura y 
+ Urbanismo\, UNSA\, Arequipa\, Perú
+DESCRIPTION:Registro y acreditación desde las 9:30. Ingreso gratuito. Prog
+ rama: https://isee-unsa-2026.github.io/congreso-innovacion/programa/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:congreso-innovacion-mineria-2026-dia-2@isee-unsa-2026.github.io
+DTSTAMP:20261115T000000Z
+SEQUENCE:2
+DTSTART;VALUE=DATE:20261119
 DTEND;VALUE=DATE:20261120
-SUMMARY:Primer Congreso de Innovación en Minería · InnoMining ISEE UNSA
-LOCATION:Auditorio de la Facultad de Arquitectura\, UNSA\, Arequipa\, Perú
-DESCRIPTION:InnoMining · ISEE UNSA. Organiza ISEE UNSA. Ingreso gratuito. 
- Ponencias de la industria minera y la academia\, y el concurso INNOMINING.
-  Horarios próximamente.
+SUMMARY:Congreso InnoMining · Día 2: Innovación Minera 360°
+LOCATION:Nuevo Auditorio “Aurelio Pastor”\, Facultad de Arquitectura y 
+ Urbanismo\, UNSA\, Arequipa\, Perú
+DESCRIPTION:Registro y acreditación desde las 9:30. Ingreso gratuito. Prog
+ rama: https://isee-unsa-2026.github.io/congreso-innovacion/programa/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:congreso-innovacion-mineria-2026-dia-3@isee-unsa-2026.github.io
+DTSTAMP:20261115T000000Z
+SEQUENCE:2
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:Congreso InnoMining · Día 3: Bloque técnico: taller de voladura 
+ e innovación
+LOCATION:Nuevo Auditorio “Aurelio Pastor”\, Facultad de Arquitectura y 
+ Urbanismo\, UNSA\, Arequipa\, Perú
+DESCRIPTION:Registro y acreditación desde las 9:30. Ingreso gratuito. Prog
+ rama: https://isee-unsa-2026.github.io/congreso-innovacion/programa/
+TRANSP:TRANSPARENT
 END:VEVENT
 END:VCALENDAR

@@ -6,6 +6,8 @@ import RetoBloque from '../components/RetoBloque.astro';
 import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
 import CarruselFotos from '../components/CarruselFotos.astro';
+import PonentesPrevia from '../components/PonentesPrevia.astro';
+import Compartir from '../components/Compartir.astro';
 import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
@@ -18,7 +20,7 @@ const calendario = 'https://calendar.google.com/calendar/render?' + new URLSearc
   action: 'TEMPLATE',
   text: `${site.name} · InnoMining ISEE UNSA`,
   dates: `${site.dateStart.replaceAll('-', '')}/${finExclusivo}`,
-  details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y la hackatón ${site.retoName}. Horarios próximamente.`,
+  details: `Organiza ${site.organizer}. Ingreso gratuito. Ponencias de la industria minera y la academia, y la hackatón ${site.retoName}. Registro desde las 9:30 cada día.`,
   location: `${site.place}, ${site.city}`,
 }).toString().replace('%2F', '/');
 const faq = [
@@ -26,6 +28,8 @@ const faq = [
   { titulo: '¿Cuándo y dónde se realiza?', texto: `El ${site.dates}, en el ${site.place}, Arequipa.` },
   { titulo: `¿Qué es ${site.retoName}?`, html: `Es la hackatón del congreso: equipos multidisciplinarios de estudiantes y egresados de la UNSA, con un docente asesor, trabajan sobre retos propuestos por ENAEX, empresa auspiciadora, y presentan una solución propia para afrontarlos. Otorga certificado de la UNSA y su Vicerrectorado de Investigación, y puede ser el inicio de un artículo o una tesis. Bases e inscripción, próximamente por nuestro <a href="${site.whatsapp}" target="_blank" rel="noopener">grupo de WhatsApp</a>.` },
   { titulo: '¿Cómo me inscribo al congreso?', html: `Desde la <a href="${withBase('/inscripciones/')}">página de inscripciones</a>: el registro de asistencia es abierto a todo público y gratuito.` },
+  { titulo: '¿Cómo obtengo mi certificado?', html: `Completa el <a href="${site.certificado.url}" target="_blank" rel="noopener">formulario del certificado</a> y adjunta la captura del pago de ${site.certificado.costo}. Los detalles están en la <a href="${withBase('/congreso/#certificado')}">sección de certificado</a>.` },
+  { titulo: '¿A qué hora empieza cada día?', html: `El registro y la acreditación son desde las 9:30, los tres días. Consulta el detalle en el <a href="${withBase('/programa/')}">programa</a>.` },
 ];
 ---
 <Base title={`${site.name} · InnoMining ISEE UNSA 2026`} description={`${site.name} (InnoMining · ISEE UNSA): gratuito, ${site.dates} en la UNSA, Arequipa. Ponencias de referentes de la industria minera y la academia, y la hackatón ${site.retoName}.`}>
@@ -82,15 +86,26 @@ const faq = [
     </div>
   </section>
 
+  <section class="seccion" aria-labelledby="t-ponentes">
+    <div class="wrap">
+      <div class="cab-sec" data-reveal>
+        <h2 id="t-ponentes" class="titulo-2">Ponentes <em>confirmados</em></h2>
+        <a class="enlace-flecha" href={withBase('/ponentes/')}>Ver todos los ponentes</a>
+      </div>
+      <PonentesPrevia />
+    </div>
+  </section>
 
   <RetoBloque />
-
 
   <section class="seccion seccion--fondo" aria-labelledby="t-faq">
     <div class="wrap faq">
       <div class="cab-sec" data-reveal>
         <h2 id="t-faq" class="titulo-2">Preguntas <em>frecuentes</em></h2>
-        <a class="faq__cal" href={calendario} target="_blank" rel="noopener">Agregar a Google Calendar<span class="sr"> (se abre en una pestaña nueva)</span></a>
+        <div class="faq__cals">
+          <a class="faq__cal" href={calendario} target="_blank" rel="noopener">Agregar a Google Calendar<span class="sr"> (se abre en una pestaña nueva)</span></a>
+          <a class="faq__cal" href={withBase('/congreso-isee-unsa-2026.ics')} download>Apple / Outlook (.ics)<span class="sr">, descarga el archivo del evento</span></a>
+        </div>
       </div>
       <div data-reveal><Acordeon items={faq} /></div>
     </div>
@@ -102,7 +117,10 @@ const faq = [
         <h2 id="t-cierre" class="cierre__t">Te esperamos en <em>Arequipa</em></h2>
         <p>{site.dates} · {site.place}</p>
       </div>
-      <div class="acciones"><a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a></div>
+      <div class="acciones">
+        <a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
+        <Compartir claro />
+      </div>
     </div>
   </section>
 </Base>
@@ -147,6 +165,7 @@ const faq = [
 
   /* ---------- Ponentes, FAQ y cierre ---------- */
   .faq { display: grid; gap: .75rem 3rem; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: start; }
+  .faq__cals { display: flex; flex-wrap: wrap; gap: 0 1.25rem; }
   .faq__cal { display: inline-flex; align-items: center; min-height: 44px; margin-top: .25rem; font-size: var(--t-sm); font-weight: 500; }
   .cierre { background: var(--tinta); color: #fff; padding-block: clamp(2rem, 4vw, 2.75rem); }
   .cierre__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; }
@@ -170,6 +189,8 @@ const faq = [
     .hero__marco { font-size: .875rem; }
     .hero .acciones .btn { flex: 1 1 100%; }
     .cierre .acciones, .cierre .acciones .btn { width: 100%; }
+    .cierre .acciones :global(.compartir) { width: 100%; align-items: stretch; }
+    .cierre .acciones :global(.compartir__btn) { width: 100%; }
   }
   @media (max-width: 16rem) {
     .hero__in { min-width: 0; }

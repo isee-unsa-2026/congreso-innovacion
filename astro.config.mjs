@@ -13,6 +13,6 @@ export default defineConfig({
   vite: { build: { assetsInlineLimit: 0 } },
   // La antigua página /organizacion/ ahora es /organizadores/
   redirects: { '/organizacion/': '/congreso-innovacion/organizadores/' },
-  integrations: [sitemap({ filter: (page) => !/\/(programa|organizacion)\/?$/.test(page) })],
+  integrations: [sitemap({ filter: (page) => !/\/(organizacion|404)\/?$/.test(page) })],
 });
 

@@ -1,0 +1,15 @@
+{
+  "name": "Primer Congreso de Innovación en Minería · InnoMining ISEE UNSA",
+  "short_name": "InnoMining",
+  "description": "Congreso gratuito organizado por ISEE UNSA en Arequipa, 18, 19 y 20 de noviembre de 2026.",
+  "lang": "es-PE",
+  "start_url": "/congreso-innovacion/",
+  "scope": "/congreso-innovacion/",
+  "display": "standalone",
+  "theme_color": "#5e151d",
+  "background_color": "#ffffff",
+  "icons": [
+    { "src": "/congreso-innovacion/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/congreso-innovacion/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

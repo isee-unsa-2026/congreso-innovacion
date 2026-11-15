@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
 import WhatsAppBloque from '../components/WhatsAppBloque.astro';
+import TarjetaAsistire from '../components/TarjetaAsistire.astro';
 import site from '../data/site.json';
 import { withBase } from '../utils/paths';
 
@@ -97,6 +98,14 @@ import { withBase } from '../utils/paths';
     </div>
   </section>
 
+  <section class="seccion extra-cert" aria-label="Certificado de participación">
+    <div class="wrap reg">
+      <a class="enlace-flecha" href={withBase('/congreso/#certificado')}>También puedes solicitar tu certificado de participación</a>
+    </div>
+  </section>
+
+  <TarjetaAsistire />
+
   <script>
     // Validación, envío y mensaje de éxito (WhatsApp + Instagram): src/scripts/forms.js.
     import '../scripts/forms.js';
@@ -115,4 +124,5 @@ import { withBase } from '../utils/paths';
   .consent { border-top: 1px solid var(--linea); padding-top: .5rem; }
   .consent + .consent { border-top: 0; padding-top: 0; }
   .form .acciones { margin-top: 0; }
+  .extra-cert { padding-block: clamp(1.25rem, 3vw, 1.75rem); }
 </style>

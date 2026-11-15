@@ -1,82 +1,51 @@
 {
-  "nota": "Programa preliminar. Los horarios, actividades y espacios se confirmarán.",
   "dias": [
     {
+      "n": 1,
+      "iso": "2026-11-18",
       "fecha": "Miércoles 18 de noviembre",
-      "titulo": "Día 1 · Fundamentos e innovación",
+      "tema": "Academia, Empresa Minera e Innovación",
+      "alt": "Programa oficial del día 1, miércoles 18 de noviembre: 9:30 registro, acreditación y apertura protocolar con autoridades de la Facultad; 10:00 Ing. Dino Yancachajlla Tito (vicepresidente de ISEE Perú); 10:15 Dr. Bernardo Ramón de la Gala Velásquez (vicerrector de Investigación de la UNSA); 10:30 Ing. Giancarlo Pinto Guerra (Fortuna Mining Corp.); 10:45 Dra. Julia Torreblanca (Sociedad Minera Cerro Verde); 11:00 Ing. Néstor Alonso Delgado Ponce (ENAEX Perú); 11:20 panel «Del Conocimiento a la Transformación», mesa de diálogo y debate con todos los ponentes; 12:00 rueda de preguntas de estudiantes; 12:30 coffee break. Auspician Enaex, Epiroc, Orica e iSE.",
       "actividades": [
-        {
-          "hora": "",
-          "actividad": "Acreditación y bienvenida",
-          "espacio": "",
-          "ponente": ""
-        },
-        {
-          "hora": "",
-          "actividad": "Inauguración del congreso",
-          "espacio": "",
-          "ponente": "ISEE UNSA"
-        },
-        {
-          "hora": "",
-          "actividad": "Ponencia magistral: innovación en perforación y voladura",
-          "espacio": "",
-          "ponente": ""
-        },
-        {
-          "hora": "",
-          "actividad": "Panel: seguridad y gestión de riesgos",
-          "espacio": "",
-          "ponente": ""
-        },
-        {
-          "hora": "",
-          "actividad": "Presentación de la hackatón INNOMINING",
-          "espacio": "",
-          "ponente": ""
-        }
+        { "hora": "9:30", "actividad": "Registro, acreditación y apertura protocolar", "detalle": "Con autoridades de la Facultad" },
+        { "hora": "10:00", "actividad": "Ing. Dino Yancachajlla Tito", "detalle": "Vicepresidente de ISEE Perú" },
+        { "hora": "10:15", "actividad": "Dr. Bernardo Ramón de la Gala Velásquez", "detalle": "Vicerrector de Investigación de la UNSA" },
+        { "hora": "10:30", "actividad": "Ing. Giancarlo Pinto Guerra", "detalle": "Fortuna Mining Corp." },
+        { "hora": "10:45", "actividad": "Dra. Julia Torreblanca", "detalle": "Sociedad Minera Cerro Verde" },
+        { "hora": "11:00", "actividad": "Ing. Néstor Alonso Delgado Ponce", "detalle": "ENAEX Perú" },
+        { "hora": "11:20", "actividad": "Panel «Del Conocimiento a la Transformación»", "detalle": "Mesa de diálogo y debate con todos los ponentes" },
+        { "hora": "12:00", "actividad": "Rueda de preguntas de estudiantes" },
+        { "hora": "12:30", "actividad": "Coffee break" }
       ]
     },
     {
+      "n": 2,
+      "iso": "2026-11-19",
       "fecha": "Jueves 19 de noviembre",
-      "titulo": "Día 2 · Datos, eficiencia y colaboración",
+      "tema": "Innovación Minera 360°: desafíos, tecnología y sostenibilidad",
+      "alt": "Programa oficial del día 2, jueves 19 de noviembre: 9:30 registro y acreditación; 10:00 Ing. Marco Gutiérrez Conde (MMG Las Bambas); 10:20 Ing. Juan Manuel Prado Monje (Orica Perú); 10:40 Ing. Wilbert Pacheco Bustinza (Quellaveco, Anglo American); 11:00 ponente por confirmar; 11:20 panel «Innovación Minera 360°», mesa de diálogo y debate; 12:00 coffee break. Auspician Enaex, Epiroc, Orica e iSE.",
       "actividades": [
-        {
-          "hora": "",
-          "actividad": "Digitalización, datos y automatización en voladura",
-          "espacio": "",
-          "ponente": ""
-        },
-        {
-          "hora": "",
-          "actividad": "Eficiencia operacional y sostenibilidad",
-          "espacio": "",
-          "ponente": ""
-        },
-        {
-          "hora": "",
-          "actividad": "Presentación y evaluación de propuestas del reto",
-          "espacio": "",
-          "ponente": "Equipos participantes"
-        },
-        {
-          "hora": "",
-          "actividad": "Cierre y anuncio de propuestas seleccionadas",
-          "espacio": "",
-          "ponente": "ISEE UNSA"
-        }
+        { "hora": "9:30", "actividad": "Registro y acreditación" },
+        { "hora": "10:00", "actividad": "Ing. Marco Gutiérrez Conde", "detalle": "MMG Las Bambas" },
+        { "hora": "10:20", "actividad": "Ing. Juan Manuel Prado Monje", "detalle": "Orica Perú" },
+        { "hora": "10:40", "actividad": "Ing. Wilbert Pacheco Bustinza", "detalle": "Quellaveco, Anglo American" },
+        { "hora": "11:00", "actividad": "Ponente por confirmar" },
+        { "hora": "11:20", "actividad": "Panel «Innovación Minera 360°»", "detalle": "Mesa de diálogo y debate" },
+        { "hora": "12:00", "actividad": "Coffee break" }
       ]
     },
     {
+      "n": 3,
+      "iso": "2026-11-20",
       "fecha": "Viernes 20 de noviembre",
-      "titulo": "Día 3 · Por confirmar",
+      "tema": "Bloque técnico: taller de voladura e innovación",
+      "alt": "Programa oficial del día 3, viernes 20 de noviembre: 9:30 registro y acreditación; 10:00 bloque técnico, taller de voladura e innovación con el Ing. Jorge Cárdenas Miranda (ENAEX) y el Ing. Christian Ortega (ENAEX); 11:30 panelistas y comité organizador; 12:30 coffee break y networking; 17:00 bloque Minería y Academia con el Ing. Jorge Meza. Auspician Enaex, Epiroc, Orica e iSE.",
       "actividades": [
-        {
-          "hora": "",
-          "actividad": "Actividades por confirmar",
-          "espacio": "",
-          "ponente": ""
-        }
+        { "hora": "9:30", "actividad": "Registro y acreditación" },
+        { "hora": "10:00", "actividad": "Bloque técnico: taller de voladura e innovación", "detalle": "Ing. Jorge Cárdenas Miranda (ENAEX) e Ing. Christian Ortega (ENAEX)" },
+        { "hora": "11:30", "actividad": "Panelistas y comité organizador" },
+        { "hora": "12:30", "actividad": "Coffee break y networking" },
+        { "hora": "17:00", "actividad": "Bloque Minería y Academia", "detalle": "Ing. Jorge Meza" }
       ]
     }
   ]

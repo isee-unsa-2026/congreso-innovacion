@@ -1,0 +1,251 @@
+---
+/* Tarjeta "Asistiré" para historias (1080×1920), dibujada en el navegador.
+   Sin JS la sección no aparece (hidden). El nombre del usuario no se envía ni se guarda. */
+import site from '../data/site.json';
+import { withBase } from '../utils/paths';
+
+const lugar = `${site.hostShort} · ${site.city.split(',')[0].trim()}`;
+---
+<section
+  class="seccion seccion--fondo asistire"
+  id="comparte"
+  aria-labelledby="t-asistire"
+  hidden
+  data-asistire
+  data-nombre-congreso={site.name}
+  data-fechas={site.dates}
+  data-lugar={lugar}
+  data-instagram-user={site.instagramUser}
+  data-logo={withBase('/brand/innomining-logo-hd.png')}
+>
+  <div class="wrap asistire__grid">
+    <div class="asistire__txt">
+      <h2 id="t-asistire" class="titulo-2">Comparte que <em>asistirás</em></h2>
+      <p class="asistire__p">Genera una imagen para tus historias y cuéntales a tus contactos que estarás en el {site.name}.</p>
+
+      <div class="campo asistire__campo">
+        <label for="asistire-nombre">Tu nombre (opcional)</label>
+        <span class="ayuda" id="asistire-nombre-ayuda">Tu nombre no se envía ni se guarda: la imagen se genera en tu dispositivo.</span>
+        <input id="asistire-nombre" type="text" maxlength="40" autocomplete="off" aria-describedby="asistire-nombre-ayuda" data-asistire-nombre />
+      </div>
+
+      <div class="asistire__acciones">
+        <button type="button" class="btn" data-asistire-descargar>Descargar imagen</button>
+        <button type="button" class="btn btn--sec" data-asistire-compartir>Compartir</button>
+      </div>
+      <p class="asistire__estado" role="status" aria-live="polite" data-asistire-estado></p>
+    </div>
+
+    <figure class="asistire__vista">
+      <canvas width="1080" height="1920" role="img" aria-label={`Vista previa de la imagen: Asistiré al ${site.name}, ${site.dates}, ${lugar}.`} data-asistire-canvas></canvas>
+      <figcaption>Vista previa (1080 × 1920 px)</figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+  const sec = document.querySelector<HTMLElement>('[data-asistire]');
+  const canvas = sec?.querySelector<HTMLCanvasElement>('[data-asistire-canvas]');
+  const ctx = canvas?.getContext('2d');
+
+  if (sec && canvas && ctx) {
+    const d = sec.dataset;
+    const W = canvas.width;
+    const H = canvas.height;
+    const input = sec.querySelector<HTMLInputElement>('[data-asistire-nombre]');
+    const estado = sec.querySelector<HTMLElement>('[data-asistire-estado]');
+    const btnDescargar = sec.querySelector<HTMLButtonElement>('[data-asistire-descargar]');
+    const btnCompartir = sec.querySelector<HTMLButtonElement>('[data-asistire-compartir]');
+    const ARCHIVO = 'asistire-innomining-2026.png';
+
+    let familia = 'sans-serif';
+    let logo: HTMLImageElement | null = null;
+
+    const fuente = (peso: number, px: number, estilo = 'normal') => `${estilo} ${peso} ${px}px ${familia}`;
+
+    // Divide el nombre del congreso en 3 líneas lo más parejas posible.
+    function tresLineas(texto: string): string[] {
+      const p = texto.trim().split(/\s+/);
+      if (p.length <= 3) return p;
+      const por = Math.ceil(p.length / 3);
+      const out: string[] = [];
+      for (let i = 0; i < p.length; i += por) out.push(p.slice(i, i + por).join(' '));
+      return out.slice(0, 3);
+    }
+
+    // Texto centrado con espaciado entre letras (manual, compatible con todos los navegadores).
+    function textoEspaciado(t: string, cx: number, y: number, esp: number) {
+      const chars = [...t];
+      const anchos = chars.map((c) => ctx!.measureText(c).width);
+      const total = anchos.reduce((a, b) => a + b, 0) + esp * (chars.length - 1);
+      let x = cx - total / 2;
+      ctx!.textAlign = 'left';
+      chars.forEach((c, i) => { ctx!.fillText(c, x, y); x += anchos[i] + esp; });
+      ctx!.textAlign = 'center';
+    }
+
+    // Ajusta el tamaño para que el texto quepa en el ancho dado.
+    function ajustar(t: string, peso: number, px: number, max: number, estilo = 'normal') {
+      let s = px;
+      ctx!.font = fuente(peso, s, estilo);
+      while (ctx!.measureText(t).width > max && s > 24) { s -= 2; ctx!.font = fuente(peso, s, estilo); }
+      return s;
+    }
+
+    function dibujar() {
+      const c = ctx!;
+      c.clearRect(0, 0, W, H);
+
+      // Fondo: azul noche → granate, como el bloque del certificado.
+      const g = c.createLinearGradient(0, 0, W * 0.55, H);
+      g.addColorStop(0, '#1a2140');
+      g.addColorStop(0.4, '#2a2245');
+      g.addColorStop(0.75, '#4a1a2e');
+      g.addColorStop(1, '#5e151d');
+      c.fillStyle = g;
+      c.fillRect(0, 0, W, H);
+
+      // Anillos sobrios de fondo.
+      c.lineWidth = 3;
+      [[W + 60, 140, 420, 0.1], [W + 60, 140, 560, 0.05], [-120, H - 120, 380, 0.06]].forEach(([x, y, r, a]) => {
+        c.strokeStyle = `rgba(255,255,255,${a})`;
+        c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.stroke();
+      });
+
+      c.textAlign = 'center';
+      c.textBaseline = 'alphabetic';
+
+      // Logo sobre círculo blanco.
+      const lx = W / 2, ly = 340, lr = 160;
+      c.fillStyle = '#fff';
+      c.beginPath(); c.arc(lx, ly, lr, 0, Math.PI * 2); c.fill();
+      if (logo && logo.naturalWidth) {
+        const caja = lr * 1.35;
+        const k = Math.min(caja / logo.naturalWidth, caja / logo.naturalHeight);
+        const w = logo.naturalWidth * k, h = logo.naturalHeight * k;
+        c.drawImage(logo, lx - w / 2, ly - h / 2, w, h);
+      }
+
+      // "ASISTIRÉ AL"
+      c.fillStyle = 'rgba(255,255,255,.8)';
+      c.font = fuente(700, 38);
+      textoEspaciado('ASISTIRÉ AL', W / 2, 640, 12);
+
+      // Nombre del congreso en 3 líneas.
+      c.fillStyle = '#fff';
+      const lineas = tresLineas(d.nombreCongreso || '');
+      const tam = Math.min(...lineas.map((l) => ajustar(l, 800, 104, W - 160)));
+      c.font = fuente(800, tam);
+      lineas.forEach((l, i) => c.fillText(l, W / 2, 780 + i * tam * 1.08));
+      const finNombre = 780 + (lineas.length - 1) * tam * 1.08;
+
+      // Línea fina.
+      const yl = finNombre + 90;
+      c.strokeStyle = '#d6b878';
+      c.lineWidth = 3;
+      c.beginPath(); c.moveTo(W / 2 - 90, yl); c.lineTo(W / 2 + 90, yl); c.stroke();
+
+      // Fechas y lugar.
+      c.fillStyle = '#fff';
+      ajustar(d.fechas || '', 600, 46, W - 160);
+      c.fillText(d.fechas || '', W / 2, yl + 100);
+      c.fillStyle = 'rgba(255,255,255,.78)';
+      c.font = fuente(500, 40);
+      c.fillText(d.lugar || '', W / 2, yl + 165);
+
+      // "Ingreso gratuito" en un marco discreto.
+      const yp = yl + 270;
+      c.font = fuente(600, 36);
+      const tw = c.measureText('Ingreso gratuito').width + 80;
+      c.strokeStyle = 'rgba(255,255,255,.45)';
+      c.lineWidth = 2;
+      const rx = W / 2 - tw / 2, ry = yp - 50, rh = 74, rr = 37;
+      c.beginPath();
+      c.moveTo(rx + rr, ry); c.lineTo(rx + tw - rr, ry); c.arc(rx + tw - rr, ry + rr, rr, -Math.PI / 2, Math.PI / 2);
+      c.lineTo(rx + rr, ry + rh); c.arc(rx + rr, ry + rr, rr, Math.PI / 2, Math.PI * 1.5); c.closePath();
+      c.stroke();
+      c.fillStyle = '#fff';
+      c.fillText('Ingreso gratuito', W / 2, yp);
+
+      // Nombre del usuario (opcional).
+      const nombre = (input?.value || '').trim().slice(0, 40);
+      if (nombre) {
+        c.fillStyle = '#fff';
+        const t = `— ${nombre}`;
+        ajustar(t, 600, 56, W - 160, 'italic');
+        c.fillText(t, W / 2, yp + 200);
+      }
+
+      // Instagram abajo.
+      c.fillStyle = 'rgba(255,255,255,.75)';
+      c.font = fuente(600, 38);
+      c.fillText(d.instagramUser || '', W / 2, H - 120);
+    }
+
+    let t: number | undefined;
+    const redibujar = () => { window.clearTimeout(t); t = window.setTimeout(dibujar, 150); };
+
+    const blob = () => new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/png'));
+    const avisar = (m: string) => { if (estado) estado.textContent = m; };
+
+    async function descargar() {
+      dibujar();
+      const b = await blob();
+      if (!b) { avisar('No se pudo generar la imagen.'); return; }
+      const url = URL.createObjectURL(b);
+      const a = document.createElement('a');
+      a.href = url; a.download = ARCHIVO;
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      avisar('Imagen descargada.');
+    }
+
+    async function compartir() {
+      dibujar();
+      const b = await blob();
+      if (!b) { avisar('No se pudo generar la imagen.'); return; }
+      const archivo = new File([b], ARCHIVO, { type: 'image/png' });
+      const datos = { files: [archivo], title: d.nombreCongreso || '' };
+      if (navigator.canShare && navigator.canShare({ files: [archivo] })) {
+        try { await navigator.share(datos); avisar(''); return; }
+        catch (e) { if ((e as DOMException)?.name === 'AbortError') return; }
+      }
+      await descargar();
+    }
+
+    input?.addEventListener('input', redibujar);
+    btnDescargar?.addEventListener('click', descargar);
+    btnCompartir?.addEventListener('click', compartir);
+
+    sec.hidden = false;
+
+    (async () => {
+      try {
+        await document.fonts?.load('800 100px "Archivo Variable"');
+        await document.fonts?.ready;
+        if (document.fonts?.check('800 100px "Archivo Variable"')) familia = '"Archivo Variable", sans-serif';
+      } catch { /* fallback sans-serif */ }
+      dibujar();
+      if (d.logo) {
+        const img = new Image();
+        img.decoding = 'async';
+        img.onload = () => { logo = img; dibujar(); };
+        img.src = d.logo;
+      }
+    })();
+  }
+</script>
+
+<style>
+  .asistire__grid { max-width: 46rem; display: grid; gap: 2rem; align-items: center; grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr)); }
+  .asistire__txt { min-width: 0; max-width: 34rem; }
+  .asistire__p { margin: .75rem 0 1.25rem; color: var(--texto-2); line-height: 1.55; }
+  .asistire__campo { display: grid; gap: .35rem; }
+  .asistire__campo input { width: 100%; max-width: 22rem; }
+  .asistire__acciones { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+  .asistire__estado { min-height: 1.4em; margin: .75rem 0 0; font-size: var(--t-sm); color: var(--texto-2); }
+  .asistire__vista { margin: 0; display: grid; justify-items: center; gap: .5rem; }
+  .asistire__vista canvas { display: block; width: min(260px, 100%); height: auto; aspect-ratio: 9 / 16; border-radius: var(--radio); box-shadow: 0 10px 30px rgba(26, 33, 64, .22); background: #1a2140; }
+  .asistire__vista figcaption { font-size: var(--t-xs); color: var(--texto-2); }
+  @media (max-width: 30rem) { .asistire__acciones .btn { flex: 1 1 100%; } }
+</style>
