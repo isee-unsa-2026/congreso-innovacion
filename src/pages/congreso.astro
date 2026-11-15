@@ -22,6 +22,25 @@ import { withBase } from '../utils/paths';
     </div>
   </section>
 
+  <!-- Certificado de participación (formulario de Google; costo en site.json) -->
+  <section id="certificado" class="seccion" aria-labelledby="t-certificado">
+    <div class="wrap">
+      <article class="cert" data-reveal>
+        <div class="cert__txt">
+          <p class="cert__k">¡Ya disponible!</p>
+          <h2 id="t-certificado" class="cert__t">Obtén tu <em>certificado</em> de participación</h2>
+          <p class="cert__p">Gracias por acompañarnos en el {site.name}. Solicita tu certificado completando el formulario.</p>
+          <ol class="cert__pasos">
+            <li><span aria-hidden="true">1</span>Completa tus datos en el formulario.</li>
+            <li><span aria-hidden="true">2</span>Sube la captura de tu pago de {site.certificado.costo}.</li>
+          </ol>
+          <a class="btn btn--cobre" href={site.certificado.url} target="_blank" rel="noopener">Ir al formulario<span class="sr"> (se abre en una pestaña nueva)</span></a>
+        </div>
+        <p class="cert__costo"><span>Costo</span><strong>{site.certificado.costo}</strong><span>por certificado</span></p>
+      </article>
+    </div>
+  </section>
+
   <section class="seccion seccion--fondo" aria-labelledby="t-lugar">
     <div class="wrap">
       <div class="cab-sec" data-reveal>
@@ -53,6 +72,30 @@ import { withBase } from '../utils/paths';
 </Base>
 
 <style>
+  /* Certificado: degradado azul noche → guinda, como las piezas de difusión */
+  .cert { position: relative; overflow: hidden; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: center;
+    padding: clamp(1.5rem, 4vw, 3rem); border-radius: var(--radio-lg); color: #fff;
+    background: linear-gradient(150deg, #1a2140 0%, #2a2245 40%, #4a1a2e 75%, var(--acento) 100%); }
+  .cert::after { content: ''; position: absolute; right: -6rem; top: -6rem; width: 22rem; height: 22rem; border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .12); box-shadow: 0 0 0 2.2rem rgba(255, 255, 255, .03), 0 0 0 4.4rem rgba(255, 255, 255, .02); pointer-events: none; }
+  .cert__txt { position: relative; z-index: 1; max-width: 40rem; }
+  .cert__k { margin: 0 0 .5rem; font: 700 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .18em; text-transform: uppercase; color: var(--cobre-2); }
+  .cert__t { margin: 0; font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.1; color: #fff; }
+  .cert__t em { color: var(--cobre-2); }
+  .cert__p { margin: .9rem 0 1rem; color: rgba(255, 255, 255, .82); line-height: 1.55; }
+  .cert__pasos { list-style: none; margin: 0 0 1.4rem; padding: 0; display: grid; gap: .6rem; }
+  .cert__pasos li { display: flex; align-items: center; gap: .75rem; }
+  .cert__pasos span { flex: none; display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1.5px solid var(--cobre-2); color: var(--cobre-2); font-weight: 700; font-size: .9rem; }
+  .cert__costo { position: relative; z-index: 1; margin: 0; display: grid; place-items: center; align-content: center; width: 11rem; height: 11rem; border-radius: 50%;
+    background: rgba(255, 255, 255, .06); border: 2px solid var(--cobre-2); text-align: center; }
+  .cert__costo span { font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .75); }
+  .cert__costo strong { font-size: 2.2rem; line-height: 1.1; color: #fff; }
+  @media (max-width: 40rem) {
+    .cert { grid-template-columns: 1fr; gap: 1.25rem; }
+    .cert__costo { order: -1; width: auto; height: auto; justify-self: start; display: flex; align-items: baseline; gap: .5rem; padding: .45rem 1rem; border-radius: 999px; }
+    .cert__costo strong { font-size: 1.25rem; }
+    .cert .btn { width: 100%; }
+  }
   .lugar { display: grid; gap: 1.25rem; margin-top: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr)); }
   .lugar__foto { margin: 0; border-radius: var(--radio-lg); overflow: hidden; background: var(--tinta); }
   .lugar__foto img { display: block; width: 100%; height: 100%; min-height: 16rem; object-fit: cover; }
