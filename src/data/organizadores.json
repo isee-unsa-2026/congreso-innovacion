@@ -126,6 +126,21 @@
     },
     {
       "titulo": "",
+      "nombre": "Nicole Aissa Quispe Manayay",
+      "cargo": "Egresada",
+      "organizacion": "ISEE UNSA Student Chapter",
+      "sector": "Organización",
+      "foto": "/img/organizadores/nicole-quispe-manayay.webp",
+      "logo": {
+        "src": "/brand/isee-unsa-logo-512.png",
+        "alt": "ISEE UNSA Student Chapter",
+        "ancho": 512,
+        "alto": 512
+      },
+      "rol": "Directivo"
+    },
+    {
+      "titulo": "",
       "nombre": "Blas Sánchez Sánchez",
       "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
@@ -141,11 +156,11 @@
     },
     {
       "titulo": "",
-      "nombre": "Nicole Aissa Quispe Manayay",
-      "cargo": "Egresada",
+      "nombre": "Jhoel Wilfredo Lazo Pari",
+      "cargo": "Estudiante",
       "organizacion": "ISEE UNSA Student Chapter",
       "sector": "Organización",
-      "foto": "/img/organizadores/nicole-quispe-manayay.webp",
+      "foto": "/img/organizadores/jhoel-lazo-pari.webp",
       "logo": {
         "src": "/brand/isee-unsa-logo-512.png",
         "alt": "ISEE UNSA Student Chapter",
