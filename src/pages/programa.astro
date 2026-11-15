@@ -48,6 +48,10 @@ const dias = [
   .dia__t { margin: 0; color: var(--texto-2); font-size: var(--t-sm); }
   .dia__img { display: block; width: 100%; max-width: 46rem; justify-self: center; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
   .dia__img img { display: block; width: 100%; height: auto; }
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) {
+    .dia__img { transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out); }
+    .dia__img:hover { transform: translateY(-4px); box-shadow: 0 28px 48px -28px rgba(18, 19, 21, .6); }
+  }
   .crono__fin { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; border-top: 2px solid var(--texto); }
   .crono__fin p { margin: 0; font-weight: 600; }
 </style>

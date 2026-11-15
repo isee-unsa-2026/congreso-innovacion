@@ -17,7 +17,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
       {hayUnsa && (
         <>
           <span class="cab__sep" aria-hidden="true"></span>
-          <img class="cab__unsa" src={withBase('/brand/unsa-logo.png')} width="206" height="256" alt={site.host} />
+          <img class="cab__unsa cab__imago" src={withBase('/brand/unsa-imagotipo.png')} width="900" height="302" alt={site.host} />
         </>
       )}
       <img class="cab__unsa" src={withBase('/brand/fggm-logo.png')} width="466" height="444" alt="Facultad de Geología, Geofísica y Minas de la UNSA" />
@@ -49,6 +49,8 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   .cab__marca .cab__inno { width: auto; height: 60px; }
   .cab__sep { width: 1px; height: 36px; background: #c9c9c4; }
   .cab__unsa { width: auto; height: 60px; object-fit: contain; }
+  /* Imagotipo oficial de la UNSA: es horizontal, va algo más bajo para pesar lo mismo que los sellos */
+  .cab__marcas .cab__imago { height: 50px; }
   /* Escuela de Minas + aniversario: bloque propio, separado del resto de logos */
   .cab__escuela { display: inline-flex; align-items: center; gap: .55rem; }
   /* Aniversario de la Escuela, al estilo de un sello: número serif en cursiva + «Años» caligráfico */
@@ -88,6 +90,7 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
     .cab__marca img { width: 42px; height: 42px; }
     .cab__marca .cab__inno { width: auto; height: 42px; }
     .cab__unsa { height: 42px; }
+    .cab__marcas .cab__imago { height: 36px; }
     .cab__escuela { gap: .4rem; }
     .aniv b { font-size: 2.1rem; } .aniv i { font-size: .85rem; }
     .cab__sep { height: 30px; }
@@ -103,11 +106,13 @@ const hayUnsa = fs.existsSync(path.join(process.cwd(), 'public', 'brand', 'unsa-
   }
   @media (max-width: 30rem) {
     .cab__marcas, .cab__marca { gap: .4rem; }
-    .cab__marca img, .cab__unsa, .cab__marca .cab__inno { height: 34px; }
-    .cab__marca img { width: 34px; }
+    .cab__in { gap: .5rem; }
+    .cab__marca img, .cab__unsa, .cab__marca .cab__inno { height: 30px; }
+    .cab__marca img { width: 30px; }
     .cab__marca .cab__inno { width: auto; }
     .cab__sep { height: 26px; }
-    .aniv b { font-size: 1.7rem; } .aniv i { font-size: .7rem; }
+    .cab__marcas .cab__imago { height: 21px; }
+    .aniv b { font-size: 1.5rem; } .aniv i { font-size: .62rem; }
     .cab__btn { width: 44px; height: 44px; }
   }
   @keyframes menu-abre { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }

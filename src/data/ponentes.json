@@ -25,10 +25,10 @@
       "sector": "Academia",
       "foto": "/img/ponentes/bernardo-de-la-gala.webp",
       "logo": {
-        "src": "/brand/unsa-logo.png",
+        "src": "/brand/unsa-imagotipo.png",
         "alt": "UNSA",
-        "ancho": 206,
-        "alto": 256
+        "ancho": 900,
+        "alto": 302
       }
     },
     {

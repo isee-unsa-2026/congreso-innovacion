@@ -51,6 +51,7 @@ const faq = [
         <span class="hero__barra" aria-hidden="true">|</span><span class="sr">. </span>
         <span>{site.city}</span>
       </p>
+      <p class="hero__cuenta anim" style="--d:120ms" data-cuenta={site.dateStart + 'T09:30:00-05:00'} data-fin={site.dateEnd + 'T20:00:00-05:00'} role="timer" aria-live="off" hidden></p>
       <h1 id="titulo-portada" class="anim" style="--d:160ms"><span class="hero__num">Primer</span> {site.name.replace(/^Primer /, '')}</h1>
       <p class="hero__org anim" style="--d:240ms">Organiza <strong>{site.organizer}</strong><span aria-hidden="true"> · </span><span class="sr">. Sede: </span>{site.host}</p>
       <p class="hero__lema anim" style="--d:300ms">“{site.tagline}”</p>
@@ -108,6 +109,23 @@ const faq = [
   </section>
 </Base>
 
+<script is:inline>
+  // Cuenta regresiva de la portada (hora de Arequipa, UTC-5). Sin dependencias.
+  (function () {
+    var el = document.querySelector('[data-cuenta]'); if (!el) return;
+    var ini = Date.parse(el.dataset.cuenta), fin = Date.parse(el.dataset.fin); if (isNaN(ini) || isNaN(fin)) return;
+    function pinta() {
+      var ahora = Date.now();
+      if (ahora >= fin) { el.hidden = true; return; }
+      if (ahora >= ini) { el.innerHTML = '<span class="vivo">El congreso está en curso</span>'; el.hidden = false; return; }
+      var s = Math.floor((ini - ahora) / 1000), d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60);
+      el.innerHTML = '<span>Faltan</span>' + (d ? '<span><b>' + d + '</b>' + (d === 1 ? 'día' : 'días') + '</span>' : '') + '<span><b>' + h + '</b>h</span><span><b>' + m + '</b>min</span>';
+      el.hidden = false;
+    }
+    pinta(); setInterval(pinta, 30000);
+  })();
+</script>
+
 <style>
   /* ---------- Hero centrado: foto con velo oscuro; protagonista el congreso ---------- */
   .hero { position: relative; isolation: isolate; display: grid; align-items: center; min-height: max(32rem, calc(100svh - 65px)); padding: clamp(2.5rem, 5vw, 3.5rem) 0 4.5rem; background: var(--tinta); overflow: hidden; color: #fff; text-align: center; }
@@ -132,6 +150,10 @@ const faq = [
   @keyframes baja { 0%, 100% { translate: 0 -3px; } 50% { translate: 0 4px; } }
   @media (prefers-reduced-motion: reduce) { .hero__foto, .hero__flecha { animation: none; } }
   .hero__in { display: grid; justify-items: center; }
+  /* Cuenta regresiva: discreta, bajo la fecha; se oculta sola al terminar el congreso */
+  .hero__cuenta { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: .35rem 1.1rem; margin: 0 0 1rem; max-width: none; font: 500 var(--t-xs)/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .82); }
+  .hero__cuenta :global(b) { margin-right: .3rem; font: 700 1.5rem/1 var(--f-display); letter-spacing: 0; color: var(--cobre-2); font-variant-numeric: tabular-nums; }
+  .hero__cuenta :global(.vivo) { color: var(--cobre-2); font-weight: 700; }
   .hero__kicker { display: inline-flex; align-items: center; gap: .85rem; margin: 0 0 .9rem; font: 500 var(--t-sm)/1.2 var(--f-texto); letter-spacing: .22em; text-transform: uppercase; color: var(--cobre-2); max-width: none; }
   .hero__kicker::before, .hero__kicker::after { content: ""; width: 2.25rem; height: 1px; background: var(--cobre); }
   .hero__num { color: var(--cobre); }
