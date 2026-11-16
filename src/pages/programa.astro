@@ -1,5 +1,5 @@
 ---
-// Programa oficial: agenda en texto por día (src/data/programa.json) y, a pedido, la imagen del cronograma oficial (public/img/cronograma).
+// Programa oficial: la imagen del cronograma de cada día (public/img/cronograma); fechas, temas y alt en src/data/programa.json.
 // Con JS: pestañas por día (se abre el día de hoy en hora de Lima, o ?dia=N). Sin JS: los tres días seguidos.
 import Base from '../layouts/Base.astro';
 import Banner from '../components/Banner.astro';
@@ -8,8 +8,6 @@ import programa from '../data/programa.json';
 import { withBase } from '../utils/paths';
 
 const dias = programa.dias;
-// "9:30" -> "2026-11-18T09:30" para el atributo datetime de <time>.
-const dt = (iso: string, hora: string) => `${iso}T${hora.padStart(5, '0')}`;
 ---
 <Base title="Programa" description={`Programa del ${site.name} (${site.kicker}): ${site.dates}, UNSA, Arequipa. Ingreso libre.`}>
   <Banner etiqueta={site.kicker} titulo="" acento="Programa" />
@@ -35,24 +33,9 @@ const dt = (iso: string, hora: string) => `${iso}T${hora.padStart(5, '0')}`;
             <p class="dia__t">{d.tema}</p>
           </header>
 
-          <ol class="agenda">
-            {d.actividades.map((a) => (
-              <li class="agenda__item">
-                <time class="agenda__h" datetime={dt(d.iso, a.hora)}>{a.hora}</time>
-                <div class="agenda__c">
-                  <strong class="agenda__a">{a.actividad}</strong>
-                  {a.detalle && <span class="agenda__d">{a.detalle}</span>}
-                </div>
-              </li>
-            ))}
-          </ol>
-
-          <details class="dia__oficial">
-            <summary>Ver cronograma oficial (imagen)</summary>
-            <a class="dia__img" href={withBase(`/img/cronograma/dia-${d.n}.jpg`)} target="_blank" rel="noopener" aria-label={`Ver en grande el cronograma del día ${d.n} (se abre en una pestaña nueva)`}>
-              <img src={withBase(`/img/cronograma/dia-${d.n}.jpg`)} width="1296" height="1620" alt={d.alt} loading="lazy" decoding="async" />
-            </a>
-          </details>
+          <a class="dia__img" href={withBase(`/img/cronograma/dia-${d.n}.jpg`)} target="_blank" rel="noopener" aria-label={`Ver en grande el cronograma del día ${d.n} (se abre en una pestaña nueva)`}>
+            <img src={withBase(`/img/cronograma/dia-${d.n}.jpg`)} width="1296" height="1620" alt={d.alt} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+          </a>
         </article>
       ))}
 
@@ -129,17 +112,6 @@ const dt = (iso: string, hora: string) => `${iso}T${hora.padStart(5, '0')}`;
       e.preventDefault();
       activar(sig, true, true);
     });
-
-    // Impresión: los tres días y el cronograma oficial abiertos; se restaura al terminar.
-    let abiertos: HTMLDetailsElement[] = [];
-    addEventListener('beforeprint', () => {
-      abiertos = Array.from(raiz.querySelectorAll<HTMLDetailsElement>('details.dia__oficial:not([open])'));
-      abiertos.forEach((d) => { d.open = true; });
-    });
-    addEventListener('afterprint', () => {
-      abiertos.forEach((d) => { d.open = false; });
-      abiertos = [];
-    });
   }
 </script>
 
@@ -175,22 +147,8 @@ const dt = (iso: string, hora: string) => `${iso}T${hora.padStart(5, '0')}`;
   .dia__f { margin: 0; font-size: 1.25rem; font-weight: 700; }
   .dia__t { flex-basis: 100%; margin: 0; color: var(--texto-2); font-size: var(--t-sm); }
 
-  /* Agenda en texto */
-  .agenda { list-style: none; margin: 0; padding: 0; max-width: 46rem; }
-  .agenda__item { display: grid; grid-template-columns: 4rem minmax(0, 1fr); gap: .25rem 1rem; padding: .85rem 0; border-bottom: 1px solid var(--linea); }
-  .agenda__item:first-child { border-top: 1px solid var(--linea); }
-  .agenda__h { font-weight: 700; color: var(--acento); font-variant-numeric: tabular-nums; line-height: 1.5; }
-  .agenda__c { display: grid; gap: .15rem; min-width: 0; }
-  .agenda__a { font-weight: 700; color: var(--texto); line-height: 1.45; overflow-wrap: anywhere; }
-  .agenda__d { color: var(--texto-2); font-size: var(--t-sm); line-height: 1.45; }
-  @media (min-width: 640px) { .agenda__item { grid-template-columns: 5rem minmax(0, 1fr); } }
-
-  /* Cronograma oficial (imagen) a pedido */
-  .dia__oficial { max-width: 46rem; }
-  .dia__oficial summary { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; cursor: pointer; font-weight: 600; font-size: var(--t-sm); color: var(--acento); }
-  .dia__oficial summary:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 4px; }
-  .dia__oficial[open] summary { margin-bottom: .75rem; }
-  .dia__img { display: block; width: 100%; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
+  /* Cronograma oficial (imagen) */
+  .dia__img { display: block; width: 100%; max-width: 46rem; justify-self: center; border-radius: var(--radio-lg); overflow: hidden; border: 1px solid var(--linea); box-shadow: 0 20px 40px -28px rgba(18, 19, 21, .5); }
   .dia__img img { display: block; width: 100%; height: auto; }
   @media (prefers-reduced-motion: no-preference) and (hover: hover) {
     .dia__img { transition: transform var(--dur-ui) var(--ease-out), box-shadow var(--dur-ui) var(--ease-out); }

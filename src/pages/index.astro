@@ -7,7 +7,6 @@ import site from '../data/site.json';
 import imagenes from '../data/imagenes.json';
 import CarruselFotos from '../components/CarruselFotos.astro';
 import PonentesPrevia from '../components/PonentesPrevia.astro';
-import Compartir from '../components/Compartir.astro';
 import { withBase } from '../utils/paths';
 
 const hero = imagenes.hero;
@@ -119,7 +118,6 @@ const faq = [
       </div>
       <div class="acciones">
         <a class="btn btn--cobre" href={withBase('/inscripciones/')}>Inscríbete gratis</a>
-        <Compartir claro />
       </div>
     </div>
   </section>
@@ -189,8 +187,6 @@ const faq = [
     .hero__marco { font-size: .875rem; }
     .hero .acciones .btn { flex: 1 1 100%; }
     .cierre .acciones, .cierre .acciones .btn { width: 100%; }
-    .cierre .acciones :global(.compartir) { width: 100%; align-items: stretch; }
-    .cierre .acciones :global(.compartir__btn) { width: 100%; }
   }
   @media (max-width: 16rem) {
     .hero__in { min-width: 0; }
